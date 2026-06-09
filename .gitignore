@@ -17,6 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# original Figma export backup — kept locally, not committed
+Website.zip
+
 # macOS-specific files
 .DS_Store
 

@@ -1,0 +1,16 @@
+/* @import rules must precede @font-face per the CSS spec */
+
+/* Pixel-font fallback (used if Upheaval fails to load) */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Body fallback for non-Windows visitors — Calibri is Windows-only / not web-licensed */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300&display=swap');
+
+/* Upheaval pixel font — self-hosted; the CDN (fonts.cdnfonts.com/css/upheaval-tt-brk) returns 500 */
+@font-face {
+  font-family: 'Upheaval TT BRK';
+  src: url('../assets/upheavtt.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
