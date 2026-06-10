@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState } from "react";
 import posterUrl from "../../public/NedShoaei_ResearchPoster_vMed_AlphaRise-compressed.pdf?url";
+import figureUrl from "../../assets/figure-About-Panel.png";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -334,18 +335,15 @@ export function Portfolio() {
                   </p>
                 </div>
 
-                {/* EEG waveform graphic */}
-                <div aria-hidden="true" className="flex-shrink-0">
-                  <svg width="80" height="48" viewBox="0 0 80 48" fill="none">
-                    <polyline
-                      points="0,24 12,24 18,8 24,40 30,4 36,44 42,16 48,32 54,20 60,24 80,24"
-                      stroke="#dbb35e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6"
-                    />
-                    <polyline
-                      points="0,32 10,32 16,22 22,42 28,18 34,38 40,28 46,36 52,26 58,32 80,32"
-                      stroke="#87b8cb" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.4"
-                    />
-                  </svg>
+                {/* Project figure */}
+                <div className="flex-shrink-0">
+                  <img
+                    src={figureUrl}
+                    alt="AlphaRise game art"
+                    loading="lazy"
+                    className="w-32 sm:w-40 md:w-48 rounded-lg"
+                    style={{ display: "block", height: "auto" }}
+                  />
                 </div>
               </div>
             </div>
