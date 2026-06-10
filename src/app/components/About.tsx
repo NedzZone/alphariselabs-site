@@ -46,10 +46,10 @@ const timeline = [
 ];
 
 const pills = [
-  "Cedars-Sinai vMed26",
-  "AWE USA 2026 Research Track",
-  "Entelechy 2026, 1st Place",
-  "AbleGamers APX Certified",
+  { label: "Cedars-Sinai vMed26",         color: "#dbb35e" }, // gold
+  { label: "AWE USA 2026 Research Track",  color: "#87b8cb" }, // mist blue
+  { label: "Entelechy 2026, 1st Place",    color: "#b1a1d1" }, // lilac
+  { label: "AbleGamers APX Certified",     color: "#5b82a0" }, // deep blue
 ];
 
 export function About() {
@@ -128,19 +128,31 @@ export function About() {
               <div className="mt-auto pt-12 grid grid-cols-2 gap-3">
                 {pills.map((tag) => (
                   <span
-                    key={tag}
-                    className="px-4 py-2 rounded-lg text-center"
+                    key={tag.label}
+                    className="px-4 py-2 rounded-lg inline-flex items-center justify-center gap-2"
                     style={{
                       fontFamily: SANS,
                       fontWeight: 300,
                       fontSize: "0.95rem",
                       letterSpacing: "0.04em",
-                      background: "rgba(177,161,209,0.10)",
-                      border: "1px solid rgba(177,161,209,0.20)",
-                      color: "var(--accent)",
+                      background: `${tag.color}14`,
+                      border: `1px solid ${tag.color}55`,
+                      color: tag.color,
                     }}
                   >
-                    {tag}
+                    {/* tiny flair — glowing palette dot */}
+                    <span
+                      aria-hidden="true"
+                      style={{
+                        width: 6,
+                        height: 6,
+                        borderRadius: "9999px",
+                        background: tag.color,
+                        boxShadow: `0 0 6px ${tag.color}`,
+                        flexShrink: 0,
+                      }}
+                    />
+                    {tag.label}
                   </span>
                 ))}
               </div>
