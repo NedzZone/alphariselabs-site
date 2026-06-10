@@ -48,7 +48,7 @@ export function Contact() {
             <span style={{
               fontFamily: PIXEL,
               fontWeight: 300,
-              fontSize: "1.8rem",
+              fontSize: "2.34rem",
               letterSpacing: "0.04em",
               textTransform: "uppercase",
               color: "var(--muted-foreground)",

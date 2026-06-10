@@ -110,7 +110,7 @@ export function Studio() {
             <span style={{
               fontFamily: PIXEL,
               fontWeight: 300,
-              fontSize: "1.85rem",
+              fontSize: "2.4rem",
               letterSpacing: "0.04em",
               textTransform: "uppercase",
               color: "var(--muted-foreground)",

@@ -69,7 +69,7 @@ export function About() {
             <span style={{
               fontFamily: PIXEL,
               fontWeight: 300,
-              fontSize: "1.8rem",
+              fontSize: "2.34rem",
               letterSpacing: "0.04em",
               textTransform: "uppercase",
               color: "var(--muted-foreground)",
@@ -140,18 +140,6 @@ export function About() {
                       color: tag.color,
                     }}
                   >
-                    {/* tiny flair — glowing palette dot */}
-                    <span
-                      aria-hidden="true"
-                      style={{
-                        width: 6,
-                        height: 6,
-                        borderRadius: "9999px",
-                        background: tag.color,
-                        boxShadow: `0 0 6px ${tag.color}`,
-                        flexShrink: 0,
-                      }}
-                    />
                     {tag.label}
                   </span>
                 ))}

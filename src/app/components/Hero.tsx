@@ -23,10 +23,6 @@ export function Hero() {
         }} />
       </div>
 
-      {/* Top rule */}
-      <div aria-hidden="true" className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24"
-        style={{ background: "linear-gradient(to bottom, transparent, rgba(219,179,94,0.35))" }} />
-
       <motion.div
         className="relative z-10 flex flex-col items-center text-center max-w-3xl"
         initial={{ opacity: 0, y: 28 }}

@@ -60,7 +60,7 @@ export function Nav() {
                 style={{
                   fontFamily: PIXEL,
                   fontWeight: 400,
-                  fontSize: "1.1rem",
+                  fontSize: "1.43rem",
                   letterSpacing: "0.05em",
                   color: link.color,
                   textDecoration: "none",
@@ -69,18 +69,6 @@ export function Nav() {
                 onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
                 onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.9")}
               >
-                {/* tiny flair — glowing dot in the section's color */}
-                <span
-                  aria-hidden="true"
-                  style={{
-                    width: 5,
-                    height: 5,
-                    borderRadius: "9999px",
-                    background: link.color,
-                    boxShadow: `0 0 6px ${link.color}`,
-                    flexShrink: 0,
-                  }}
-                />
                 {link.label}
               </a>
             </li>
