@@ -42,7 +42,7 @@ export function Contact() {
         <FadeIn>
           <div className="flex items-center gap-5 mb-16">
             <span style={{ fontFamily: PIXEL, fontSize: "0.72rem", color: "var(--primary)" }}>
-              03
+              04
             </span>
             <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
             <span style={{
@@ -67,21 +67,21 @@ export function Contact() {
               <h2 style={{
                 fontFamily: SERIF,
                 fontWeight: 700,
-                fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)",
-                lineHeight: 1.15,
+                fontSize: "clamp(2.2rem, 5.5vw, 3.4rem)",
+                lineHeight: 1.12,
                 color: "var(--foreground)",
-                letterSpacing: "-0.015em",
+                letterSpacing: "-0.02em",
               }}>
                 Let's think{" "}
                 <em style={{ fontStyle: "italic", color: "var(--accent)" }}>together.</em>
               </h2>
 
               {/* Calibri Regular */}
-              <p className="mt-5" style={{
+              <p className="mt-7" style={{
                 fontFamily: SANS,
                 fontWeight: 400,
-                fontSize: "1rem",
-                lineHeight: 1.75,
+                fontSize: "1.15rem",
+                lineHeight: 1.8,
                 color: "var(--muted-foreground)",
               }}>
                 Whether you're a clinician, researcher, investor, or someone living with a condition

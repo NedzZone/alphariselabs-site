@@ -3,6 +3,7 @@ import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
 import { Portfolio } from "./components/Portfolio";
+import { Studio } from "./components/Studio";
 import { Contact } from "./components/Contact";
 import { ScrollBrainwave } from "./components/ScrollBrainwave";
 
@@ -18,6 +19,7 @@ export default function App() {
         <Hero />
         <About />
         <Portfolio />
+        <Studio />
         <Contact />
       </main>
       <footer

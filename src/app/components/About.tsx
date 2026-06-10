@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
+import portraitUrl from "../../assets/ned-portrait-compressed.jpg";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -78,6 +79,60 @@ export function About() {
           </div>
         </FadeIn>
 
+        {/* Portrait + memo pull-quote */}
+        <FadeIn delay={0.05}>
+          <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-16 items-center mb-20 md:mb-28">
+
+            {/* Left — portrait */}
+            <div className="relative">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-4 rounded-[1.6rem]"
+                style={{
+                  background: "radial-gradient(ellipse at center, rgba(177,161,209,0.18) 0%, transparent 70%)",
+                  filter: "blur(8px)",
+                }}
+              />
+              <img
+                src={portraitUrl}
+                alt="Ned Shoaei"
+                loading="lazy"
+                className="relative w-full rounded-2xl"
+                style={{
+                  display: "block",
+                  objectFit: "cover",
+                  border: "1px solid rgba(177,161,209,0.28)",
+                  boxShadow: "0 0 0 1px rgba(177,161,209,0.06), 0 18px 50px rgba(10,6,18,0.55)",
+                }}
+              />
+            </div>
+
+            {/* Right — memo, styled as an elegant pull-quote */}
+            <blockquote className="relative md:pl-8" style={{ margin: 0 }}>
+              <span
+                aria-hidden="true"
+                className="hidden md:block absolute left-0 top-1 bottom-1 w-px"
+                style={{ background: "linear-gradient(to bottom, transparent, rgba(177,161,209,0.45), transparent)" }}
+              />
+              <p style={{
+                fontFamily: SERIF,
+                fontWeight: 400,
+                fontStyle: "italic",
+                fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                lineHeight: 1.45,
+                letterSpacing: "-0.01em",
+                color: "var(--foreground)",
+              }}>
+                I'm a game designer. In my MFA thesis I explore how narrative and system design
+                could build{" "}
+                <span style={{ color: "var(--accent)" }}>therapeutic simulations for healthcare.</span>{" "}
+                That led me to EEG sensors and a closed-loop, gamified feedback system rooted in{" "}
+                <span style={{ color: "var(--primary)" }}>neuroplasticity and flow.</span>
+              </p>
+            </blockquote>
+          </div>
+        </FadeIn>
+
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-16 md:gap-24">
 
           {/* Left — headline + bio */}
@@ -87,10 +142,10 @@ export function About() {
               <h2 style={{
                 fontFamily: SERIF,
                 fontWeight: 700,
-                fontSize: "clamp(1.8rem, 4.5vw, 2.8rem)",
-                lineHeight: 1.15,
+                fontSize: "clamp(2.2rem, 5.5vw, 3.4rem)",
+                lineHeight: 1.12,
                 color: "var(--foreground)",
-                letterSpacing: "-0.015em",
+                letterSpacing: "-0.02em",
               }}>
                 Designing technology that adapts to people,{" "}
                 <em style={{ fontStyle: "italic", color: "var(--accent)" }}>
@@ -99,11 +154,11 @@ export function About() {
               </h2>
 
               {/* Calibri Regular paragraphs */}
-              <p className="mt-6" style={{
+              <p className="mt-8" style={{
                 fontFamily: SANS,
                 fontWeight: 400,
-                fontSize: "1rem",
-                lineHeight: 1.75,
+                fontSize: "1.15rem",
+                lineHeight: 1.8,
                 color: "var(--muted-foreground)",
               }}>
                 I build therapeutic games for symptoms that are felt but rarely seen. I live with
@@ -111,11 +166,11 @@ export function About() {
                 sessions, the days fatigue takes the decision out of your hands, the wish for
                 something that feels less like a chore and more like relief.
               </p>
-              <p className="mt-4" style={{
+              <p className="mt-5" style={{
                 fontFamily: SANS,
                 fontWeight: 400,
-                fontSize: "1rem",
-                lineHeight: 1.75,
+                fontSize: "1.15rem",
+                lineHeight: 1.8,
                 color: "var(--muted-foreground)",
               }}>
                 My work sits at the intersection of neurofeedback, adaptive game design, and
@@ -170,16 +225,16 @@ export function About() {
                   <p style={{
                     fontFamily: SERIF,
                     fontWeight: 700,
-                    fontSize: "0.92rem",
+                    fontSize: "1.05rem",
                     color: "var(--primary)",
                     letterSpacing: "0.01em",
                   }}>
                     {item.title}
                   </p>
-                  <p className="mt-1.5" style={{
+                  <p className="mt-2" style={{
                     fontFamily: SANS,
                     fontWeight: 400,
-                    fontSize: "0.9rem",
+                    fontSize: "0.98rem",
                     lineHeight: 1.7,
                     color: "var(--muted-foreground)",
                   }}>

@@ -6,6 +6,7 @@ const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 const links = [
   { label: "About",     href: "#about"     },
   { label: "The Work", href: "#portfolio" },
+  { label: "Studio",    href: "#studio"    },
   { label: "Contact",   href: "#contact"   },
 ];
 

@@ -96,19 +96,19 @@ const tabContent: Record<Tab, React.ReactNode> = {
 
   "The Science": (
     <div className="space-y-5">
-      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1rem", lineHeight: 1.75, color: "var(--muted-foreground)" }}>
+      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.08rem", lineHeight: 1.8, color: "var(--muted-foreground)" }}>
         AlphaRise reads the player's brain activity in real time via a consumer-grade EEG headset.
         The game's central character — a small creature named <strong style={{ color: "var(--foreground)", fontWeight: 600 }}>Pip</strong> — responds
         directly to that signal. As the player's focus rises, Pip rises with it. The connection is
         never explained. It is felt.
       </p>
-      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1rem", lineHeight: 1.75, color: "var(--muted-foreground)" }}>
+      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.08rem", lineHeight: 1.8, color: "var(--muted-foreground)" }}>
         The core design principle — <em style={{ fontStyle: "italic", color: "var(--accent)" }}>Compassionate Mode</em> — ensures
         the game never introduces penalty, failure states, or time pressure. When MS-related
         cognitive fatigue drops the player's alpha-band activity, the game responds with calm
         instead of consequence. The system adapts to the brain it is listening to, session by session.
       </p>
-      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1rem", lineHeight: 1.75, color: "var(--muted-foreground)" }}>
+      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.08rem", lineHeight: 1.8, color: "var(--muted-foreground)" }}>
         An N=146 survey of people living with MS informed the fatigue model and the session-length
         design. Sessions run under ten minutes and are structured for use during low-energy
         windows — distributed across the day, not demanded in one block.
@@ -299,19 +299,19 @@ export function Portfolio() {
                   <h2 style={{
                     fontFamily: SERIF,
                     fontWeight: 700,
-                    fontSize: "clamp(1.8rem, 4vw, 2.6rem)",
-                    lineHeight: 1.1,
+                    fontSize: "clamp(2rem, 5vw, 3.2rem)",
+                    lineHeight: 1.08,
                     color: "var(--foreground)",
-                    letterSpacing: "-0.01em",
+                    letterSpacing: "-0.02em",
                   }}>
                     AlphaRise
                   </h2>
 
-                  <p className="mt-3 max-w-lg" style={{
+                  <p className="mt-4 max-w-lg" style={{
                     fontFamily: SANS,
                     fontWeight: 400,
-                    fontSize: "1rem",
-                    lineHeight: 1.65,
+                    fontSize: "1.15rem",
+                    lineHeight: 1.75,
                     color: "var(--muted-foreground)",
                   }}>
                     A closed-loop neurofeedback game for people living with MS-related cognitive
