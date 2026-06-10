@@ -90,7 +90,7 @@ export function Hero() {
         {/* CTAs */}
         <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
           <a
-            href="https://youtu.be/-O7QepmzQ5k?si=tun1w6WBSoFx91dW&t=42"
+            href="https://youtu.be/-O7QepmzQ5k?si=gEFGXmzJuoZD666q&t=43"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-7 py-3 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
