@@ -141,7 +141,7 @@ const tabContent: Record<Tab, React.ReactNode> = {
         <p style={{
           fontFamily: SANS,
           fontWeight: 300,
-          fontSize: "0.68rem",
+          fontSize: "0.9rem",
           letterSpacing: "0.10em",
           textTransform: "uppercase",
           color: "var(--primary)",
@@ -152,8 +152,8 @@ const tabContent: Record<Tab, React.ReactNode> = {
         <p style={{
           fontFamily: SERIF,
           fontWeight: 700,
-          fontSize: "1.1rem",
-          lineHeight: 1.4,
+          fontSize: "1.5rem",
+          lineHeight: 1.35,
           color: "var(--foreground)",
         }}>
           Research poster accepted to the AMXRA-sponsored poster session at the{" "}
@@ -213,7 +213,7 @@ const tabContent: Record<Tab, React.ReactNode> = {
               style={{
                 fontFamily: SANS,
                 fontWeight: 300,
-                fontSize: "0.65rem",
+                fontSize: "0.85rem",
                 letterSpacing: "0.08em",
                 whiteSpace: "nowrap",
                 background: "transparent",
@@ -226,8 +226,8 @@ const tabContent: Record<Tab, React.ReactNode> = {
             <p style={{
               fontFamily: SANS,
               fontWeight: 400,
-              fontSize: "0.92rem",
-              lineHeight: 1.55,
+              fontSize: "1.25rem",
+              lineHeight: 1.5,
               color: "var(--foreground)",
             }}>
               {item.title}
