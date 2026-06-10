@@ -57,31 +57,9 @@ export function About() {
     <section id="about" className="relative px-6 py-32 md:py-40" aria-label="About">
       <div className="max-w-5xl mx-auto">
 
-        {/* Section header */}
-        <FadeIn>
-          <div className="flex items-center gap-5 mb-16">
-            {/* Section number — pixel font */}
-            <span style={{ fontFamily: PIXEL, fontSize: "0.72rem", color: "var(--primary)" }}>
-              01
-            </span>
-            <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
-            {/* Label — Calibri Light, 10% letter-spacing */}
-            <span style={{
-              fontFamily: SANS,
-              fontWeight: 300,
-              fontSize: "0.72rem",
-              letterSpacing: "0.10em",
-              textTransform: "uppercase",
-              color: "var(--muted-foreground)",
-            }}>
-              About
-            </span>
-          </div>
-        </FadeIn>
-
         {/* Portrait + memo pull-quote */}
         <FadeIn delay={0.05}>
-          <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-16 items-center mb-20 md:mb-28">
+          <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-16 items-center mb-16 md:mb-20">
 
             {/* Left — portrait */}
             <div className="relative">
@@ -130,6 +108,28 @@ export function About() {
                 <span style={{ color: "var(--primary)" }}>neuroplasticity and flow.</span>
               </p>
             </blockquote>
+          </div>
+        </FadeIn>
+
+        {/* Section header */}
+        <FadeIn delay={0.1}>
+          <div className="flex items-center gap-5 mb-16">
+            {/* Section number — pixel font */}
+            <span style={{ fontFamily: PIXEL, fontSize: "0.72rem", color: "var(--primary)" }}>
+              01
+            </span>
+            <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
+            {/* Label — Calibri Light, 10% letter-spacing */}
+            <span style={{
+              fontFamily: SANS,
+              fontWeight: 300,
+              fontSize: "0.72rem",
+              letterSpacing: "0.10em",
+              textTransform: "uppercase",
+              color: "var(--muted-foreground)",
+            }}>
+              About
+            </span>
           </div>
         </FadeIn>
 
