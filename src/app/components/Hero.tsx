@@ -37,7 +37,7 @@ export function Hero() {
           style={{
             fontFamily: SANS,
             fontWeight: 300,
-            fontSize: "clamp(1.4rem, 2.8vw, 1.9rem)",
+            fontSize: "1.44rem",
             letterSpacing: "0.06em",
             textTransform: "uppercase",
             color: "var(--secondary)",
