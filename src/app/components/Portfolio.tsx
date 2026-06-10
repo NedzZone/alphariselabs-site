@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
-import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.pdf?url";
+import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.png";
 import figureUrl from "../../assets/figure-About-Panel.png";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
@@ -417,7 +417,7 @@ export function Portfolio() {
         </FadeIn>
       </div>
 
-      {/* Poster lightbox — view-only (toolbar hidden in Chromium viewers) */}
+      {/* Poster lightbox — view-only flattened image (no PDF served) */}
       {posterOpen && (
         <div
           role="dialog"
@@ -430,7 +430,6 @@ export function Portfolio() {
           <div
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-5xl"
-            style={{ height: "90vh" }}
           >
             <button
               type="button"
@@ -452,12 +451,17 @@ export function Portfolio() {
             >
               ✕
             </button>
-            <iframe
-              src={`${posterUrl}#toolbar=0&navpanes=0&scrollbar=0`}
-              title="AlphaRise research poster"
-              className="w-full h-full rounded-lg"
-              style={{ border: "1px solid var(--border)", background: "#ffffff" }}
-            />
+            <div
+              className="max-h-[90vh] overflow-auto rounded-lg"
+              style={{ border: "1px solid var(--border)", background: "#0a0612" }}
+            >
+              <img
+                src={posterUrl}
+                alt="AlphaRise research poster"
+                draggable={false}
+                className="block w-full h-auto select-none"
+              />
+            </div>
           </div>
         </div>
       )}
