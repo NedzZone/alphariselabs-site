@@ -94,25 +94,6 @@ export function Hero() {
           >
             See the work
           </a>
-          <a
-            href="https://youtu.be/-O7QepmzQ5k?si=P-aiZV1Tpw1LMmO8&t=42"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-            style={{
-              fontFamily: SANS,
-              fontWeight: 400,
-              fontSize: "0.9rem",
-              letterSpacing: "0.04em",
-              color: "var(--accent)",
-              border: "1px solid rgba(177,161,209,0.28)",
-              textDecoration: "none",
-            }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(177,161,209,0.6)")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(177,161,209,0.28)")}
-          >
-            My story
-          </a>
         </div>
       </motion.div>
 
