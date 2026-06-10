@@ -156,16 +156,16 @@ export function Contact() {
                 <p style={{
                   fontFamily: SERIF,
                   fontWeight: 700,
-                  fontSize: "1.15rem",
+                  fontSize: "1.7rem",
                   color: "var(--foreground)",
-                  lineHeight: 1.45,
+                  lineHeight: 1.4,
                 }}>
                   Ready to connect? Send a direct email — I read everything and respond personally.
                 </p>
                 <p style={{
                   fontFamily: SANS,
                   fontWeight: 400,
-                  fontSize: "0.9rem",
+                  fontSize: "1.45rem",
                   lineHeight: 1.7,
                   color: "var(--muted-foreground)",
                 }}>
