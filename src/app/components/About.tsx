@@ -124,11 +124,11 @@ export function About() {
               </p>
 
               {/* Credential pills */}
-              <div className="mt-8 flex flex-wrap gap-2">
+              <div className="mt-8 grid grid-cols-2 gap-3">
                 {pills.map((tag) => (
                   <span
                     key={tag}
-                    className="px-4 py-1.5 rounded-full"
+                    className="px-4 py-2 rounded-lg text-center"
                     style={{
                       fontFamily: SANS,
                       fontWeight: 300,
