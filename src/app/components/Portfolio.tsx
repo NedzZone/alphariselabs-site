@@ -66,10 +66,11 @@ const tabContent: Record<Tab, React.ReactNode> = {
             }}>
               {s.value}
             </p>
-            <p className="mt-0.5" style={{
+            <p className="mt-1" style={{
               fontFamily: SANS,
               fontWeight: 400,
-              fontSize: "0.82rem",
+              fontSize: "1.05rem",
+              lineHeight: 1.45,
               color: "var(--secondary)",
             }}>
               {s.note}
@@ -286,7 +287,7 @@ export function Portfolio() {
                   <span className="inline-block mb-3 px-2.5 py-0.5 rounded-full" style={{
                     fontFamily: SANS,
                     fontWeight: 300,
-                    fontSize: "0.72rem",
+                    fontSize: "0.95rem",
                     letterSpacing: "0.08em",
                     background: "rgba(219,179,94,0.12)",
                     border: "1px solid rgba(219,179,94,0.25)",
