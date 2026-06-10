@@ -33,9 +33,23 @@ export function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Eyebrow — Calibri Light, letter-spacing 10% */}
+        {/* Headline — Upheaval pixel, large, white */}
+        <p
+          style={{
+            fontFamily: PIXEL,
+            fontWeight: 400,
+            fontSize: "clamp(1rem, 3.8vw, 2.6rem)",
+            lineHeight: 1.4,
+            whiteSpace: "nowrap",
+            color: "#ffffff",
+          }}
+        >
+          Games that care, for stories that matter.
+        </p>
+
+        {/* Eyebrow — Calibri Light, letter-spacing */}
         <span
-          className="mb-10"
+          className="mt-6"
           style={{
             fontFamily: SANS,
             fontWeight: 300,
@@ -48,45 +62,20 @@ export function Hero() {
           Founder, AlphaRise Labs · Game Designer · MedTech Innovator
         </span>
 
-        {/* Name — Georgia Bold, italic on surname */}
+        {/* Name — Upheaval pixel, light purple */}
         <h1
-          style={{
-            fontFamily: SERIF,
-            fontWeight: 700,
-            fontSize: "clamp(3rem, 9vw, 7rem)",
-            lineHeight: 1.05,
-            color: "var(--foreground)",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          Ned{" "}
-          <em
-            style={{
-              fontStyle: "italic",
-              background: "linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Shoaei
-          </em>
-        </h1>
-
-        {/* Tagline — Calibri Regular */}
-        <p
-          className="mt-8"
+          className="mt-4"
           style={{
             fontFamily: PIXEL,
             fontWeight: 400,
-            fontSize: "clamp(0.85rem, 3.3vw, 2.25rem)",
-            lineHeight: 1.5,
-            whiteSpace: "nowrap",
-            color: "var(--muted-foreground)",
+            fontSize: "clamp(1.2rem, 3vw, 1.8rem)",
+            letterSpacing: "0.02em",
+            lineHeight: 1.3,
+            color: "var(--accent)",
           }}
         >
-          Games that care, for stories that matter.
-        </p>
+          Meet Ned Shoaei
+        </h1>
 
         {/* CTAs */}
         <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
