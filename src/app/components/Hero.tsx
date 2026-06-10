@@ -92,17 +92,16 @@ export function Hero() {
                 boxShadow: "0 0 0 1px rgba(177,161,209,0.06), 0 18px 50px rgba(10,6,18,0.55)",
               }}
             />
-            {/* See the work — overlaying the photo, bottom-right */}
+            {/* See the work — circular eye-icon button overlaying the photo */}
             <a
               href="https://youtu.be/-O7QepmzQ5k?si=gEFGXmzJuoZD666q&t=43"
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute bottom-5 right-5 z-10 inline-flex items-center gap-2 px-9 py-4 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              aria-label="See the work"
+              className="absolute bottom-5 right-5 z-10 inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{
-                fontFamily: SANS,
-                fontWeight: 600,
-                fontSize: "1.2rem",
-                letterSpacing: "0.04em",
+                width: "4.25rem",
+                height: "4.25rem",
                 background: "var(--primary)",
                 color: "var(--primary-foreground)",
                 textDecoration: "none",
@@ -111,7 +110,10 @@ export function Hero() {
               onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.88")}
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
             >
-              See the work
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.8"/>
+              </svg>
             </a>
             </div>
             {/* Photo credit */}
