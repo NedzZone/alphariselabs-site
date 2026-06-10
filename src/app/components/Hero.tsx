@@ -118,12 +118,12 @@ export function Hero() {
 
       {/* Photo + memo band — wide hero feature: large portrait + roomy memo */}
       <motion.div
-        className="relative z-10 w-full max-w-6xl mt-12 md:mt-16"
+        className="relative z-10 w-full max-w-[84rem] mt-12 md:mt-16"
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr] gap-10 md:gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1.25fr_1fr] gap-10 md:gap-16 items-center">
 
           {/* Left — portrait */}
           <div className="relative">
