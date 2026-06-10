@@ -329,8 +329,8 @@ export function Portfolio() {
                     letterSpacing: "0.02em",
                     color: "var(--muted-foreground)",
                   }}>
-                    Game Art by{" "}
-                    <span style={{ color: "var(--secondary)" }}>Madeleine Schaefer</span>, Game Artist
+                    Game Art Collaborator:{" "}
+                    <span style={{ color: "var(--secondary)" }}>Madeleine Schaefer</span>, BFA Game Development, SCAD
                   </p>
                 </div>
 
