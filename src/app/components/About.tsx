@@ -45,10 +45,10 @@ const timeline = [
 ];
 
 const pills = [
-  "MFA, SCAD 2026",
-  "AbleGamers APX Certified",
+  "Cedars-Sinai vMed26",
+  "AWE USA 2026 Research Track",
   "Entelechy 2026, 1st Place",
-  "Lumen Prize Nominee",
+  "AbleGamers APX Certified",
 ];
 
 export function About() {
