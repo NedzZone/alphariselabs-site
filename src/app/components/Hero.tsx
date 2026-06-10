@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import portraitUrl from "../../assets/ned-portrait-compressed.jpg";
 
+const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
 const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 
@@ -73,12 +74,13 @@ export function Hero() {
 
         {/* Tagline — Calibri Regular */}
         <p
-          className="mt-8 max-w-xl"
+          className="mt-8 max-w-2xl"
           style={{
-            fontFamily: SANS,
+            fontFamily: PIXEL,
             fontWeight: 400,
-            fontSize: "clamp(1.05rem, 2.5vw, 1.3rem)",
-            lineHeight: 1.65,
+            fontSize: "clamp(1.5rem, 3.4vw, 2.25rem)",
+            lineHeight: 1.5,
+            letterSpacing: "0.02em",
             color: "var(--muted-foreground)",
           }}
         >
