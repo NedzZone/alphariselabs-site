@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import portraitUrl from "../../assets/ned-portrait-compressed.jpg";
 
 const SERIF = "'Georgia', 'Times New Roman', serif";
 const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
@@ -6,7 +7,7 @@ const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 export function Hero() {
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center px-6 py-28 md:py-32 overflow-hidden"
       aria-label="Hero"
     >
       {/* Signature glow orb */}
@@ -124,6 +125,65 @@ export function Hero() {
           >
             My story
           </a>
+        </div>
+      </motion.div>
+
+      {/* Photo + memo band — fills the space below the intro */}
+      <motion.div
+        className="relative z-10 w-full max-w-4xl mt-20 md:mt-28"
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-16 items-center">
+
+          {/* Left — portrait */}
+          <div className="relative">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-4 rounded-[1.6rem]"
+              style={{
+                background: "radial-gradient(ellipse at center, rgba(177,161,209,0.18) 0%, transparent 70%)",
+                filter: "blur(8px)",
+              }}
+            />
+            <img
+              src={portraitUrl}
+              alt="Ned Shoaei"
+              loading="lazy"
+              className="relative w-full rounded-2xl"
+              style={{
+                display: "block",
+                objectFit: "cover",
+                border: "1px solid rgba(177,161,209,0.28)",
+                boxShadow: "0 0 0 1px rgba(177,161,209,0.06), 0 18px 50px rgba(10,6,18,0.55)",
+              }}
+            />
+          </div>
+
+          {/* Right — memo, styled as an elegant pull-quote */}
+          <blockquote className="relative md:pl-8 text-left" style={{ margin: 0 }}>
+            <span
+              aria-hidden="true"
+              className="hidden md:block absolute left-0 top-1 bottom-1 w-px"
+              style={{ background: "linear-gradient(to bottom, transparent, rgba(177,161,209,0.45), transparent)" }}
+            />
+            <p style={{
+              fontFamily: SERIF,
+              fontWeight: 400,
+              fontStyle: "italic",
+              fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+              lineHeight: 1.45,
+              letterSpacing: "-0.01em",
+              color: "var(--foreground)",
+            }}>
+              I'm a game designer. In my MFA thesis I explore how narrative and system design
+              could build{" "}
+              <span style={{ color: "var(--accent)" }}>therapeutic simulations for healthcare.</span>{" "}
+              That led me to EEG sensors and a closed-loop, gamified feedback system rooted in{" "}
+              <span style={{ color: "var(--primary)" }}>neuroplasticity and flow.</span>
+            </p>
+          </blockquote>
         </div>
       </motion.div>
     </section>

@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
-import portraitUrl from "../../assets/ned-portrait-compressed.jpg";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -57,62 +56,8 @@ export function About() {
     <section id="about" className="relative px-6 py-32 md:py-40" aria-label="About">
       <div className="max-w-5xl mx-auto">
 
-        {/* Portrait + memo pull-quote */}
-        <FadeIn delay={0.05}>
-          <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-16 items-center mb-16 md:mb-20">
-
-            {/* Left — portrait */}
-            <div className="relative">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -inset-4 rounded-[1.6rem]"
-                style={{
-                  background: "radial-gradient(ellipse at center, rgba(177,161,209,0.18) 0%, transparent 70%)",
-                  filter: "blur(8px)",
-                }}
-              />
-              <img
-                src={portraitUrl}
-                alt="Ned Shoaei"
-                loading="lazy"
-                className="relative w-full rounded-2xl"
-                style={{
-                  display: "block",
-                  objectFit: "cover",
-                  border: "1px solid rgba(177,161,209,0.28)",
-                  boxShadow: "0 0 0 1px rgba(177,161,209,0.06), 0 18px 50px rgba(10,6,18,0.55)",
-                }}
-              />
-            </div>
-
-            {/* Right — memo, styled as an elegant pull-quote */}
-            <blockquote className="relative md:pl-8" style={{ margin: 0 }}>
-              <span
-                aria-hidden="true"
-                className="hidden md:block absolute left-0 top-1 bottom-1 w-px"
-                style={{ background: "linear-gradient(to bottom, transparent, rgba(177,161,209,0.45), transparent)" }}
-              />
-              <p style={{
-                fontFamily: SERIF,
-                fontWeight: 400,
-                fontStyle: "italic",
-                fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
-                lineHeight: 1.45,
-                letterSpacing: "-0.01em",
-                color: "var(--foreground)",
-              }}>
-                I'm a game designer. In my MFA thesis I explore how narrative and system design
-                could build{" "}
-                <span style={{ color: "var(--accent)" }}>therapeutic simulations for healthcare.</span>{" "}
-                That led me to EEG sensors and a closed-loop, gamified feedback system rooted in{" "}
-                <span style={{ color: "var(--primary)" }}>neuroplasticity and flow.</span>
-              </p>
-            </blockquote>
-          </div>
-        </FadeIn>
-
         {/* Section header */}
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <div className="flex items-center gap-5 mb-16">
             {/* Section number — pixel font */}
             <span style={{ fontFamily: PIXEL, fontSize: "0.72rem", color: "var(--primary)" }}>
