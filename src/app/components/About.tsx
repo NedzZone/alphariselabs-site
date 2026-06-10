@@ -60,10 +60,6 @@ export function About() {
         {/* Section header */}
         <FadeIn>
           <div className="flex items-center gap-5 mb-16">
-            {/* Section number — pixel font */}
-            <span style={{ fontFamily: PIXEL, fontSize: "2.8rem", color: "var(--secondary)" }}>
-              01
-            </span>
             <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
             {/* Label — Calibri Light, 10% letter-spacing */}
             <span style={{

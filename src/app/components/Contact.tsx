@@ -41,9 +41,6 @@ export function Contact() {
         {/* Section header */}
         <FadeIn>
           <div className="flex items-center gap-5 mb-16">
-            <span style={{ fontFamily: PIXEL, fontSize: "2.8rem", color: "var(--accent)" }}>
-              04
-            </span>
             <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
             <span style={{
               fontFamily: PIXEL,
