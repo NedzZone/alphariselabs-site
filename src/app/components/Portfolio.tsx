@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.pdf?url";
 import figureUrl from "../../assets/figure-About-Panel.png";
 
@@ -33,7 +33,7 @@ const stats = [
   { label: "RESEARCH", value: "N=146 survey",            note: "MS-specific fatigue study"   },
 ];
 
-const tabContent: Record<Tab, React.ReactNode> = {
+const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => ({
   Overview: (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -163,10 +163,9 @@ const tabContent: Record<Tab, React.ReactNode> = {
           </em>
         </p>
         <div className="mt-4">
-          <a
-            href={posterUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={onOpenPoster}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             style={{
               fontFamily: SANS,
@@ -175,17 +174,19 @@ const tabContent: Record<Tab, React.ReactNode> = {
               letterSpacing: "0.03em",
               background: "var(--primary)",
               color: "var(--primary-foreground)",
-              textDecoration: "none",
+              border: "none",
+              cursor: "pointer",
             }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.88")}
             onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
           >
-            {/* using <svg> here instead of lucide-react Download: no kit icon system present */}
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            {/* eye icon — view-only, no download */}
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5Z" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="8" cy="8" r="2" stroke="currentColor" strokeWidth="1.4"/>
             </svg>
-            View the poster (PDF)
-          </a>
+            View the poster
+          </button>
         </div>
       </div>
 
@@ -238,10 +239,24 @@ const tabContent: Record<Tab, React.ReactNode> = {
       </div>
     </div>
   ),
-};
+});
 
 export function Portfolio() {
   const [activeTab, setActiveTab] = useState<Tab>("Overview");
+  const [posterOpen, setPosterOpen] = useState(false);
+
+  // Close the poster lightbox on Escape, and lock body scroll while open
+  useEffect(() => {
+    if (!posterOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setPosterOpen(false); };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [posterOpen]);
 
   return (
     <section id="portfolio" className="relative px-6 py-32 md:py-40" aria-label="Portfolio">
@@ -395,12 +410,57 @@ export function Portfolio() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
               >
-                {tabContent[activeTab]}
+                {tabContent(() => setPosterOpen(true))[activeTab]}
               </motion.div>
             </div>
           </div>
         </FadeIn>
       </div>
+
+      {/* Poster lightbox — view-only (toolbar hidden in Chromium viewers) */}
+      {posterOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="AlphaRise research poster"
+          onClick={() => setPosterOpen(false)}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
+          style={{ background: "rgba(10,6,18,0.86)", backdropFilter: "blur(6px)" }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-5xl"
+            style={{ height: "90vh" }}
+          >
+            <button
+              type="button"
+              onClick={() => setPosterOpen(false)}
+              aria-label="Close poster"
+              className="absolute -top-4 -right-2 md:-right-4 z-10 flex items-center justify-center rounded-full transition-opacity duration-200"
+              style={{
+                width: "2.25rem",
+                height: "2.25rem",
+                background: "var(--primary)",
+                color: "var(--primary-foreground)",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "1.1rem",
+                lineHeight: 1,
+              }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.85")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+            >
+              ✕
+            </button>
+            <iframe
+              src={`${posterUrl}#toolbar=0&navpanes=0&scrollbar=0`}
+              title="AlphaRise research poster"
+              className="w-full h-full rounded-lg"
+              style={{ border: "1px solid var(--border)", background: "#ffffff" }}
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
