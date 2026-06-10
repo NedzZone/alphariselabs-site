@@ -161,6 +161,17 @@ export function Hero() {
                 boxShadow: "0 0 0 1px rgba(177,161,209,0.06), 0 18px 50px rgba(10,6,18,0.55)",
               }}
             />
+            {/* Photo credit */}
+            <p className="mt-3" style={{
+              fontFamily: SANS,
+              fontWeight: 300,
+              fontSize: "0.72rem",
+              letterSpacing: "0.10em",
+              textTransform: "uppercase",
+              color: "var(--muted-foreground)",
+            }}>
+              Photo: Mike Schalk
+            </p>
           </div>
 
           {/* Right — memo, styled as an elegant pull-quote */}

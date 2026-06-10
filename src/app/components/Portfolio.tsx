@@ -320,6 +320,18 @@ export function Portfolio() {
                     responds to their brain activity in real time. As focus rises, Pip rises with it.
                     The connection is never explained — it is felt.
                   </p>
+
+                  {/* Collaborator credit */}
+                  <p className="mt-4" style={{
+                    fontFamily: SANS,
+                    fontWeight: 400,
+                    fontSize: "0.85rem",
+                    letterSpacing: "0.02em",
+                    color: "var(--muted-foreground)",
+                  }}>
+                    Game Art by{" "}
+                    <span style={{ color: "var(--secondary)" }}>Madeleine Schaefer</span>, Game Artist
+                  </p>
                 </div>
 
                 {/* EEG waveform graphic */}
