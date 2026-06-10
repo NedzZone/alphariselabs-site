@@ -80,8 +80,8 @@ export function Contact() {
               <p className="mt-7" style={{
                 fontFamily: SANS,
                 fontWeight: 400,
-                fontSize: "1.15rem",
-                lineHeight: 1.8,
+                fontSize: "1.45rem",
+                lineHeight: 1.7,
                 color: "var(--muted-foreground)",
               }}>
                 Whether you're a clinician, researcher, investor, or someone living with a condition
@@ -92,7 +92,7 @@ export function Contact() {
                 {/* Email */}
                 <div>
                   <p style={{
-                    fontFamily: SANS, fontWeight: 300, fontSize: "0.68rem",
+                    fontFamily: SANS, fontWeight: 300, fontSize: "0.9rem",
                     letterSpacing: "0.10em", textTransform: "uppercase",
                     color: "var(--muted-foreground)",
                   }}>
@@ -101,7 +101,7 @@ export function Contact() {
                   <a
                     href={`mailto:${EMAIL}`}
                     style={{
-                      fontFamily: SANS, fontWeight: 400, fontSize: "0.95rem",
+                      fontFamily: SANS, fontWeight: 400, fontSize: "1.25rem",
                       color: "var(--secondary)", textDecoration: "none",
                       transition: "color 0.2s",
                     }}
@@ -115,13 +115,13 @@ export function Contact() {
                 {/* Based in */}
                 <div>
                   <p style={{
-                    fontFamily: SANS, fontWeight: 300, fontSize: "0.68rem",
+                    fontFamily: SANS, fontWeight: 300, fontSize: "0.9rem",
                     letterSpacing: "0.10em", textTransform: "uppercase",
                     color: "var(--muted-foreground)",
                   }}>
                     Based in
                   </p>
-                  <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "0.95rem", color: "var(--foreground)" }}>
+                  <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.25rem", color: "var(--foreground)" }}>
                     USA
                   </p>
                 </div>
@@ -129,13 +129,13 @@ export function Contact() {
                 {/* Open to */}
                 <div>
                   <p style={{
-                    fontFamily: SANS, fontWeight: 300, fontSize: "0.68rem",
+                    fontFamily: SANS, fontWeight: 300, fontSize: "0.9rem",
                     letterSpacing: "0.10em", textTransform: "uppercase",
                     color: "var(--muted-foreground)",
                   }}>
                     Open to
                   </p>
-                  <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "0.95rem", color: "var(--foreground)", lineHeight: 1.6 }}>
+                  <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.25rem", color: "var(--foreground)", lineHeight: 1.6 }}>
                     Research collaboration · Advising · Speaking
                   </p>
                 </div>
