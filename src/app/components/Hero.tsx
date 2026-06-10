@@ -131,14 +131,14 @@ export function Hero() {
         </div>
       </motion.div>
 
-      {/* Photo + memo band — aligned to the intro's center axis and width */}
+      {/* Photo + memo band — wide hero feature: large portrait + roomy memo */}
       <motion.div
-        className="relative z-10 w-full max-w-3xl mt-12 md:mt-16"
+        className="relative z-10 w-full max-w-6xl mt-12 md:mt-16"
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="grid grid-cols-1 md:grid-cols-[1.15fr_1fr] gap-10 md:gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1.25fr_1fr] gap-10 md:gap-16 items-center">
 
           {/* Left — portrait */}
           <div className="relative">
@@ -186,10 +186,11 @@ export function Hero() {
               fontFamily: SERIF,
               fontWeight: 400,
               fontStyle: "italic",
-              fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
-              lineHeight: 1.45,
+              fontSize: "clamp(1.4rem, 2.4vw, 2rem)",
+              lineHeight: 1.5,
               letterSpacing: "-0.01em",
               color: "var(--foreground)",
+              textWrap: "balance",
             }}>
               I'm a game designer. In my MFA thesis I explore how narrative and system design
               could build{" "}
