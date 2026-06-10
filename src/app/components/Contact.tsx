@@ -174,20 +174,24 @@ export function Contact() {
                 {/* Send email button */}
                 <a
                   href={`mailto:${EMAIL}`}
-                  className="inline-flex items-center gap-2 px-7 py-3 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                  aria-label="Send email"
+                  className="inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                   style={{
-                    fontFamily: SANS,
-                    fontWeight: 600,
-                    fontSize: "0.9rem",
-                    letterSpacing: "0.04em",
+                    width: "4.25rem",
+                    height: "4.25rem",
                     background: "var(--primary)",
                     color: "var(--primary-foreground)",
                     textDecoration: "none",
+                    boxShadow: "0 8px 24px rgba(10,6,18,0.55)",
                   }}
                   onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.88")}
                   onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
                 >
-                  Send email
+                  {/* envelope icon */}
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="2.5" y="5" width="19" height="14" rx="2" stroke="currentColor" strokeWidth="1.8"/>
+                    <path d="M3 6.5l9 6 9-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </a>
               </div>
             </div>
