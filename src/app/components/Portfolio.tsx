@@ -260,9 +260,6 @@ export function Portfolio() {
 
   return (
     <section id="portfolio" className="relative min-h-screen px-6 pt-24 pb-32 md:pb-40" aria-label="Portfolio">
-      <div aria-hidden="true" className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(to right, transparent, rgba(219,179,94,0.2), transparent)" }} />
-
       <div className="max-w-5xl mx-auto">
 
         {/* Section header */}

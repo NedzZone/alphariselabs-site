@@ -95,9 +95,6 @@ function Thumb({ grad, motif }: { grad: string; motif: string }) {
 export function Studio() {
   return (
     <section id="studio" className="relative min-h-screen px-6 pt-24 pb-32 md:pb-40" aria-label="In My Studio">
-      <div aria-hidden="true" className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(to right, transparent, rgba(177,161,209,0.18), transparent)" }} />
-
       <div className="max-w-5xl mx-auto">
 
         {/* Section header */}
