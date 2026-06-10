@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState } from "react";
-import posterUrl from "../../public/NedShoaei_ResearchPoster_vMed_AlphaRise-compressed.pdf?url";
+import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.pdf?url";
 import figureUrl from "../../assets/figure-About-Panel.png";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
