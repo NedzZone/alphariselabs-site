@@ -20,24 +20,27 @@ export default function App() {
         <About />
         <Portfolio />
         <Studio />
-        <Contact />
+        {/* Contact + footer share the final viewport, footer pinned to the bottom */}
+        <div className="flex min-h-screen flex-col">
+          <Contact />
+          <footer
+            className="px-6 py-10 text-center"
+            style={{ borderTop: "1px solid var(--border)" }}
+          >
+            <p
+              style={{
+                fontFamily: "'Figtree', sans-serif",
+                fontWeight: 300,
+                fontSize: "0.78rem",
+                letterSpacing: "0.08em",
+                color: "var(--muted-foreground)",
+              }}
+            >
+              © 2026 Ned Shoaei · AlphaRise Labs · USA
+            </p>
+          </footer>
+        </div>
       </main>
-      <footer
-        className="px-6 py-10 text-center"
-        style={{ borderTop: "1px solid var(--border)" }}
-      >
-        <p
-          style={{
-            fontFamily: "'Figtree', sans-serif",
-            fontWeight: 300,
-            fontSize: "0.78rem",
-            letterSpacing: "0.08em",
-            color: "var(--muted-foreground)",
-          }}
-        >
-          © 2026 Ned Shoaei · AlphaRise Labs · USA
-        </p>
-      </footer>
     </div>
   );
 }

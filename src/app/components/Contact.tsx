@@ -25,7 +25,7 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 export function Contact() {
   return (
-    <section id="contact" className="relative min-h-screen px-6 pt-24 pb-32 md:pb-40" aria-label="Contact">
+    <section id="contact" className="relative grow px-6 pt-24 pb-32 md:pb-40" aria-label="Contact">
       {/* Bottom ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2"
         style={{
