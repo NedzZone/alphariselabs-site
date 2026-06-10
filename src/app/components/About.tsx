@@ -171,7 +171,7 @@ export function About() {
                   <p style={{
                     fontFamily: SERIF,
                     fontWeight: 700,
-                    fontSize: "1.05rem",
+                    fontSize: "1.5rem",
                     color: "var(--primary)",
                     letterSpacing: "0.01em",
                   }}>
@@ -180,7 +180,7 @@ export function About() {
                   <p className="mt-2" style={{
                     fontFamily: SANS,
                     fontWeight: 400,
-                    fontSize: "0.98rem",
+                    fontSize: "1.15rem",
                     lineHeight: 1.7,
                     color: "var(--muted-foreground)",
                   }}>
