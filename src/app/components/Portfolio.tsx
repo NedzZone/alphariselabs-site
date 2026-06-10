@@ -282,7 +282,7 @@ export function Portfolio() {
                 borderBottom: "1px solid var(--border)",
               }}
             >
-              <div className="flex flex-wrap items-start justify-between gap-4">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
                 <div>
                   {/* Pill */}
                   <span className="inline-block mb-3 px-2.5 py-0.5 rounded-full" style={{
@@ -341,7 +341,7 @@ export function Portfolio() {
                     src={figureUrl}
                     alt="AlphaRise game art"
                     loading="lazy"
-                    className="w-32 sm:w-40 md:w-48 rounded-lg"
+                    className="w-64 sm:w-80 md:w-96 rounded-lg"
                     style={{ display: "block", height: "auto" }}
                   />
                 </div>
