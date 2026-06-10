@@ -97,11 +97,11 @@ export function Hero() {
               href="https://youtu.be/-O7QepmzQ5k?si=gEFGXmzJuoZD666q&t=43"
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="absolute bottom-5 right-5 z-10 inline-flex items-center gap-2 px-9 py-4 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{
                 fontFamily: SANS,
                 fontWeight: 600,
-                fontSize: "0.9rem",
+                fontSize: "1.2rem",
                 letterSpacing: "0.04em",
                 background: "var(--primary)",
                 color: "var(--primary-foreground)",
