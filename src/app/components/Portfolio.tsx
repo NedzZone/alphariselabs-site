@@ -133,60 +133,61 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
     <div className="space-y-8">
       {/* Lead item — research poster with visual weight */}
       <div
-        className="p-6 rounded-xl"
+        className="p-6 md:p-7 rounded-xl flex items-center gap-5 md:gap-6"
         style={{
           background: "rgba(219,179,94,0.06)",
           border: "1px solid rgba(219,179,94,0.22)",
         }}
       >
-        <p style={{
-          fontFamily: SANS,
-          fontWeight: 300,
-          fontSize: "0.9rem",
-          letterSpacing: "0.10em",
-          textTransform: "uppercase",
-          color: "var(--primary)",
-          marginBottom: "0.5rem",
-        }}>
-          Peer-reviewed · Conference Poster
-        </p>
-        <p style={{
-          fontFamily: SERIF,
-          fontWeight: 700,
-          fontSize: "1.5rem",
-          lineHeight: 1.35,
-          color: "var(--foreground)",
-        }}>
-          Research poster accepted to the AMXRA-sponsored poster session at the{" "}
-          <em style={{ fontStyle: "italic", color: "var(--primary)" }}>
-            Cedars-Sinai Virtual Medicine Conference (vMed26).
-          </em>
-        </p>
-        <div className="mt-4">
-          <button
-            type="button"
-            onClick={onOpenPoster}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-            style={{
-              fontFamily: SANS,
-              fontWeight: 600,
-              fontSize: "0.85rem",
-              letterSpacing: "0.03em",
-              background: "var(--primary)",
-              color: "var(--primary-foreground)",
-              border: "none",
-              cursor: "pointer",
-            }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.88")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
-          >
-            {/* eye icon — view-only, no download */}
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5Z" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-              <circle cx="8" cy="8" r="2" stroke="currentColor" strokeWidth="1.4"/>
-            </svg>
-            View the poster
-          </button>
+        {/* Circular eye button — left, vertically centered; opens the poster */}
+        <button
+          type="button"
+          onClick={onOpenPoster}
+          aria-label="View the poster"
+          className="shrink-0 inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          style={{
+            width: "4.25rem",
+            height: "4.25rem",
+            background: "var(--primary)",
+            color: "var(--primary-foreground)",
+            border: "none",
+            cursor: "pointer",
+            boxShadow: "0 8px 24px rgba(10,6,18,0.55)",
+          }}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.88")}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+        >
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.8"/>
+          </svg>
+        </button>
+
+        {/* Text */}
+        <div>
+          <p style={{
+            fontFamily: SANS,
+            fontWeight: 300,
+            fontSize: "0.9rem",
+            letterSpacing: "0.10em",
+            textTransform: "uppercase",
+            color: "var(--primary)",
+            marginBottom: "0.5rem",
+          }}>
+            Peer-reviewed · Conference Poster
+          </p>
+          <p style={{
+            fontFamily: SERIF,
+            fontWeight: 700,
+            fontSize: "1.5rem",
+            lineHeight: 1.35,
+            color: "var(--foreground)",
+          }}>
+            Research poster accepted to the AMXRA-sponsored poster session at the{" "}
+            <em style={{ fontStyle: "italic", color: "var(--primary)" }}>
+              Cedars-Sinai Virtual Medicine Conference (vMed26).
+            </em>
+          </p>
         </div>
       </div>
 
