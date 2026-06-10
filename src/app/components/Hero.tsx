@@ -33,12 +33,12 @@ export function Hero() {
       >
         {/* Eyebrow — Calibri Light, letter-spacing 10% */}
         <span
-          className="mb-8"
+          className="mb-10"
           style={{
             fontFamily: SANS,
             fontWeight: 300,
-            fontSize: "0.72rem",
-            letterSpacing: "0.10em",
+            fontSize: "clamp(1.4rem, 2.8vw, 1.9rem)",
+            letterSpacing: "0.06em",
             textTransform: "uppercase",
             color: "var(--secondary)",
           }}
@@ -130,12 +130,12 @@ export function Hero() {
 
       {/* Photo + memo band — fills the space below the intro */}
       <motion.div
-        className="relative z-10 w-full max-w-4xl mt-20 md:mt-28"
+        className="relative z-10 w-full max-w-5xl mt-20 md:mt-28"
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1.15fr_1fr] gap-10 md:gap-16 items-center">
 
           {/* Left — portrait */}
           <div className="relative">
