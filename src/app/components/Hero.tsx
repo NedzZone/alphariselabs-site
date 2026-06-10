@@ -131,9 +131,9 @@ export function Hero() {
         </div>
       </motion.div>
 
-      {/* Photo + memo band — fills the space below the intro */}
+      {/* Photo + memo band — aligned to the intro's center axis and width */}
       <motion.div
-        className="relative z-10 w-full max-w-5xl mt-20 md:mt-28"
+        className="relative z-10 w-full max-w-3xl mt-12 md:mt-16"
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}

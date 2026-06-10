@@ -82,8 +82,8 @@ export function About() {
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-16 md:gap-24">
 
           {/* Left — headline + bio */}
-          <FadeIn delay={0.1}>
-            <div>
+          <FadeIn delay={0.1} className="h-full">
+            <div className="h-full flex flex-col">
               {/* Georgia Bold headline, italic on last phrase */}
               <h2 style={{
                 fontFamily: SERIF,
@@ -125,7 +125,7 @@ export function About() {
               </p>
 
               {/* Credential pills */}
-              <div className="mt-8 grid grid-cols-2 gap-3">
+              <div className="mt-auto pt-12 grid grid-cols-2 gap-3">
                 {pills.map((tag) => (
                   <span
                     key={tag}
@@ -156,7 +156,7 @@ export function About() {
                     <div
                       aria-hidden="true"
                       className="absolute left-[5px] top-[22px] w-px"
-                      style={{ height: "calc(100% - 6px)", background: "var(--border)" }}
+                      style={{ height: "calc(100% - 6px)", background: "rgba(177,161,209,0.30)" }}
                     />
                   )}
                   <div

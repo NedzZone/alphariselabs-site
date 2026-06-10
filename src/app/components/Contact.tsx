@@ -122,7 +122,7 @@ export function Contact() {
                     Based in
                   </p>
                   <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.25rem", color: "var(--foreground)" }}>
-                    USA
+                    Savannah, GA
                   </p>
                 </div>
 

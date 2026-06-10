@@ -22,26 +22,75 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 // Placeholder one-liners — swap in final copy when ready.
+// `grad` + `motif` drive the placeholder thumbnail (palette-only, optic-safe).
+// To use real art later, replace <Thumb .../> in the card with an <img>.
 const projects = [
   {
     tag:   "Narrative Game",
     title: "Lion and Sun",
     body:  "A narrative game rooted in Persian myth and memory, exploring identity through interactive story.",
     accent: "var(--primary)",
+    grad:  "linear-gradient(135deg, #dbb35e 0%, #582c6f 100%)",
+    motif: "sun",
   },
   {
     tag:   "Immersive XR",
     title: "XR Women",
     body:  "An immersive XR experience that spotlights women's stories through presence and embodiment.",
     accent: "var(--secondary)",
+    grad:  "linear-gradient(135deg, #87b8cb 0%, #210d40 100%)",
+    motif: "rings",
   },
   {
     tag:   "Accessible Tool",
     title: "SCADAsk",
     body:  "A campus tool exploring accessible information design and how people ask for help.",
     accent: "var(--accent)",
+    grad:  "linear-gradient(135deg, #b1a1d1 0%, #5b82a0 100%)",
+    motif: "bars",
   },
 ];
+
+// Placeholder thumbnail — easy to swap for real art: replace the <Thumb/> call
+// in the card with <img src={...} className="mb-5 w-full rounded-xl" />.
+function Thumb({ grad, motif }: { grad: string; motif: string }) {
+  return (
+    <div
+      aria-hidden="true"
+      className="mb-5 w-full rounded-xl overflow-hidden relative"
+      style={{ aspectRatio: "16 / 10", background: grad }}
+    >
+      {/* soft light */}
+      <div className="absolute inset-0" style={{
+        background: "radial-gradient(ellipse at 28% 22%, rgba(227,222,238,0.22) 0%, transparent 58%)",
+      }} />
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 160 100" fill="none"
+        preserveAspectRatio="xMidYMid slice">
+        {motif === "sun" && (
+          <>
+            <circle cx="116" cy="34" r="18" fill="rgba(227,222,238,0.30)" />
+            <circle cx="116" cy="34" r="29" stroke="rgba(227,222,238,0.30)" strokeWidth="1.5" />
+          </>
+        )}
+        {motif === "rings" && (
+          <>
+            <circle cx="80" cy="50" r="15" stroke="rgba(204,227,238,0.50)" strokeWidth="1.5" />
+            <circle cx="80" cy="50" r="27" stroke="rgba(204,227,238,0.32)" strokeWidth="1.5" />
+            <circle cx="80" cy="50" r="39" stroke="rgba(204,227,238,0.18)" strokeWidth="1.5" />
+          </>
+        )}
+        {motif === "bars" && (
+          <>
+            <rect x="44" y="22" width="6" height="56" rx="3" fill="rgba(227,222,238,0.30)" />
+            <rect x="66" y="36" width="6" height="42" rx="3" fill="rgba(227,222,238,0.24)" />
+            <rect x="88" y="14" width="6" height="64" rx="3" fill="rgba(227,222,238,0.36)" />
+            <rect x="110" y="46" width="6" height="32" rx="3" fill="rgba(227,222,238,0.20)" />
+          </>
+        )}
+      </svg>
+    </div>
+  );
+}
 
 export function Studio() {
   return (
@@ -114,6 +163,9 @@ export function Studio() {
                   ((e.currentTarget as HTMLElement).style.borderColor = "var(--border)")
                 }
               >
+                {/* Placeholder thumbnail — swap for real art later */}
+                <Thumb grad={p.grad} motif={p.motif} />
+
                 {/* Tag */}
                 <span className="inline-block mb-4 px-2.5 py-0.5 rounded-full" style={{
                   fontFamily: SANS,
