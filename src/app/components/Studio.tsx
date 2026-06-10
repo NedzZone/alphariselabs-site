@@ -103,7 +103,7 @@ export function Studio() {
         {/* Section header */}
         <FadeIn>
           <div className="flex items-center gap-5 mb-16">
-            <span style={{ fontFamily: PIXEL, fontSize: "2.8rem", color: "var(--primary)" }}>
+            <span style={{ fontFamily: PIXEL, fontSize: "2.8rem", color: "var(--blue-deep)" }}>
               03
             </span>
             <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
@@ -113,7 +113,7 @@ export function Studio() {
               fontSize: "2.4rem",
               letterSpacing: "0.04em",
               textTransform: "uppercase",
-              color: "var(--muted-foreground)",
+              color: "var(--blue-deep)",
             }}>
               In My Studio
             </span>
@@ -132,7 +132,7 @@ export function Studio() {
             maxWidth: "20ch",
           }}>
             Other things I'm{" "}
-            <em style={{ fontStyle: "italic", color: "var(--primary)" }}>making.</em>
+            <em style={{ fontStyle: "italic", color: "var(--blue-deep)" }}>making.</em>
           </h2>
           <p className="mt-7 max-w-2xl" style={{
             fontFamily: SANS,

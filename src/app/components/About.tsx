@@ -61,7 +61,7 @@ export function About() {
         <FadeIn>
           <div className="flex items-center gap-5 mb-16">
             {/* Section number — pixel font */}
-            <span style={{ fontFamily: PIXEL, fontSize: "2.8rem", color: "var(--primary)" }}>
+            <span style={{ fontFamily: PIXEL, fontSize: "2.8rem", color: "var(--secondary)" }}>
               01
             </span>
             <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
@@ -72,7 +72,7 @@ export function About() {
               fontSize: "2.34rem",
               letterSpacing: "0.04em",
               textTransform: "uppercase",
-              color: "var(--muted-foreground)",
+              color: "var(--secondary)",
             }}>
               About
             </span>

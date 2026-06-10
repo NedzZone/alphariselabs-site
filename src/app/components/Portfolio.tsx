@@ -278,7 +278,7 @@ export function Portfolio() {
               fontSize: "2.34rem",
               letterSpacing: "0.04em",
               textTransform: "uppercase",
-              color: "var(--muted-foreground)",
+              color: "var(--primary)",
             }}>
               The Work
             </span>
