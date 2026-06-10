@@ -8,6 +8,7 @@ const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 export function Hero() {
   return (
     <section
+      id="home"
       className="relative min-h-screen flex flex-col items-center justify-center px-6 py-28 md:py-32 overflow-hidden"
       aria-label="Hero"
     >

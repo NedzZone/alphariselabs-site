@@ -4,6 +4,7 @@ const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 
 const links = [
+  { label: "Home",      href: "#home"      },
   { label: "About",     href: "#about"     },
   { label: "The Work", href: "#portfolio" },
   { label: "Studio",    href: "#studio"    },
@@ -50,7 +51,7 @@ export function Nav() {
           </span>
         </a>
 
-        <ul className="flex items-center gap-8 list-none m-0 p-0">
+        <ul className="flex items-center gap-4 sm:gap-6 md:gap-8 list-none m-0 p-0">
           {links.map((link) => (
             <li key={link.href}>
               <a
@@ -59,7 +60,7 @@ export function Nav() {
                 style={{
                   fontFamily: SANS,
                   fontWeight: 400,
-                  fontSize: "0.9rem",
+                  fontSize: "1.1rem",
                   letterSpacing: "0.05em",
                   color: "var(--muted-foreground)",
                   textDecoration: "none",
