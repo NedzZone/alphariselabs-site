@@ -60,7 +60,7 @@ export function About() {
         <FadeIn>
           <div className="flex items-center gap-5 mb-16">
             {/* Section number — pixel font */}
-            <span style={{ fontFamily: PIXEL, fontSize: "1.15rem", color: "var(--primary)" }}>
+            <span style={{ fontFamily: PIXEL, fontSize: "3.45rem", color: "var(--primary)" }}>
               01
             </span>
             <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
