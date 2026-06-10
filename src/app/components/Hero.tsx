@@ -58,28 +58,6 @@ export function Hero() {
           Founder, AlphaRise Labs · Game Designer · MedTech Innovator
         </span>
 
-        {/* CTAs */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="https://youtu.be/-O7QepmzQ5k?si=gEFGXmzJuoZD666q&t=43"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-            style={{
-              fontFamily: SANS,
-              fontWeight: 600,
-              fontSize: "0.9rem",
-              letterSpacing: "0.04em",
-              background: "var(--primary)",
-              color: "var(--primary-foreground)",
-              textDecoration: "none",
-            }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.88")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
-          >
-            See the work
-          </a>
-        </div>
       </motion.div>
 
       {/* Photo + memo band — wide hero feature: large portrait + roomy memo */}
@@ -93,6 +71,7 @@ export function Hero() {
 
           {/* Left — portrait */}
           <div className="relative">
+            <div className="relative">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute -inset-4 rounded-[1.6rem]"
@@ -113,6 +92,28 @@ export function Hero() {
                 boxShadow: "0 0 0 1px rgba(177,161,209,0.06), 0 18px 50px rgba(10,6,18,0.55)",
               }}
             />
+            {/* See the work — overlaying the photo, bottom-right */}
+            <a
+              href="https://youtu.be/-O7QepmzQ5k?si=gEFGXmzJuoZD666q&t=43"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              style={{
+                fontFamily: SANS,
+                fontWeight: 600,
+                fontSize: "0.9rem",
+                letterSpacing: "0.04em",
+                background: "var(--primary)",
+                color: "var(--primary-foreground)",
+                textDecoration: "none",
+                boxShadow: "0 8px 24px rgba(10,6,18,0.55)",
+              }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.88")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+            >
+              See the work
+            </a>
+            </div>
             {/* Photo credit */}
             <p className="mt-3" style={{
               fontFamily: SANS,
