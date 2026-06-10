@@ -54,7 +54,7 @@ const pills = [
 
 export function About() {
   return (
-    <section id="about" className="relative px-6 py-32 md:py-40" aria-label="About">
+    <section id="about" className="relative px-6 pt-24 pb-32 md:pb-40" aria-label="About">
       <div className="max-w-5xl mx-auto">
 
         {/* Section header */}
