@@ -67,10 +67,10 @@ export function About() {
             <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
             {/* Label — Calibri Light, 10% letter-spacing */}
             <span style={{
-              fontFamily: SANS,
+              fontFamily: PIXEL,
               fontWeight: 300,
               fontSize: "1.8rem",
-              letterSpacing: "0.10em",
+              letterSpacing: "0.04em",
               textTransform: "uppercase",
               color: "var(--muted-foreground)",
             }}>

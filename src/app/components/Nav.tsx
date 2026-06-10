@@ -58,7 +58,7 @@ export function Nav() {
                 href={link.href}
                 className="inline-flex items-center gap-1.5 transition-opacity duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 style={{
-                  fontFamily: SANS,
+                  fontFamily: PIXEL,
                   fontWeight: 400,
                   fontSize: "1.1rem",
                   letterSpacing: "0.05em",
