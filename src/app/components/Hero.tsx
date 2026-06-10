@@ -106,7 +106,7 @@ export function Hero() {
             See the work
           </a>
           <a
-            href="https://youtu.be/PSNleP2om5I?si=sAcc_vSV8zXydpNg&t=188"
+            href="https://youtu.be/-O7QepmzQ5k?si=P-aiZV1Tpw1LMmO8&t=42"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-7 py-3 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
