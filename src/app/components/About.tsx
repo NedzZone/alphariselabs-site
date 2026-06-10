@@ -128,11 +128,11 @@ export function About() {
                 {pills.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 rounded-full"
+                    className="px-4 py-1.5 rounded-full"
                     style={{
                       fontFamily: SANS,
                       fontWeight: 300,
-                      fontSize: "0.75rem",
+                      fontSize: "0.95rem",
                       letterSpacing: "0.04em",
                       background: "rgba(177,161,209,0.10)",
                       border: "1px solid rgba(177,161,209,0.20)",
