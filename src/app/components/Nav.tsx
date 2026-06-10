@@ -4,11 +4,11 @@ const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 
 const links = [
-  { label: "Home",      href: "#home"      },
-  { label: "About",     href: "#about"     },
-  { label: "The Work", href: "#portfolio" },
-  { label: "Studio",    href: "#studio"    },
-  { label: "Contact",   href: "#contact"   },
+  { label: "Home",      href: "#home",      color: "#e3deee" }, // lilac-light
+  { label: "About",     href: "#about",     color: "#87b8cb" }, // mist blue (matches About headline)
+  { label: "The Work", href: "#portfolio", color: "#dbb35e" }, // gold (matches section number)
+  { label: "Studio",    href: "#studio",    color: "#5b82a0" }, // deep blue
+  { label: "Contact",   href: "#contact",   color: "#b1a1d1" }, // lilac (matches Contact headline)
 ];
 
 export function Nav() {
@@ -56,22 +56,31 @@ export function Nav() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                className="inline-flex items-center gap-1.5 transition-opacity duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 style={{
                   fontFamily: SANS,
                   fontWeight: 400,
                   fontSize: "1.1rem",
                   letterSpacing: "0.05em",
-                  color: "var(--muted-foreground)",
+                  color: link.color,
                   textDecoration: "none",
+                  opacity: 0.9,
                 }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLElement).style.color = "var(--foreground)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLElement).style.color = "var(--muted-foreground)")
-                }
+                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.9")}
               >
+                {/* tiny flair — glowing dot in the section's color */}
+                <span
+                  aria-hidden="true"
+                  style={{
+                    width: 5,
+                    height: 5,
+                    borderRadius: "9999px",
+                    background: link.color,
+                    boxShadow: `0 0 6px ${link.color}`,
+                    flexShrink: 0,
+                  }}
+                />
                 {link.label}
               </a>
             </li>
