@@ -74,13 +74,13 @@ export function Hero() {
 
         {/* Tagline — Calibri Regular */}
         <p
-          className="mt-8 max-w-2xl"
+          className="mt-8"
           style={{
             fontFamily: PIXEL,
             fontWeight: 400,
-            fontSize: "clamp(1.5rem, 3.4vw, 2.25rem)",
+            fontSize: "clamp(0.85rem, 3.3vw, 2.25rem)",
             lineHeight: 1.5,
-            letterSpacing: "0.02em",
+            whiteSpace: "nowrap",
             color: "var(--muted-foreground)",
           }}
         >
