@@ -58,21 +58,6 @@ export function Hero() {
           Founder, AlphaRise Labs · Game Designer · MedTech Innovator
         </span>
 
-        {/* Name — Upheaval pixel, light purple */}
-        <h1
-          className="mt-4"
-          style={{
-            fontFamily: PIXEL,
-            fontWeight: 400,
-            fontSize: "clamp(1.5rem, 3.6vw, 2.4rem)",
-            letterSpacing: "0.02em",
-            lineHeight: 1.3,
-            color: "var(--accent)",
-          }}
-        >
-          Meet Ned Shoaei
-        </h1>
-
         {/* CTAs */}
         <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
           <a
@@ -141,8 +126,21 @@ export function Hero() {
             </p>
           </div>
 
-          {/* Right — memo, styled as an elegant pull-quote */}
-          <blockquote className="relative md:pl-8 text-left" style={{ margin: 0 }}>
+          {/* Right — name + memo */}
+          <div className="text-left">
+            {/* Name — Upheaval pixel, light purple */}
+            <h1 className="md:pl-8 mb-5" style={{
+              fontFamily: PIXEL,
+              fontWeight: 400,
+              fontSize: "clamp(1.5rem, 3.6vw, 2.4rem)",
+              letterSpacing: "0.02em",
+              lineHeight: 1.3,
+              color: "var(--accent)",
+            }}>
+              Meet Ned Shoaei
+            </h1>
+            {/* Memo — elegant pull-quote */}
+            <blockquote className="relative md:pl-8" style={{ margin: 0 }}>
             <span
               aria-hidden="true"
               className="hidden md:block absolute left-0 top-1 bottom-1 w-px"
@@ -165,6 +163,7 @@ export function Hero() {
               <span style={{ color: "var(--primary)" }}>neuroplasticity and flow.</span>
             </p>
           </blockquote>
+          </div>
         </div>
       </motion.div>
     </section>
