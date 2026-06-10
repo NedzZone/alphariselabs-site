@@ -68,7 +68,7 @@ export function About() {
             <span style={{
               fontFamily: SANS,
               fontWeight: 300,
-              fontSize: "0.72rem",
+              fontSize: "1.8rem",
               letterSpacing: "0.10em",
               textTransform: "uppercase",
               color: "var(--muted-foreground)",

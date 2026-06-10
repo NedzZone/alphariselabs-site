@@ -61,7 +61,7 @@ export function Studio() {
             <span style={{
               fontFamily: SANS,
               fontWeight: 300,
-              fontSize: "0.74rem",
+              fontSize: "1.85rem",
               letterSpacing: "0.10em",
               textTransform: "uppercase",
               color: "var(--muted-foreground)",
