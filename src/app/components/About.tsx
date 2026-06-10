@@ -94,7 +94,7 @@ export function About() {
                 letterSpacing: "-0.02em",
               }}>
                 Designing technology that adapts to people,{" "}
-                <em style={{ fontStyle: "italic", color: "var(--accent)" }}>
+                <em style={{ fontStyle: "italic", color: "var(--secondary)" }}>
                   not the other way around.
                 </em>
               </h2>

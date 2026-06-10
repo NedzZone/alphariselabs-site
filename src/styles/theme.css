@@ -25,6 +25,16 @@
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --ring: rgba(219, 179, 94, 0.4);
+
+  /* Expanded palette — text-emphasis steps (blue–yellow–purple axis, optic-nerve safe) */
+  --lilac-light: #e3deee;
+  --purple-mid: #582c6f;
+  --indigo-deep: #210d40;
+  --blue-pale: #cce3ee;
+  --blue-deep: #5b82a0;
+  --gold-deep: #d8a75a;
+  --text-faint: #7a6f95;
+
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);

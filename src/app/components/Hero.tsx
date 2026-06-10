@@ -168,7 +168,7 @@ export function Hero() {
               fontSize: "0.72rem",
               letterSpacing: "0.10em",
               textTransform: "uppercase",
-              color: "var(--muted-foreground)",
+              color: "var(--text-faint)",
             }}>
               Photo: Mike Schalk
             </p>

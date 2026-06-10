@@ -94,7 +94,7 @@ export function Contact() {
                   <p style={{
                     fontFamily: SANS, fontWeight: 300, fontSize: "0.9rem",
                     letterSpacing: "0.10em", textTransform: "uppercase",
-                    color: "var(--muted-foreground)",
+                    color: "var(--blue-deep)",
                   }}>
                     Email
                   </p>
@@ -117,7 +117,7 @@ export function Contact() {
                   <p style={{
                     fontFamily: SANS, fontWeight: 300, fontSize: "0.9rem",
                     letterSpacing: "0.10em", textTransform: "uppercase",
-                    color: "var(--muted-foreground)",
+                    color: "var(--blue-deep)",
                   }}>
                     Based in
                   </p>
@@ -131,7 +131,7 @@ export function Contact() {
                   <p style={{
                     fontFamily: SANS, fontWeight: 300, fontSize: "0.9rem",
                     letterSpacing: "0.10em", textTransform: "uppercase",
-                    color: "var(--muted-foreground)",
+                    color: "var(--blue-deep)",
                   }}>
                     Open to
                   </p>

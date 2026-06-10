@@ -83,7 +83,7 @@ export function Studio() {
             maxWidth: "20ch",
           }}>
             Other things I'm{" "}
-            <em style={{ fontStyle: "italic", color: "var(--accent)" }}>making.</em>
+            <em style={{ fontStyle: "italic", color: "var(--primary)" }}>making.</em>
           </h2>
           <p className="mt-7 max-w-2xl" style={{
             fontFamily: SANS,

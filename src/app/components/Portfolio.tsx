@@ -327,7 +327,7 @@ export function Portfolio() {
                     fontWeight: 400,
                     fontSize: "0.85rem",
                     letterSpacing: "0.02em",
-                    color: "var(--muted-foreground)",
+                    color: "var(--text-faint)",
                   }}>
                     Game Art Collaborator:{" "}
                     <span style={{ color: "var(--secondary)" }}>Madeleine Schaefer</span>, BFA Game Development, SCAD
