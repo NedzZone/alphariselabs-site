@@ -8,4 +8,8 @@
   Run `npm i` to install the dependencies.
 
   Run `npm run dev` to start the development server.
+
+  ## Checkpoints
+
+  - **`iteration-2-locked`** (2026-06-10) — locked checkpoint of the AlphaRise Labs site. Restore with `git checkout iteration-2-locked`.
   
