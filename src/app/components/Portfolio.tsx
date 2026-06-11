@@ -347,7 +347,7 @@ export function Portfolio() {
                 >
                   <img
                     src={figureUrl}
-                    alt="AlphaRise concept diagram"
+                    alt="Diagram of the AlphaRise closed-loop system: a seated person wearing a brain-sensing headset whose brainwaves feed a Brain State Classifier (High, Mild, Neutral, Calm, Focus), which drives an on-screen game — Pip, a glowing creature in space, with dynamic difficulty across 9 levels — then loops back to the player."
                     loading="lazy"
                     className="w-full rounded-md"
                     style={{ display: "block", height: "auto" }}
@@ -462,7 +462,7 @@ export function Portfolio() {
             >
               <img
                 src={posterUrl}
-                alt="AlphaRise research poster"
+                alt="Research poster — AlphaRise: A compassionate neurofeedback game for MS fatigue management, by Ned Shoaei (MFA Game Development, SCAD). It covers the background on MS-related fatigue, an N=146 survey of people with MS, the closed-loop neurofeedback system, Pip's five brain states (Focus, Calm, Neutral, Mild fatigue, High fatigue), Compassionate Mode, a comparison with prior systems, and future directions."
                 draggable={false}
                 className="block w-full h-auto select-none"
               />
