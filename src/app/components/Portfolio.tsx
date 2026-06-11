@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.png";
-import figureUrl from "../../assets/figure-About-Panel.png";
+import figureUrl from "../../assets/figure-About-Panel-Pip.png";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -345,13 +345,16 @@ export function Portfolio() {
                   </p>
                 </div>
 
-                {/* Project figure */}
-                <div className="w-full">
+                {/* Project figure — on a white card so its dark text reads over the dark theme */}
+                <div
+                  className="w-full rounded-xl p-3 md:p-4"
+                  style={{ background: "rgba(227,222,238,0.2)", boxShadow: "0 10px 30px rgba(10,6,18,0.45)" }}
+                >
                   <img
                     src={figureUrl}
                     alt="AlphaRise concept diagram"
                     loading="lazy"
-                    className="w-full rounded-lg"
+                    className="w-full rounded-md"
                     style={{ display: "block", height: "auto" }}
                   />
                 </div>
