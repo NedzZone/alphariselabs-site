@@ -23,109 +23,130 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
-const tabs = ["Overview", "The Science", "Recognition"] as const;
+const tabs = ["The Idea", "Design Philosophy", "Recognition"] as const;
 type Tab = (typeof tabs)[number];
 
-const stats = [
-  { label: "APPROACH", value: "Real-time neurofeedback", note: "brain state drives the game" },
-  { label: "SESSION",  value: "Under 10 min",            note: "distributed, not demanded"   },
-  { label: "SAFEGUARD",value: "Compassionate Mode",      note: "never penalizes fatigue"     },
-  { label: "RESEARCH", value: "N=146 survey",            note: "MS-specific fatigue study"   },
+const ideas = [
+  { lead: "Your brainwaves are the controller.", body: "You play with focus, not buttons.",                       color: "#dbb35e", icon: "wave"  },
+  { lead: "Play quick sessions.",                body: "Under ten minutes, whenever you've got it.",                color: "#87b8cb", icon: "clock" },
+  { lead: "A game made to heal.",                body: "Play and therapy, happening in one space.",                 color: "#b1a1d1", icon: "heart" },
+  { lead: "Backed by real research.",            body: "Surveyed people with MS through the National MS Society.",  color: "#5b82a0", icon: "check" },
 ];
 
+function ideaIcon(name: string) {
+  switch (name) {
+    case "wave":
+      return <polyline points="2,12 6,12 8,5 11,19 13,9 15,14 17,12 22,12" />;
+    case "clock":
+      return (<><circle cx="12" cy="12" r="9" /><polyline points="12,7 12,12 15,14" /></>);
+    case "heart":
+      return <path d="M12 20s-6.5-4.2-9-8.2C1.4 9 2.7 5.5 6 5.5c2 0 3.2 1.3 6 3.7 2.8-2.4 4-3.7 6-3.7 3.3 0 4.6 3.5 3 6.3-2.5 4-9 8.2-9 8.2Z" />;
+    case "check":
+      return (<><circle cx="12" cy="12" r="9" /><polyline points="8.5,12.3 11,14.7 15.5,9.5" /></>);
+    default:
+      return null;
+  }
+}
+
 const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => ({
-  Overview: (
+  "The Idea": (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {stats.map((s) => (
-          <div
-            key={s.label}
-            className="p-5 rounded-xl"
-            style={{
-              background: "rgba(177,161,209,0.05)",
-              border: "1px solid var(--border)",
-            }}
-          >
-            {/* Calibri Light, 10% letter-spacing */}
-            <p style={{
-              fontFamily: SANS,
-              fontWeight: 300,
-              fontSize: "0.68rem",
-              letterSpacing: "0.10em",
-              textTransform: "uppercase",
-              color: "var(--muted-foreground)",
-            }}>
-              {s.label}
-            </p>
-            {/* Georgia Bold value */}
-            <p className="mt-1" style={{
-              fontFamily: SERIF,
-              fontWeight: 700,
-              fontSize: "1.25rem",
-              color: "var(--foreground)",
-              lineHeight: 1.25,
-            }}>
-              {s.value}
-            </p>
-            <p className="mt-1" style={{
-              fontFamily: SANS,
-              fontWeight: 400,
-              fontSize: "1.05rem",
-              lineHeight: 1.45,
-              color: "var(--secondary)",
-            }}>
-              {s.note}
-            </p>
+      {/* Featured pull quote — Georgia italic, gold */}
+      <blockquote className="pl-6" style={{ borderLeft: "2px solid var(--primary)" }}>
+        <p style={{
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontWeight: 700,
+          fontSize: "clamp(1.5rem, 3vw, 2rem)",
+          lineHeight: 1.35,
+          color: "var(--primary)",
+        }}>
+          "Games can heal. We're proving it."
+        </p>
+      </blockquote>
+
+      {/* Four ideas — colored icon + bold lead + one plain sentence */}
+      <div className="mt-8 space-y-6">
+        {ideas.map((item) => (
+          <div key={item.lead} className="flex items-start gap-4">
+            <span
+              aria-hidden="true"
+              className="shrink-0 inline-flex items-center justify-center rounded-full"
+              style={{
+                width: "2.9rem",
+                height: "2.9rem",
+                background: `${item.color}1f`,
+                color: item.color,
+              }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                {ideaIcon(item.icon)}
+              </svg>
+            </span>
+            <div>
+              <p style={{
+                fontFamily: SANS,
+                fontWeight: 700,
+                fontSize: "1.3rem",
+                lineHeight: 1.4,
+                color: "var(--foreground)",
+              }}>
+                {item.lead}
+              </p>
+              <p className="mt-0.5" style={{
+                fontFamily: SANS,
+                fontWeight: 400,
+                fontSize: "1.2rem",
+                lineHeight: 1.65,
+                color: "var(--muted-foreground)",
+              }}>
+                {item.body}
+              </p>
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Pull quote — Georgia italic, gold */}
-      <blockquote className="mt-8 pl-5" style={{ borderLeft: "2px solid var(--primary)" }}>
-        <p style={{
-          fontFamily: SERIF,
-          fontStyle: "italic",
-          fontWeight: 700,
-          fontSize: "1.1rem",
-          lineHeight: 1.6,
-          color: "var(--primary)",
-        }}>
-          "You should never punish the symptom you're trying to heal."
-        </p>
-      </blockquote>
+      {/* Understated supporting line — not a stat card */}
+      <p className="mt-8" style={{
+        fontFamily: SANS,
+        fontWeight: 400,
+        fontSize: "1.05rem",
+        lineHeight: 1.6,
+        color: "var(--text-faint)",
+      }}>
+        <span style={{ color: "var(--secondary)", fontWeight: 600 }}>96%</span>{" "}
+        of surveyed people with MS were open to trying therapeutic games (N=146)
+      </p>
     </div>
   ),
 
-  "The Science": (
-    <div className="space-y-5">
-      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.08rem", lineHeight: 1.8, color: "var(--muted-foreground)" }}>
-        AlphaRise reads the player's brain activity in real time via a consumer-grade EEG headset.
-        The game's central character — a small creature named <strong style={{ color: "var(--foreground)", fontWeight: 600 }}>Pip</strong> — responds
-        directly to that signal. As the player's focus rises, Pip rises with it. The connection is
-        never explained. It is felt.
-      </p>
-      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.08rem", lineHeight: 1.8, color: "var(--muted-foreground)" }}>
-        The core design principle — <em style={{ fontStyle: "italic", color: "var(--accent)" }}>Compassionate Mode</em> — ensures
-        the game never introduces penalty, failure states, or time pressure. When MS-related
-        cognitive fatigue drops the player's alpha-band activity, the game responds with calm
-        instead of consequence. The system adapts to the brain it is listening to, session by session.
-      </p>
-      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.08rem", lineHeight: 1.8, color: "var(--muted-foreground)" }}>
-        An N=146 survey of people living with MS informed the fatigue model and the session-length
-        design. Sessions run under ten minutes and are structured for use during low-energy
-        windows — distributed across the day, not demanded in one block.
-      </p>
-      <blockquote className="pl-5 mt-4" style={{ borderLeft: "2px solid var(--primary)" }}>
+  "Design Philosophy": (
+    <div className="space-y-6">
+      <blockquote className="pl-6" style={{ borderLeft: "2px solid var(--primary)" }}>
         <p style={{
           fontFamily: SERIF,
           fontStyle: "italic",
           fontWeight: 700,
-          fontSize: "1.05rem",
+          fontSize: "clamp(1.5rem, 3vw, 2rem)",
+          lineHeight: 1.35,
           color: "var(--primary)",
         }}>
           "You should never punish the symptom you're trying to heal."
         </p>
       </blockquote>
+      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.08rem", lineHeight: 1.8, color: "var(--muted-foreground)", textWrap: "pretty" }}>
+        While designing and playtesting my BCI game, I kept asking: how do I challenge players and
+        still keep them motivated? Most games push you to try harder by penalizing failure. This one
+        does the opposite. You're already carrying the weight of a symptom, the game shouldn't add to it.
+      </p>
+      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.08rem", lineHeight: 1.8, color: "var(--muted-foreground)", textWrap: "pretty" }}>
+        <em style={{ fontStyle: "italic", color: "var(--accent)" }}>Compassionate Mode</em> reads your
+        brain state and turns it into challenges you can meet at your own pace. You're not competing
+        against the game; you're competing against your symptom. The goal is to help you push back
+        without pressure, in a therapeutic flow that builds stamina instead of draining it.
+      </p>
     </div>
   ),
 
@@ -243,7 +264,7 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
 });
 
 export function Portfolio() {
-  const [activeTab, setActiveTab] = useState<Tab>("Overview");
+  const [activeTab, setActiveTab] = useState<Tab>("The Idea");
   const [posterOpen, setPosterOpen] = useState(false);
   const [figureZoom, setFigureZoom] = useState(false);
 
