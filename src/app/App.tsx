@@ -6,7 +6,6 @@ import { Portfolio } from "./components/Portfolio";
 import { Studio } from "./components/Studio";
 import { Contact } from "./components/Contact";
 import { ScrollBrainwave } from "./components/ScrollBrainwave";
-import { UiSound } from "./components/UiSound";
 
 export default function App() {
   return (
@@ -16,7 +15,6 @@ export default function App() {
     >
       <Nav />
       <ScrollBrainwave />
-      <UiSound />
       <main>
         <Hero />
         <About />

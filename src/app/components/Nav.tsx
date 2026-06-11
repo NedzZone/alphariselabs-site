@@ -38,18 +38,27 @@ export function Nav() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="inline-flex items-center gap-1.5 transition-opacity duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                className="inline-flex items-center gap-1.5 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 style={{
                   fontFamily: PIXEL,
                   fontWeight: 400,
-                  fontSize: "1.43rem",
+                  fontSize: "1.6rem",
                   letterSpacing: "0.05em",
                   color: link.color,
                   textDecoration: "none",
                   opacity: 0.9,
+                  transformOrigin: "center bottom",
                 }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.9")}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.opacity = "1";
+                  el.style.transform = "translateY(-3px) scale(1.12)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.opacity = "0.9";
+                  el.style.transform = "translateY(0) scale(1)";
+                }}
               >
                 {link.label}
               </a>
