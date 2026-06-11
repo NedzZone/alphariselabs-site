@@ -67,9 +67,19 @@ export function Contact() {
                 color: "var(--foreground)",
                 letterSpacing: "-0.02em",
               }}>
-                Let's think{" "}
-                <em style={{ fontStyle: "italic", color: "var(--accent)" }}>together.</em>
+                Let's exchange{" "}
+                <em style={{ fontStyle: "italic", color: "var(--accent)" }}>brainwaves</em>
               </h2>
+
+              {/* Two brainwaves connecting — fills the line */}
+              <svg className="mt-5 w-full" viewBox="0 0 480 40" fill="none" aria-hidden="true">
+                <polyline points="0,20 70,20 86,8 100,34 114,12 128,30 142,18 168,20 240,20"
+                  stroke="var(--secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.85" />
+                <polyline points="240,20 312,20 338,18 352,30 366,12 380,34 394,8 410,20 480,20"
+                  stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.85" />
+                <circle cx="240" cy="20" r="7" stroke="var(--primary)" strokeWidth="1.2" opacity="0.5" />
+                <circle cx="240" cy="20" r="4" fill="var(--primary)" />
+              </svg>
 
               {/* Calibri Regular */}
               <p className="mt-7" style={{
