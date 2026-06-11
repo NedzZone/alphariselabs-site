@@ -33,25 +33,7 @@ export function Nav() {
         className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between"
         aria-label="Primary navigation"
       >
-        {/* Logo wordmark — Upheaval TT pixel font */}
-        <a
-          href="#"
-          aria-label="NS — Ned Shoaei home"
-          style={{ textDecoration: "none" }}
-        >
-          <span
-            style={{
-              fontFamily: PIXEL,
-              fontSize: "1.15rem",
-              color: "var(--primary)",
-              letterSpacing: "0.04em",
-            }}
-          >
-            NS
-          </span>
-        </a>
-
-        <ul className="flex items-center gap-4 sm:gap-6 md:gap-8 list-none m-0 p-0">
+        <ul className="flex items-center justify-between w-full list-none m-0 p-0">
           {links.map((link) => (
             <li key={link.href}>
               <a
