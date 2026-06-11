@@ -245,6 +245,7 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
 export function Portfolio() {
   const [activeTab, setActiveTab] = useState<Tab>("Overview");
   const [posterOpen, setPosterOpen] = useState(false);
+  const [figureZoom, setFigureZoom] = useState(false);
 
   // Close the poster lightbox on Escape, and lock body scroll while open
   useEffect(() => {
@@ -293,62 +294,56 @@ export function Portfolio() {
               }}
             >
               <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-8 md:gap-10 md:items-center">
-                <div>
-                  {/* Pill */}
-                  <span className="inline-block mb-3 px-2.5 py-0.5 rounded-full" style={{
-                    fontFamily: SANS,
-                    fontWeight: 300,
-                    fontSize: "0.95rem",
-                    letterSpacing: "0.08em",
-                    background: "rgba(219,179,94,0.12)",
-                    border: "1px solid rgba(219,179,94,0.25)",
-                    color: "var(--primary)",
-                  }}>
-                    Therapeutic Neurogame
-                  </span>
-
+                <div style={{
+                  filter: figureZoom ? "blur(3px)" : "none",
+                  opacity: figureZoom ? 0.6 : 1,
+                  transition: "filter 0.45s ease, opacity 0.45s ease",
+                }}>
                   {/* Project name — Georgia Bold */}
                   <h2 style={{
                     fontFamily: SERIF,
                     fontWeight: 700,
-                    fontSize: "clamp(2rem, 5vw, 3.2rem)",
-                    lineHeight: 1.08,
+                    fontSize: "clamp(1.6rem, 3.6vw, 2.4rem)",
+                    lineHeight: 1.12,
                     color: "var(--foreground)",
                     letterSpacing: "-0.02em",
                   }}>
-                    AlphaRise
+                    Play AlphaRise with your{" "}
+                    <em style={{ fontStyle: "italic", color: "var(--primary)" }}>brainwaves</em>
                   </h2>
 
                   <p className="mt-4 max-w-lg" style={{
                     fontFamily: SANS,
                     fontWeight: 400,
                     fontSize: "1.15rem",
-                    lineHeight: 1.75,
+                    lineHeight: 1.7,
                     color: "var(--muted-foreground)",
+                    textWrap: "pretty",
                   }}>
-                    A closed-loop neurofeedback game for people living with MS-related cognitive
-                    fatigue. The player wears a brain-sensing headset; a small creature named Pip
-                    responds to their brain activity in real time. As focus rises, Pip rises with it.
-                    The connection is never explained — it is felt.
-                  </p>
-
-                  {/* Collaborator credit */}
-                  <p className="mt-4" style={{
-                    fontFamily: SANS,
-                    fontWeight: 400,
-                    fontSize: "0.85rem",
-                    letterSpacing: "0.02em",
-                    color: "var(--text-faint)",
-                  }}>
-                    Game Art Collaborator:{" "}
-                    <span style={{ color: "var(--secondary)" }}>Madeleine Schaefer</span>, BFA Game Development, SCAD
+                    A therapeutic closed-loop neurogame for people living with chronic fatigue, starting
+                    with MS-related fatigue. The player wears a brain-sensing headset; a small creature
+                    named Pip responds to their brain activity in real time. As focus rises, Pip rises
+                    with it. The connection is never explained, it is felt, both seen and heard.
                   </p>
                 </div>
 
-                {/* Project figure — on a white card so its dark text reads over the dark theme */}
+                {/* Project figure — hover to magnify (grows inward from top-right, no clip) */}
                 <div
                   className="w-full rounded-xl p-3 md:p-4"
-                  style={{ background: "rgba(227,222,238,0.2)", boxShadow: "0 10px 30px rgba(10,6,18,0.45)" }}
+                  onMouseEnter={() => setFigureZoom(true)}
+                  onMouseLeave={() => setFigureZoom(false)}
+                  style={{
+                    position: "relative",
+                    zIndex: figureZoom ? 20 : 0,
+                    background: "rgba(227,222,238,0.2)",
+                    boxShadow: figureZoom
+                      ? "0 26px 64px rgba(10,6,18,0.6)"
+                      : "0 10px 30px rgba(10,6,18,0.45)",
+                    transform: figureZoom ? "scale(1.45)" : "scale(1)",
+                    transformOrigin: "right center",
+                    transition: "transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s",
+                    cursor: "zoom-in",
+                  }}
                 >
                   <img
                     src={figureUrl}
@@ -359,6 +354,18 @@ export function Portfolio() {
                   />
                 </div>
               </div>
+
+              {/* Collaborator credit — full width below the header, one line on desktop */}
+              <p className="mt-8 md:whitespace-nowrap" style={{
+                fontFamily: SANS,
+                fontWeight: 400,
+                fontSize: "0.9rem",
+                letterSpacing: "0.02em",
+                color: "var(--text-faint)",
+              }}>
+                Game Art Collaborator:{" "}
+                <span style={{ color: "var(--secondary)" }}>Madeleine Schaefer</span>, BFA Game Development, SCAD
+              </p>
             </div>
 
             {/* Tabs */}
