@@ -424,7 +424,7 @@ export function Portfolio() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-5xl"
+            className="relative w-full max-w-[96rem]"
           >
             <button
               type="button"
