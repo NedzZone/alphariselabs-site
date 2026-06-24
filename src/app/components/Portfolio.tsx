@@ -2,8 +2,8 @@ import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.png";
-import figureUrl from "../../assets/figure-About-Panel-Pip.png";
-import brainUrl from "../../assets/Idea-Tab.png";
+import figureUrl from "../../assets/The Work/The Idea/figure-About-Panel-Pip.png";
+import brainUrl from "../../assets/The Work/The Idea/Idea-Tab.png";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -86,11 +86,11 @@ function ideaIcon(name: string) {
 // headline tinted with the item's palette color; the body is bold muted sans
 // and breaks onto a second line at its comma. A text halo keeps it readable
 // where the text overlaps the brain artwork.
-function IdeaStatement({ item, maxW = "16rem" }: { item: (typeof ideas)[number]; maxW?: string }) {
+function IdeaStatement({ item, maxW = "16rem", align = "left" }: { item: (typeof ideas)[number]; maxW?: string; align?: "left" | "right" }) {
   const [first, ...rest] = item.body.split(/,\s+/);
   const shadow = "0 2px 12px rgba(10,6,18,0.96), 0 0 24px rgba(10,6,18,0.85)";
   return (
-    <div className="w-full" style={{ maxWidth: maxW }}>
+    <div className="w-full" style={{ maxWidth: maxW, textAlign: align }}>
       <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "1.25rem", lineHeight: 1.25, color: item.color, textShadow: shadow }}>
         {item.lead}
       </p>
@@ -130,21 +130,21 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
           style={{ objectFit: "cover", objectPosition: "center" }}
         />
 
-        {/* Four statements over the dark space; narrow center column keeps the brain clear.
-            Pulled toward the top of the band with a generous gap between each pair. */}
-        <div className="absolute inset-0 grid items-start px-4 pt-9" style={{ gridTemplateColumns: "1fr 28% 1fr" }}>
-          {/* Left pair */}
-          <div className="flex flex-col gap-8 items-end pr-3">
-            <IdeaStatement item={ideas[0]} />
-            <IdeaStatement item={ideas[1]} />
-          </div>
-          {/* Center — kept clear for the brain */}
+        {/* Four statements over the dark space, laid out as two rows so each pair's
+            titles start at the same height. Narrow center column keeps the brain clear.
+            Left statements align left; right statements align right. */}
+        <div
+          className="absolute inset-0 grid items-start px-4 pt-9"
+          style={{ gridTemplateColumns: "1fr 28% 1fr", rowGap: "2rem" }}
+        >
+          {/* Row 1 */}
+          <div className="flex justify-start pr-3"><IdeaStatement item={ideas[0]} align="left" /></div>
           <div aria-hidden="true" />
-          {/* Right pair */}
-          <div className="flex flex-col gap-8 items-start pl-3">
-            <IdeaStatement item={ideas[2]} />
-            <IdeaStatement item={ideas[3]} />
-          </div>
+          <div className="flex justify-end pl-3"><IdeaStatement item={ideas[2]} align="right" /></div>
+          {/* Row 2 */}
+          <div className="flex justify-start pr-3"><IdeaStatement item={ideas[1]} align="left" /></div>
+          <div aria-hidden="true" />
+          <div className="flex justify-end pl-3"><IdeaStatement item={ideas[3]} align="right" /></div>
         </div>
 
         {/* 96% — center bottom, prominent on a clear pill */}
