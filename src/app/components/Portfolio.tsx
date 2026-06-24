@@ -3,6 +3,7 @@ import { useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.png";
 import figureUrl from "../../assets/figure-About-Panel-Pip.png";
+import brainUrl from "../../assets/brain-raw-layer.png";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -81,11 +82,39 @@ function ideaIcon(name: string) {
   }
 }
 
+// A single Idea statement as a vertical block (icon circle + lead + body),
+// used in the desktop layout where the four statements flank the brain image.
+// Text carries a soft shadow so it stays legible over the artwork.
+function IdeaStatement({ item, align }: { item: (typeof ideas)[number]; align: "left" | "right" }) {
+  const alignClass = align === "right" ? "items-end text-right" : "items-start text-left";
+  const shadow = "0 2px 10px rgba(10,6,18,0.9)";
+  return (
+    <div className={`flex flex-col gap-2 ${alignClass}`}>
+      <span
+        aria-hidden="true"
+        className="inline-flex items-center justify-center rounded-full"
+        style={{ width: "2.6rem", height: "2.6rem", background: `${item.color}24`, color: item.color }}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          {ideaIcon(item.icon)}
+        </svg>
+      </span>
+      <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1.05rem", lineHeight: 1.35, color: "var(--foreground)", textShadow: shadow }}>
+        {item.lead}
+      </p>
+      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "0.95rem", lineHeight: 1.5, color: "var(--muted-foreground)", textShadow: shadow }}>
+        {item.body}
+      </p>
+    </div>
+  );
+}
+
 const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => ({
   "The Idea": (
     <div>
-      {/* Featured pull quote — Georgia italic, gold */}
-      <blockquote className="pl-6" style={{ borderLeft: "2px solid var(--primary)" }}>
+      {/* Featured pull quote — Georgia italic, gold; centered above the brain */}
+      <blockquote className="text-center">
         <p style={{
           fontFamily: SERIF,
           fontStyle: "italic",
@@ -98,60 +127,91 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
         </p>
       </blockquote>
 
-      {/* Four ideas — colored icon + bold lead + one plain sentence */}
-      <div className="mt-8 space-y-6">
-        {ideas.map((item) => (
-          <div key={item.lead} className="flex items-start gap-4">
-            <span
-              aria-hidden="true"
-              className="shrink-0 inline-flex items-center justify-center rounded-full"
-              style={{
-                width: "2.9rem",
-                height: "2.9rem",
-                background: `${item.color}1f`,
-                color: item.color,
-              }}
-            >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                {ideaIcon(item.icon)}
-              </svg>
-            </span>
-            <div>
-              <p style={{
-                fontFamily: SANS,
-                fontWeight: 700,
-                fontSize: "1.3rem",
-                lineHeight: 1.4,
-                color: "var(--foreground)",
-              }}>
-                {item.lead}
-              </p>
-              <p className="mt-0.5" style={{
-                fontFamily: SANS,
-                fontWeight: 400,
-                fontSize: "1.2rem",
-                lineHeight: 1.65,
-                color: "var(--muted-foreground)",
-              }}>
-                {item.body}
-              </p>
-            </div>
-          </div>
-        ))}
+      {/* ===== Desktop (md+): brain centered, four statements flanking the dark negative space ===== */}
+      <div className="hidden md:block relative mt-4" style={{ aspectRatio: "2752 / 1536" }}>
+        <img
+          src={brainUrl}
+          alt="A glowing brain rendered in indigo and lilac with gold neural pathways against dark space — the visual motif for AlphaRise's brain-controlled gameplay."
+          className="absolute inset-0 h-full w-full"
+          style={{ objectFit: "contain" }}
+        />
+
+        {/* Left flank — statements 1 & 2, hugging the left edge with a fading dark scrim */}
+        <div
+          className="absolute inset-y-0 left-0 flex flex-col justify-center gap-10 pl-2 pr-5"
+          style={{ width: "34%", background: "linear-gradient(to right, rgba(10,6,18,0.85) 35%, rgba(10,6,18,0) 100%)" }}
+        >
+          <IdeaStatement item={ideas[0]} align="left" />
+          <IdeaStatement item={ideas[1]} align="left" />
+        </div>
+
+        {/* Right flank — statements 3 & 4 */}
+        <div
+          className="absolute inset-y-0 right-0 flex flex-col justify-center gap-10 pr-2 pl-5"
+          style={{ width: "34%", background: "linear-gradient(to left, rgba(10,6,18,0.85) 35%, rgba(10,6,18,0) 100%)" }}
+        >
+          <IdeaStatement item={ideas[2]} align="right" />
+          <IdeaStatement item={ideas[3]} align="right" />
+        </div>
+
+        {/* 96% — centered, overlaid on the lower composition as a clean understated stat */}
+        <p
+          className="absolute bottom-2 left-1/2 -translate-x-1/2 text-center rounded-full px-4 py-1.5"
+          style={{
+            fontFamily: SANS,
+            fontWeight: 400,
+            fontSize: "0.95rem",
+            lineHeight: 1.5,
+            color: "var(--text-faint)",
+            whiteSpace: "nowrap",
+            background: "rgba(10,6,18,0.5)",
+            backdropFilter: "blur(2px)",
+          }}
+        >
+          <span style={{ color: "var(--secondary)", fontWeight: 600 }}>96%</span>{" "}
+          of surveyed people with MS were open to trying therapeutic games (N=146)
+        </p>
       </div>
 
-      {/* Understated supporting line — not a stat card */}
-      <p className="mt-8" style={{
-        fontFamily: SANS,
-        fontWeight: 400,
-        fontSize: "1.05rem",
-        lineHeight: 1.6,
-        color: "var(--text-faint)",
-      }}>
-        <span style={{ color: "var(--secondary)", fontWeight: 600 }}>96%</span>{" "}
-        of surveyed people with MS were open to trying therapeutic games (N=146)
-      </p>
+      {/* ===== Mobile (below md): stacked — brain (smaller), statements in one column, then 96% ===== */}
+      <div className="md:hidden">
+        <img
+          src={brainUrl}
+          alt="A glowing brain rendered in indigo and lilac with gold neural pathways against dark space."
+          className="mx-auto mt-5 w-full max-w-xs"
+          style={{ objectFit: "contain" }}
+        />
+
+        <div className="mt-6 space-y-6">
+          {ideas.map((item) => (
+            <div key={item.lead} className="flex items-start gap-4">
+              <span
+                aria-hidden="true"
+                className="shrink-0 inline-flex items-center justify-center rounded-full"
+                style={{ width: "2.9rem", height: "2.9rem", background: `${item.color}1f`, color: item.color }}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  {ideaIcon(item.icon)}
+                </svg>
+              </span>
+              <div>
+                <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1.2rem", lineHeight: 1.4, color: "var(--foreground)" }}>
+                  {item.lead}
+                </p>
+                <p className="mt-0.5" style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.1rem", lineHeight: 1.6, color: "var(--muted-foreground)" }}>
+                  {item.body}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-7 text-center" style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1rem", lineHeight: 1.6, color: "var(--text-faint)" }}>
+          <span style={{ color: "var(--secondary)", fontWeight: 600 }}>96%</span>{" "}
+          of surveyed people with MS were open to trying therapeutic games (N=146)
+        </p>
+      </div>
     </div>
   ),
 
