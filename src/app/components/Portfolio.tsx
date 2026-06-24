@@ -61,10 +61,10 @@ const TAB_COLORS: Record<Tab, string> = {
 };
 
 const ideas = [
-  { lead: "Your brainwaves are the controller.", body: "You play with focus. Not buttons.",                        color: "#dbb35e", icon: "wave"  },
-  { lead: "Play quick sessions.",                body: "Under ten minutes. Whenever you've got it.",                color: "#87b8cb", icon: "clock" },
-  { lead: "A game made to heal.",                body: "Play and therapy. Happening in one space.",                 color: "#b1a1d1", icon: "heart" },
-  { lead: "Backed by real research.",            body: "Surveyed people with MS. Through the National MS Society.", color: "#5b82a0", icon: "check" },
+  { lead: "Your brainwaves are the controller.", body: "You play with focus, not buttons.",                       color: "#dbb35e", icon: "wave"  },
+  { lead: "Play quick sessions.",                body: "Under ten minutes, whenever you've got it.",                color: "#87b8cb", icon: "clock" },
+  { lead: "A game made to heal.",                body: "Play and therapy, happening in one space.",                 color: "#b1a1d1", icon: "heart" },
+  { lead: "Backed by real research.",            body: "Surveyed people with MS through the National MS Society.",  color: "#5b82a0", icon: "check" },
 ];
 
 function ideaIcon(name: string) {
@@ -82,19 +82,26 @@ function ideaIcon(name: string) {
   }
 }
 
-// A single Idea statement as a text block (lead + body), used in the desktop
-// layout where the four statements flank the brain image. No icon; a strong
-// text halo keeps it legible over the artwork.
-function IdeaStatement({ item, align }: { item: (typeof ideas)[number]; align: "left" | "right" }) {
-  const alignClass = align === "right" ? "items-end text-right" : "items-start text-left";
-  const shadow = "0 2px 16px rgba(10,6,18,0.98), 0 0 28px rgba(10,6,18,0.85)";
+// A single Idea statement as a compact bordered card (lead + body). The
+// supporting line breaks onto a second line at its comma. A faint dark fill
+// keeps the text readable where a card overlaps the brain artwork.
+function IdeaStatement({ item, maxW = "15rem" }: { item: (typeof ideas)[number]; maxW?: string }) {
+  const [first, ...rest] = item.body.split(/,\s+/);
   return (
-    <div className={`flex flex-col gap-1.5 ${alignClass}`} style={{ maxWidth: "19rem" }}>
-      <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1.4rem", lineHeight: 1.3, color: "var(--foreground)", textShadow: shadow }}>
+    <div
+      className="rounded-lg px-3.5 py-2.5 w-full"
+      style={{
+        maxWidth: maxW,
+        border: "1px solid var(--border)",
+        background: "rgba(10,6,18,0.62)",
+        backdropFilter: "blur(3px)",
+      }}
+    >
+      <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1.02rem", lineHeight: 1.3, color: "var(--foreground)" }}>
         {item.lead}
       </p>
-      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.15rem", lineHeight: 1.45, color: "var(--muted-foreground)", textShadow: shadow }}>
-        {item.body}
+      <p className="mt-1" style={{ fontFamily: SANS, fontWeight: 400, fontSize: "0.92rem", lineHeight: 1.4, color: "var(--muted-foreground)" }}>
+        {rest.length > 0 ? (<>{first},<br />{rest.join(", ")}</>) : item.body}
       </p>
     </div>
   );
@@ -117,48 +124,50 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
         </p>
       </blockquote>
 
-      {/* ===== Desktop (md+): brain centered, four statements flanking the dark negative space ===== */}
-      <div className="hidden md:block relative mt-4" style={{ aspectRatio: "2816 / 1536" }}>
+      {/* ===== Desktop (md+): compact horizontal band — brain centered, four cards flanking ===== */}
+      <div
+        className="hidden md:block relative mx-auto mt-4 overflow-hidden rounded-xl"
+        style={{ height: "22rem", maxWidth: "58rem", border: "1px solid var(--border)" }}
+      >
         <img
           src={brainUrl}
           alt="A glowing brain rendered in indigo and lilac with gold neural pathways against dark space — the visual motif for AlphaRise's brain-controlled gameplay."
           className="absolute inset-0 h-full w-full"
-          style={{ objectFit: "contain" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
 
-        {/* Statements overlaid in the dark space, pulled in toward the brain.
-            The narrow center column is left empty so the brain stays clear. */}
-        <div className="absolute inset-0 grid items-center" style={{ gridTemplateColumns: "1fr 26% 1fr" }}>
-          {/* Left pair — inner-aligned toward the brain */}
-          <div className="flex flex-col justify-center gap-14 pr-5 items-end">
-            <IdeaStatement item={ideas[0]} align="right" />
-            <IdeaStatement item={ideas[1]} align="right" />
+        {/* Four cards over the dark space; narrow center column keeps the brain clear */}
+        <div className="absolute inset-0 grid items-center px-4" style={{ gridTemplateColumns: "1fr 28% 1fr" }}>
+          {/* Left pair */}
+          <div className="flex flex-col justify-center gap-3 items-end pr-3">
+            <IdeaStatement item={ideas[0]} />
+            <IdeaStatement item={ideas[1]} />
           </div>
           {/* Center — kept clear for the brain */}
           <div aria-hidden="true" />
-          {/* Right pair — inner-aligned toward the brain */}
-          <div className="flex flex-col justify-center gap-14 pl-5 items-start">
-            <IdeaStatement item={ideas[2]} align="left" />
-            <IdeaStatement item={ideas[3]} align="left" />
+          {/* Right pair */}
+          <div className="flex flex-col justify-center gap-3 items-start pl-3">
+            <IdeaStatement item={ideas[2]} />
+            <IdeaStatement item={ideas[3]} />
           </div>
         </div>
 
-        {/* 96% — center bottom, made prominent: larger, full-contrast, on a clear pill */}
+        {/* 96% — center bottom, prominent on a clear pill */}
         <p
-          className="absolute bottom-3 left-1/2 -translate-x-1/2 text-center rounded-full px-6 py-2"
+          className="absolute bottom-3 left-1/2 -translate-x-1/2 text-center rounded-full px-5 py-1.5"
           style={{
             fontFamily: SANS,
             fontWeight: 500,
-            fontSize: "1.1rem",
+            fontSize: "1rem",
             lineHeight: 1.5,
             color: "var(--foreground)",
             whiteSpace: "nowrap",
-            background: "rgba(10,6,18,0.72)",
+            background: "rgba(10,6,18,0.78)",
             border: "1px solid var(--border)",
             backdropFilter: "blur(3px)",
           }}
         >
-          <span style={{ color: "var(--secondary)", fontWeight: 700, fontSize: "1.3rem" }}>96%</span>{" "}
+          <span style={{ color: "var(--secondary)", fontWeight: 700, fontSize: "1.2rem" }}>96%</span>{" "}
           of surveyed people with MS were open to trying therapeutic games (N=146)
         </p>
       </div>
@@ -172,25 +181,18 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
           style={{ objectFit: "contain" }}
         />
 
-        <div className="mt-6 space-y-6">
+        <div className="mt-6 mx-auto max-w-sm flex flex-col gap-3">
           {ideas.map((item) => (
-            <div key={item.lead}>
-              <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1.35rem", lineHeight: 1.35, color: "var(--foreground)" }}>
-                {item.lead}
-              </p>
-              <p className="mt-1" style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.2rem", lineHeight: 1.55, color: "var(--muted-foreground)" }}>
-                {item.body}
-              </p>
-            </div>
+            <IdeaStatement key={item.lead} item={item} maxW="100%" />
           ))}
         </div>
 
-        <p className="mt-8 text-center mx-auto rounded-full px-5 py-2.5" style={{
-          fontFamily: SANS, fontWeight: 500, fontSize: "1.05rem", lineHeight: 1.5,
+        <p className="mt-6 text-center mx-auto w-fit rounded-full px-5 py-2.5" style={{
+          fontFamily: SANS, fontWeight: 500, fontSize: "1rem", lineHeight: 1.5,
           color: "var(--foreground)",
           background: "rgba(10,6,18,0.6)", border: "1px solid var(--border)",
         }}>
-          <span style={{ color: "var(--secondary)", fontWeight: 700, fontSize: "1.25rem" }}>96%</span>{" "}
+          <span style={{ color: "var(--secondary)", fontWeight: 700, fontSize: "1.2rem" }}>96%</span>{" "}
           of surveyed people with MS were open to trying therapeutic games (N=146)
         </p>
       </div>
