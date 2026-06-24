@@ -51,7 +51,7 @@ function HoverTip({ label, className = "" }: { label: string; className?: string
 
 export function Contact() {
   return (
-    <section id="contact" className="relative grow px-6 pt-24 pb-32 md:pb-40" aria-label="Contact">
+    <section id="connect" className="relative grow px-6 pt-24 pb-32 md:pb-40" aria-label="Connect">
       {/* Bottom ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2"
         style={{
@@ -74,7 +74,7 @@ export function Contact() {
               textTransform: "uppercase",
               color: "var(--accent)",
             }}>
-              Contact
+              Connect
             </span>
           </div>
         </FadeIn>

@@ -33,7 +33,7 @@ function HoverTip({ label, className = "" }: { label: string; className?: string
 export function Hero() {
   return (
     <section
-      id="home"
+      id="start"
       className="relative min-h-screen flex flex-col items-center justify-center px-6 py-28 md:py-32 overflow-hidden"
       aria-label="Hero"
     >

@@ -4,11 +4,11 @@ const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 
 const links = [
-  { label: "Home",      href: "#home",      color: "#e3deee" }, // lilac-light
-  { label: "About",     href: "#about",     color: "#87b8cb" }, // mist blue (matches About headline)
-  { label: "The Work", href: "#portfolio", color: "#dbb35e" }, // gold (matches section number)
-  // { label: "Studio", href: "#studio", color: "#5b82a0" }, // "In My Studio" section hidden for now — restore alongside <Studio /> in App.tsx
-  { label: "Contact",   href: "#contact",   color: "#b1a1d1" }, // lilac (matches Contact headline)
+  { label: "Start",     href: "#start",     color: "#e3deee" }, // lilac-light (Hero)
+  { label: "Story",     href: "#story",     color: "#87b8cb" }, // mist blue (matches Story header)
+  { label: "Process",   href: "#process",   color: "#5b82a0" }, // deep blue (matches Process header)
+  { label: "AlphaRise", href: "#alpharise", color: "#dbb35e" }, // gold (matches AlphaRise header)
+  { label: "Connect",   href: "#connect",   color: "#b1a1d1" }, // lilac (matches Connect header)
 ];
 
 export function Nav() {

@@ -1,7 +1,8 @@
 {/* MARKER-MAKE-KIT-INVOKED */}
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
-import { About } from "./components/About";
+import { Story } from "./components/Story";
+import { Process } from "./components/Process";
 import { Portfolio } from "./components/Portfolio";
 // import { Studio } from "./components/Studio"; // "In My Studio" — hidden for now; keep to restore later
 import { Contact } from "./components/Contact";
@@ -17,7 +18,8 @@ export default function App() {
       <ScrollBrainwave />
       <main>
         <Hero />
-        <About />
+        <Story />
+        <Process />
         <Portfolio />
         {/* "In My Studio" section hidden for now to keep the page focused on AlphaRise.
             Component file (./components/Studio) is preserved — re-add <Studio /> here and

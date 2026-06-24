@@ -400,7 +400,7 @@ export function Portfolio() {
   }, [posterOpen]);
 
   return (
-    <section id="portfolio" className="relative min-h-screen px-6 pt-24 pb-32 md:pb-40" aria-label="Portfolio">
+    <section id="alpharise" className="relative min-h-screen px-6 pt-24 pb-32 md:pb-40" aria-label="AlphaRise">
       <div className="max-w-5xl mx-auto">
 
         {/* Section header */}
@@ -415,7 +415,7 @@ export function Portfolio() {
               textTransform: "uppercase",
               color: "var(--primary)",
             }}>
-              The Work
+              AlphaRise
             </span>
           </div>
         </FadeIn>
