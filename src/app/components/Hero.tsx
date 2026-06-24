@@ -142,18 +142,23 @@ export function Hero() {
               {/* Tooltip below the icon (it sits near the photo's top edge) */}
               <HoverTip label="Watch the demo" className="top-full right-0 mt-2" />
             </a>
+            {/* Bottom-left photo credit overlay on the portrait itself */}
+            <div
+              className="absolute bottom-0 left-0 z-10 rounded-bl-2xl px-3 pt-5 pb-2"
+              style={{ background: "linear-gradient(to top right, rgba(10,6,18,0.88), transparent 78%)" }}
+            >
+              <span style={{
+                fontFamily: SANS,
+                fontWeight: 300,
+                fontSize: "0.72rem",
+                letterSpacing: "0.10em",
+                textTransform: "uppercase",
+                color: "rgba(228,223,242,0.88)",
+              }}>
+                Photo: Mike Schalk
+              </span>
             </div>
-            {/* Photo credit */}
-            <p className="mt-3" style={{
-              fontFamily: SANS,
-              fontWeight: 300,
-              fontSize: "0.72rem",
-              letterSpacing: "0.10em",
-              textTransform: "uppercase",
-              color: "var(--text-faint)",
-            }}>
-              Photo: Mike Schalk
-            </p>
+            </div>
           </div>
 
           {/* Right — name + memo */}

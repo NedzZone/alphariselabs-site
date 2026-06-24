@@ -1,6 +1,10 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
+import firstSignalUrl from "../../assets/About/phase-first-signal.jpg";
+import theBuildUrl from "../../assets/About/phase-the-build.jpg";
+import compassionateModeUrl from "../../assets/About/phase-compassionate-mode.jpg";
+import alphariseLabsUrl from "../../assets/About/phase-alpharise-labs.jpg";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -26,24 +30,33 @@ const timeline = [
   {
     title: "First signal",
     body:  "I streamed live brain data into a game engine for the first time on a single-channel EEG kit, and watched a digital world respond to a real mind. That moment was worth years of my life.",
+    photo:  firstSignalUrl,
+    credit: "Photo: Soroush Ahirad",
   },
   {
     title: "The build",
     body:  "Chose the hardware, worked through calibration and signal processing, learned the language of neuroscience, interviewed scientists and clinicians. I learned to treat every failure as information — a signal toward the next step.",
+    photo:  theBuildUrl,
+    credit: "Photo: Soroush Ahirad",
   },
   {
     title: "Compassionate Mode",
     body:  "Defined the rule the whole project rests on: never punish the symptom you are trying to heal.",
+    photo:  compassionateModeUrl,
+    credit: "Photo: SCAD",
   },
   {
     title: "AlphaRise Labs",
     body:  "Turned a thesis project into a real venture, with my faculty and committee actively encouraging the path from designer to founder.",
+    photo:  alphariseLabsUrl,
+    credit: "Photo: Mike Schalk",
+    collab: true,
   },
   {
     title: "What's next",
     body:  "Building a custom, home-based brain-sensing device of my own design, so therapeutic tools keep getting more accessible, not less.",
   },
-];
+] as { title: string; body: string; photo?: string; credit?: string; collab?: boolean }[];
 
 const pills = [
   { label: "Cedars-Sinai vMed26",         color: "#dbb35e" }, // gold
@@ -164,24 +177,72 @@ export function About() {
                       boxShadow: "0 0 6px rgba(219,179,94,0.30)",
                     }}
                   />
-                  <p style={{
-                    fontFamily: SERIF,
-                    fontWeight: 700,
-                    fontSize: "1.5rem",
-                    color: "var(--primary)",
-                    letterSpacing: "0.01em",
-                  }}>
-                    {item.title}
-                  </p>
-                  <p className="mt-2" style={{
-                    fontFamily: SANS,
-                    fontWeight: 400,
-                    fontSize: "1.15rem",
-                    lineHeight: 1.7,
-                    color: "var(--muted-foreground)",
-                  }}>
-                    {item.body}
-                  </p>
+                  {/* Thumbnail left of the text on desktop, stacked above on mobile */}
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-5">
+                    {item.photo && (
+                      <div
+                        className="relative shrink-0 overflow-hidden rounded-lg"
+                        style={{ width: "8rem", aspectRatio: "4 / 3", border: "1px solid var(--border)" }}
+                      >
+                        <img
+                          src={item.photo}
+                          alt={`${item.title} — process photo`}
+                          loading="lazy"
+                          className="absolute inset-0 h-full w-full"
+                          style={{ objectFit: "cover" }}
+                        />
+                        {/* Bottom-left credit overlay with a dark gradient for legibility */}
+                        <div
+                          className="absolute inset-x-0 bottom-0 px-2 pt-4 pb-1"
+                          style={{ background: "linear-gradient(to top, rgba(10,6,18,0.92), transparent)" }}
+                        >
+                          <span style={{
+                            fontFamily: SANS,
+                            fontWeight: 400,
+                            fontSize: "0.6rem",
+                            letterSpacing: "0.03em",
+                            color: "rgba(228,223,242,0.92)",
+                            whiteSpace: "nowrap",
+                          }}>
+                            {item.credit}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="min-w-0">
+                      <p style={{
+                        fontFamily: SERIF,
+                        fontWeight: 700,
+                        fontSize: "1.5rem",
+                        color: "var(--primary)",
+                        letterSpacing: "0.01em",
+                      }}>
+                        {item.title}
+                      </p>
+                      <p className="mt-2" style={{
+                        fontFamily: SANS,
+                        fontWeight: 400,
+                        fontSize: "1.15rem",
+                        lineHeight: 1.7,
+                        color: "var(--muted-foreground)",
+                      }}>
+                        {item.body}
+                      </p>
+                      {item.collab && (
+                        <p className="mt-2" style={{
+                          fontFamily: SANS,
+                          fontWeight: 400,
+                          fontSize: "0.9rem",
+                          letterSpacing: "0.02em",
+                          color: "var(--text-faint)",
+                        }}>
+                          Game Art Collaborator:{" "}
+                          <span style={{ color: "var(--secondary)" }}>Madeleine Schaefer</span>, BFA Game Development, SCAD
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </li>
               ))}
             </ol>

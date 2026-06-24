@@ -489,17 +489,6 @@ export function Portfolio() {
                 </div>
               </div>
 
-              {/* Collaborator credit — full width below the header, one line on desktop */}
-              <p className="mt-8 md:whitespace-nowrap" style={{
-                fontFamily: SANS,
-                fontWeight: 400,
-                fontSize: "0.9rem",
-                letterSpacing: "0.02em",
-                color: "var(--text-faint)",
-              }}>
-                Game Art Collaborator:{" "}
-                <span style={{ color: "var(--secondary)" }}>Madeleine Schaefer</span>, BFA Game Development, SCAD
-              </p>
             </div>
 
             {/* Tabs — refined file-folder tabs; the active tab merges into the panel below */}
