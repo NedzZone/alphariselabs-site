@@ -454,37 +454,64 @@ export function Portfolio() {
               </p>
             </div>
 
-            {/* Tabs */}
-            <div className="px-8 pt-6" style={{ borderBottom: "1px solid var(--border)" }}>
-              <div role="tablist" className="flex gap-6" aria-label="Project details">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab}
-                    role="tab"
-                    aria-selected={activeTab === tab}
-                    aria-controls={`tabpanel-${tab}`}
-                    id={`tab-${tab}`}
-                    onClick={() => setActiveTab(tab)}
-                    className="relative pb-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                    style={{
-                      fontFamily: SANS,
-                      fontWeight: activeTab === tab ? 600 : 400,
-                      fontSize: "0.88rem",
-                      color: activeTab === tab ? "var(--foreground)" : "var(--muted-foreground)",
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      padding: "0 0 1rem 0",
-                      transition: "color 0.2s",
-                    }}
-                  >
-                    {tab}
-                    {activeTab === tab && (
-                      <span className="absolute bottom-0 left-0 right-0 h-[2px] rounded-full"
-                        style={{ background: "var(--primary)" }} />
-                    )}
-                  </button>
-                ))}
+            {/* Tabs — segmented pill control with a sliding active indicator */}
+            <div className="px-8 pt-6 pb-6" style={{ borderBottom: "1px solid var(--border)" }}>
+              <div
+                role="tablist"
+                aria-label="Project details"
+                className="relative inline-grid grid-cols-3 gap-1 rounded-full p-1"
+                style={{
+                  background: "rgba(177,161,209,0.05)",
+                  border: "1px solid var(--border)",
+                }}
+              >
+                {tabs.map((tab) => {
+                  const active = activeTab === tab;
+                  return (
+                    <button
+                      key={tab}
+                      role="tab"
+                      aria-selected={active}
+                      aria-controls={`tabpanel-${tab}`}
+                      id={`tab-${tab}`}
+                      onClick={() => setActiveTab(tab)}
+                      className="relative rounded-full px-5 py-2 text-center transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                      style={{
+                        fontFamily: SANS,
+                        fontWeight: active ? 600 : 400,
+                        fontSize: "0.88rem",
+                        letterSpacing: "0.02em",
+                        whiteSpace: "nowrap",
+                        color: active ? "#0a0612" : "var(--muted-foreground)",
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!active) (e.currentTarget as HTMLElement).style.color = "var(--foreground)";
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!active) (e.currentTarget as HTMLElement).style.color = "var(--muted-foreground)";
+                      }}
+                    >
+                      {/* Sliding filled indicator — shared layoutId animates it between segments */}
+                      {active && (
+                        <motion.span
+                          layoutId="work-tab-pill"
+                          aria-hidden="true"
+                          className="absolute inset-0 rounded-full"
+                          style={{
+                            background: "#dbb35e",
+                            boxShadow: "0 4px 14px rgba(219,179,94,0.30)",
+                            zIndex: 0,
+                          }}
+                          transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                        />
+                      )}
+                      <span className="relative" style={{ zIndex: 1 }}>{tab}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
