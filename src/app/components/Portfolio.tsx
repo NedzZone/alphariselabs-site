@@ -454,17 +454,9 @@ export function Portfolio() {
               </p>
             </div>
 
-            {/* Tabs — segmented pill control with a sliding active indicator */}
-            <div className="px-8 pt-6 pb-6" style={{ borderBottom: "1px solid var(--border)" }}>
-              <div
-                role="tablist"
-                aria-label="Project details"
-                className="relative inline-grid grid-cols-3 gap-1 rounded-full p-1"
-                style={{
-                  background: "rgba(177,161,209,0.05)",
-                  border: "1px solid var(--border)",
-                }}
-              >
+            {/* Tabs — refined file-folder tabs; the active tab merges into the panel below */}
+            <div className="px-8 pt-7" style={{ borderBottom: "1px solid var(--border)" }}>
+              <div role="tablist" aria-label="Project details" className="flex items-end gap-1">
                 {tabs.map((tab) => {
                   const active = activeTab === tab;
                   return (
@@ -475,40 +467,56 @@ export function Portfolio() {
                       aria-controls={`tabpanel-${tab}`}
                       id={`tab-${tab}`}
                       onClick={() => setActiveTab(tab)}
-                      className="relative rounded-full px-5 py-2 text-center transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                      className="relative rounded-t-lg px-5 py-2.5 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                       style={{
                         fontFamily: SANS,
                         fontWeight: active ? 600 : 400,
                         fontSize: "0.88rem",
                         letterSpacing: "0.02em",
                         whiteSpace: "nowrap",
-                        color: active ? "#0a0612" : "var(--muted-foreground)",
-                        background: "none",
-                        border: "none",
                         cursor: "pointer",
+                        // Overlap the panel's top edge so the active tab can erase the divider beneath it
+                        marginBottom: "-1px",
+                        color: active ? "var(--foreground)" : "var(--muted-foreground)",
+                        background: active ? "var(--card)" : "var(--background)",
+                        borderTop: "1px solid var(--border)",
+                        borderLeft: active ? "1px solid var(--border)" : "1px solid transparent",
+                        borderRight: active ? "1px solid var(--border)" : "1px solid transparent",
+                        // Active: bottom border matches the panel so the divider disappears → one surface.
+                        // Inactive: bottom border continues the divider line → tab reads as recessed.
+                        borderBottom: active ? "1px solid var(--card)" : "1px solid var(--border)",
                       }}
                       onMouseEnter={(e) => {
-                        if (!active) (e.currentTarget as HTMLElement).style.color = "var(--foreground)";
+                        if (active) return;
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.background = "var(--muted)";
+                        el.style.color = "var(--foreground)";
+                        el.style.transform = "translateY(-2px)";
                       }}
                       onMouseLeave={(e) => {
-                        if (!active) (e.currentTarget as HTMLElement).style.color = "var(--muted-foreground)";
+                        if (active) return;
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.background = "var(--background)";
+                        el.style.color = "var(--muted-foreground)";
+                        el.style.transform = "translateY(0)";
                       }}
                     >
-                      {/* Sliding filled indicator — shared layoutId animates it between segments */}
+                      {/* Gold accent cap on the active folder — slides between tabs via shared layoutId */}
                       {active && (
                         <motion.span
-                          layoutId="work-tab-pill"
+                          layoutId="work-folder-accent"
                           aria-hidden="true"
-                          className="absolute inset-0 rounded-full"
+                          className="absolute left-3 right-3 rounded-full"
                           style={{
-                            background: "#dbb35e",
-                            boxShadow: "0 4px 14px rgba(219,179,94,0.30)",
-                            zIndex: 0,
+                            top: "-1px",
+                            height: "2px",
+                            background: "var(--primary)",
+                            boxShadow: "0 1px 8px rgba(219,179,94,0.45)",
                           }}
                           transition={{ type: "spring", stiffness: 380, damping: 32 }}
                         />
                       )}
-                      <span className="relative" style={{ zIndex: 1 }}>{tab}</span>
+                      {tab}
                     </button>
                   );
                 })}
