@@ -80,7 +80,7 @@ export function Hero() {
             color: "var(--secondary)",
           }}
         >
-          Founder, AlphaRise Labs · Game Designer · MedTech Innovator
+          Founder, AlphaRise Labs · Game Designer · Healthtech Innovator
         </span>
 
       </motion.div>
