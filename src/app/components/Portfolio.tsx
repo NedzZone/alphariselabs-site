@@ -91,7 +91,7 @@ function IdeaStatement({ item, maxW = "16rem", align = "left" }: { item: (typeof
   const shadow = "0 2px 12px rgba(10,6,18,0.96), 0 0 24px rgba(10,6,18,0.85)";
   return (
     <div className="w-full" style={{ maxWidth: maxW, textAlign: align }}>
-      <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "1.25rem", lineHeight: 1.25, color: item.color, textShadow: shadow }}>
+      <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "1.25rem", lineHeight: 1.25, color: "var(--primary)", textShadow: shadow }}>
         {item.lead}
       </p>
       <p className="mt-1.5" style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1.05rem", lineHeight: 1.45, color: "var(--muted-foreground)", textShadow: shadow }}>
@@ -134,7 +134,7 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
             titles start at the same height. Narrow center column keeps the brain clear.
             Left statements align left; right statements align right. */}
         <div
-          className="absolute inset-0 grid items-start px-4 pt-9"
+          className="absolute inset-0 grid items-start px-10 pt-9"
           style={{ gridTemplateColumns: "1fr 28% 1fr", rowGap: "2rem" }}
         >
           {/* Row 1 */}
