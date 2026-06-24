@@ -82,26 +82,19 @@ function ideaIcon(name: string) {
   }
 }
 
-// A single Idea statement as a compact bordered card. The lead is a serif
-// headline tinted with the item's palette color; the body stays in muted sans
-// and breaks onto a second line at its comma. A faint dark fill keeps the text
-// readable where a card overlaps the brain artwork.
+// A single Idea statement — text only (no card chrome). The lead is a serif
+// headline tinted with the item's palette color; the body is bold muted sans
+// and breaks onto a second line at its comma. A text halo keeps it readable
+// where the text overlaps the brain artwork.
 function IdeaStatement({ item, maxW = "16rem" }: { item: (typeof ideas)[number]; maxW?: string }) {
   const [first, ...rest] = item.body.split(/,\s+/);
+  const shadow = "0 2px 12px rgba(10,6,18,0.96), 0 0 24px rgba(10,6,18,0.85)";
   return (
-    <div
-      className="rounded-lg px-4 py-3 w-full"
-      style={{
-        maxWidth: maxW,
-        border: "1px solid var(--border)",
-        background: "rgba(10,6,18,0.62)",
-        backdropFilter: "blur(3px)",
-      }}
-    >
-      <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "1.4rem", lineHeight: 1.25, color: item.color }}>
+    <div className="w-full" style={{ maxWidth: maxW }}>
+      <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "1.25rem", lineHeight: 1.25, color: item.color, textShadow: shadow }}>
         {item.lead}
       </p>
-      <p className="mt-1.5" style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.05rem", lineHeight: 1.45, color: "var(--muted-foreground)" }}>
+      <p className="mt-1.5" style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1.05rem", lineHeight: 1.45, color: "var(--muted-foreground)", textShadow: shadow }}>
         {rest.length > 0 ? (<>{first},<br />{rest.join(", ")}</>) : item.body}
       </p>
     </div>
@@ -137,17 +130,18 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
           style={{ objectFit: "cover", objectPosition: "center" }}
         />
 
-        {/* Four cards over the dark space; narrow center column keeps the brain clear */}
-        <div className="absolute inset-0 grid items-center px-4" style={{ gridTemplateColumns: "1fr 28% 1fr" }}>
+        {/* Four statements over the dark space; narrow center column keeps the brain clear.
+            Pulled toward the top of the band with a generous gap between each pair. */}
+        <div className="absolute inset-0 grid items-start px-4 pt-9" style={{ gridTemplateColumns: "1fr 28% 1fr" }}>
           {/* Left pair */}
-          <div className="flex flex-col justify-center gap-3 items-end pr-3">
+          <div className="flex flex-col gap-8 items-end pr-3">
             <IdeaStatement item={ideas[0]} />
             <IdeaStatement item={ideas[1]} />
           </div>
           {/* Center — kept clear for the brain */}
           <div aria-hidden="true" />
           {/* Right pair */}
-          <div className="flex flex-col justify-center gap-3 items-start pl-3">
+          <div className="flex flex-col gap-8 items-start pl-3">
             <IdeaStatement item={ideas[2]} />
             <IdeaStatement item={ideas[3]} />
           </div>
