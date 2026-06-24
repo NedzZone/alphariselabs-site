@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import firstSignalUrl from "../../assets/About/phase-first-signal.jpg";
 import theBuildUrl from "../../assets/About/phase-the-build.jpg";
 import compassionateModeUrl from "../../assets/About/phase-compassionate-mode.jpg";
@@ -23,6 +23,64 @@ function FadeIn({ children, delay = 0, className }: { children: React.ReactNode;
     >
       {children}
     </motion.div>
+  );
+}
+
+// Small thumbnail that enlarges on hover (desktop) and toggles on tap (touch).
+// It scales in place over a reserved box, so neighbouring rows don't shift.
+function PhaseThumb({ src, alt, credit }: { src: string; alt: string; credit?: string }) {
+  const [open, setOpen] = useState(false);   // tap toggle (touch)
+  const [hover, setHover] = useState(false); // pointer hover (desktop)
+  const big = open || hover;
+  return (
+    <div className="relative shrink-0 w-32" style={{ aspectRatio: "4 / 3" }}>
+      <button
+        type="button"
+        aria-label={big ? "Shrink photo" : "Enlarge photo"}
+        aria-expanded={big}
+        onClick={() => setOpen((o) => !o)}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        className="absolute inset-0 overflow-hidden rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        style={{
+          padding: 0,
+          background: "var(--card)",
+          border: "1px solid var(--border)",
+          transform: big ? "scale(2.1)" : "scale(1)",
+          transformOrigin: "left center",
+          transition: "transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s",
+          zIndex: big ? 30 : 0,
+          boxShadow: big ? "0 24px 60px rgba(10,6,18,0.7)" : "none",
+          cursor: open ? "zoom-out" : "zoom-in",
+        }}
+      >
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          draggable={false}
+          className="absolute inset-0 h-full w-full select-none"
+          style={{ objectFit: "cover" }}
+        />
+        {credit && (
+          <div
+            className="absolute inset-x-0 bottom-0 px-2 pt-3 pb-1"
+            style={{ background: "linear-gradient(to top, rgba(10,6,18,0.92), transparent)" }}
+          >
+            <span style={{
+              fontFamily: SANS,
+              fontWeight: 400,
+              fontSize: "0.55rem",
+              letterSpacing: "0.03em",
+              color: "rgba(228,223,242,0.92)",
+              whiteSpace: "nowrap",
+            }}>
+              {credit}
+            </span>
+          </div>
+        )}
+      </button>
+    </div>
   );
 }
 
@@ -84,7 +142,7 @@ export function Process() {
         <FadeIn delay={0.1}>
           <ol className="relative" aria-label="Journey timeline">
             {timeline.map((item, i) => (
-              <li key={item.title} className="relative pl-10 pb-14 last:pb-0">
+              <li key={item.title} className="relative pl-10 pb-11 last:pb-0">
                 {i < timeline.length - 1 && (
                   <div
                     aria-hidden="true"
@@ -101,40 +159,13 @@ export function Process() {
                     boxShadow: "0 0 6px rgba(219,179,94,0.30)",
                   }}
                 />
-                {/* Larger photo left of the text on desktop, stacked above on mobile */}
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-7">
+                {/* Small photo left of the text (stacked above on mobile); enlarges on hover/tap */}
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                   {item.photo && (
-                    <div
-                      className="relative shrink-0 overflow-hidden rounded-xl w-full sm:w-72"
-                      style={{ aspectRatio: "4 / 3", border: "1px solid var(--border)" }}
-                    >
-                      <img
-                        src={item.photo}
-                        alt={`${item.title} — process photo`}
-                        loading="lazy"
-                        className="absolute inset-0 h-full w-full"
-                        style={{ objectFit: "cover" }}
-                      />
-                      {/* Bottom-left credit overlay with a dark gradient for legibility */}
-                      <div
-                        className="absolute inset-x-0 bottom-0 px-3 pt-6 pb-1.5"
-                        style={{ background: "linear-gradient(to top, rgba(10,6,18,0.92), transparent)" }}
-                      >
-                        <span style={{
-                          fontFamily: SANS,
-                          fontWeight: 400,
-                          fontSize: "0.72rem",
-                          letterSpacing: "0.03em",
-                          color: "rgba(228,223,242,0.92)",
-                          whiteSpace: "nowrap",
-                        }}>
-                          {item.credit}
-                        </span>
-                      </div>
-                    </div>
+                    <PhaseThumb src={item.photo} alt={`${item.title} — process photo`} credit={item.credit} />
                   )}
 
-                  <div className="min-w-0 sm:pt-1">
+                  <div className="min-w-0 sm:pt-0.5">
                     <p style={{
                       fontFamily: SERIF,
                       fontWeight: 700,

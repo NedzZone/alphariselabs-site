@@ -24,7 +24,7 @@ function FadeIn({ children, delay = 0, className }: { children: React.ReactNode;
 
 export function Story() {
   return (
-    <section id="story" className="relative px-6 pt-24 pb-24 md:pb-32" aria-label="Story">
+    <section id="story" className="relative min-h-screen px-6 pt-24 pb-32 md:pb-40" aria-label="Story">
       <div className="max-w-5xl mx-auto">
 
         {/* Section header */}
