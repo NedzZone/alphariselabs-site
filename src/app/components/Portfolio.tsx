@@ -82,14 +82,15 @@ function ideaIcon(name: string) {
   }
 }
 
-// A single Idea statement as a compact bordered card (lead + body). The
-// supporting line breaks onto a second line at its comma. A faint dark fill
-// keeps the text readable where a card overlaps the brain artwork.
-function IdeaStatement({ item, maxW = "15rem" }: { item: (typeof ideas)[number]; maxW?: string }) {
+// A single Idea statement as a compact bordered card. The lead is a serif
+// headline tinted with the item's palette color; the body stays in muted sans
+// and breaks onto a second line at its comma. A faint dark fill keeps the text
+// readable where a card overlaps the brain artwork.
+function IdeaStatement({ item, maxW = "16rem" }: { item: (typeof ideas)[number]; maxW?: string }) {
   const [first, ...rest] = item.body.split(/,\s+/);
   return (
     <div
-      className="rounded-lg px-3.5 py-2.5 w-full"
+      className="rounded-lg px-4 py-3 w-full"
       style={{
         maxWidth: maxW,
         border: "1px solid var(--border)",
@@ -97,10 +98,10 @@ function IdeaStatement({ item, maxW = "15rem" }: { item: (typeof ideas)[number];
         backdropFilter: "blur(3px)",
       }}
     >
-      <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1.02rem", lineHeight: 1.3, color: "var(--foreground)" }}>
+      <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "1.4rem", lineHeight: 1.25, color: item.color }}>
         {item.lead}
       </p>
-      <p className="mt-1" style={{ fontFamily: SANS, fontWeight: 400, fontSize: "0.92rem", lineHeight: 1.4, color: "var(--muted-foreground)" }}>
+      <p className="mt-1.5" style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.05rem", lineHeight: 1.45, color: "var(--muted-foreground)" }}>
         {rest.length > 0 ? (<>{first},<br />{rest.join(", ")}</>) : item.body}
       </p>
     </div>
@@ -127,7 +128,7 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
       {/* ===== Desktop (md+): compact horizontal band — brain centered, four cards flanking ===== */}
       <div
         className="hidden md:block relative mx-auto mt-4 overflow-hidden rounded-xl"
-        style={{ height: "22rem", maxWidth: "58rem", border: "1px solid var(--border)" }}
+        style={{ height: "24rem", maxWidth: "58rem", border: "1px solid var(--border)" }}
       >
         <img
           src={brainUrl}
