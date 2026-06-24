@@ -135,7 +135,7 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
             Left statements align left; right statements align right. */}
         <div
           className="absolute inset-0 grid items-start px-10 pt-9"
-          style={{ gridTemplateColumns: "1fr 28% 1fr", rowGap: "2rem" }}
+          style={{ gridTemplateColumns: "1fr 28% 1fr", rowGap: "1rem" }}
         >
           {/* Row 1 */}
           <div className="flex justify-start pr-3"><IdeaStatement item={ideas[0]} align="left" /></div>
