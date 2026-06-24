@@ -3,7 +3,7 @@ import { useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.png";
 import figureUrl from "../../assets/figure-About-Panel-Pip.png";
-import brainUrl from "../../assets/brain-raw-layer.png";
+import brainUrl from "../../assets/Idea-Tab.png";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -128,7 +128,7 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
       </blockquote>
 
       {/* ===== Desktop (md+): brain centered, four statements flanking the dark negative space ===== */}
-      <div className="hidden md:block relative mt-4" style={{ aspectRatio: "2752 / 1536" }}>
+      <div className="hidden md:block relative mt-4" style={{ aspectRatio: "2816 / 1536" }}>
         <img
           src={brainUrl}
           alt="A glowing brain rendered in indigo and lilac with gold neural pathways against dark space — the visual motif for AlphaRise's brain-controlled gameplay."
