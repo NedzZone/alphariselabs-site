@@ -50,6 +50,15 @@ function HoverTip({ label, className = "" }: { label: string; className?: string
 const tabs = ["The Idea", "Design Philosophy", "Recognition"] as const;
 type Tab = (typeof tabs)[number];
 
+// Each folder tab carries a brain-state color from the site's optic-safe
+// fatigue → calm → focus axis (purple → blue → gold), as RGB triples so the
+// active/inactive/hover states can vary only the alpha.
+const TAB_COLORS: Record<Tab, string> = {
+  "The Idea":          "177,161,209", // fatigue — lilac
+  "Design Philosophy": "135,184,203", // calm — mist blue
+  "Recognition":       "219,179,94",  // focus — gold
+};
+
 const ideas = [
   { lead: "Your brainwaves are the controller.", body: "You play with focus, not buttons.",                       color: "#dbb35e", icon: "wave"  },
   { lead: "Play quick sessions.",                body: "Under ten minutes, whenever you've got it.",                color: "#87b8cb", icon: "clock" },
@@ -459,6 +468,7 @@ export function Portfolio() {
               <div role="tablist" aria-label="Project details" className="flex items-end gap-1">
                 {tabs.map((tab) => {
                   const active = activeTab === tab;
+                  const rgb = TAB_COLORS[tab];
                   return (
                     <button
                       key={tab}
@@ -477,7 +487,8 @@ export function Portfolio() {
                         cursor: "pointer",
                         // Overlap the panel's top edge so the active tab can erase the divider beneath it
                         marginBottom: "-1px",
-                        color: active ? "var(--foreground)" : "var(--muted-foreground)",
+                        // Each tab wears its brain-state hue; inactive is the same hue, dimmed
+                        color: active ? `rgb(${rgb})` : `rgba(${rgb},0.5)`,
                         background: active ? "var(--card)" : "var(--background)",
                         borderTop: "1px solid var(--border)",
                         borderLeft: active ? "1px solid var(--border)" : "1px solid transparent",
@@ -490,18 +501,18 @@ export function Portfolio() {
                         if (active) return;
                         const el = e.currentTarget as HTMLElement;
                         el.style.background = "var(--muted)";
-                        el.style.color = "var(--foreground)";
+                        el.style.color = `rgba(${rgb},0.9)`;
                         el.style.transform = "translateY(-2px)";
                       }}
                       onMouseLeave={(e) => {
                         if (active) return;
                         const el = e.currentTarget as HTMLElement;
                         el.style.background = "var(--background)";
-                        el.style.color = "var(--muted-foreground)";
+                        el.style.color = `rgba(${rgb},0.5)`;
                         el.style.transform = "translateY(0)";
                       }}
                     >
-                      {/* Gold accent cap on the active folder — slides between tabs via shared layoutId */}
+                      {/* Accent cap on the active folder, in that tab's hue — slides between tabs via shared layoutId */}
                       {active && (
                         <motion.span
                           layoutId="work-folder-accent"
@@ -510,8 +521,8 @@ export function Portfolio() {
                           style={{
                             top: "-1px",
                             height: "2px",
-                            background: "var(--primary)",
-                            boxShadow: "0 1px 8px rgba(219,179,94,0.45)",
+                            background: `rgb(${rgb})`,
+                            boxShadow: `0 1px 8px rgba(${rgb},0.5)`,
                           }}
                           transition={{ type: "spring", stiffness: 380, damping: 32 }}
                         />
