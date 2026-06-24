@@ -61,10 +61,10 @@ const TAB_COLORS: Record<Tab, string> = {
 };
 
 const ideas = [
-  { lead: "Your brainwaves are the controller.", body: "You play with focus, not buttons.",                       color: "#dbb35e", icon: "wave"  },
-  { lead: "Play quick sessions.",                body: "Under ten minutes, whenever you've got it.",                color: "#87b8cb", icon: "clock" },
-  { lead: "A game made to heal.",                body: "Play and therapy, happening in one space.",                 color: "#b1a1d1", icon: "heart" },
-  { lead: "Methodology",                         body: "Surveyed people with MS through the National MS Society.",  color: "#5b82a0", icon: "check" },
+  { lead: "Brainwaves as Controller",            body: "You play with focus, not buttons",                       color: "#dbb35e", icon: "wave"  },
+  { lead: "Quick Sessions",                      body: "Under ten minutes, whenever you've got it",                color: "#87b8cb", icon: "clock" },
+  { lead: "Heal as you Game",                    body: "Play and therapy, happening in one space",                 color: "#b1a1d1", icon: "heart" },
+  { lead: "Methodology",                         body: "Surveyed people with MS through the National MS Society",  color: "#5b82a0", icon: "check" },
 ];
 
 function ideaIcon(name: string) {
