@@ -343,6 +343,11 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
             title: "2026 Lumen Prize Student Award",
             color: "var(--accent)",
           },
+          {
+            label: "Certified",
+            title: "AbleGamers APX (Accessible Player Experiences)",
+            color: "var(--blue-deep)",
+          },
         ].map((item) => (
           <div key={item.title} className="flex items-start gap-4">
             <div
