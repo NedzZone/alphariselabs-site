@@ -9,7 +9,7 @@
 /* Upheaval pixel font — self-hosted; the CDN (fonts.cdnfonts.com/css/upheaval-tt-brk) returns 500 */
 @font-face {
   font-family: 'Upheaval TT BRK';
-  src: url('../assets/upheavtt.ttf') format('truetype');
+  src: url('../assets/Font/upheavtt.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

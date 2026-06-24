@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import portraitUrl from "../../assets/ned-portrait-compressed.jpg";
+import portraitUrl from "../../assets/Start/ned-portrait-compressed.jpg";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";

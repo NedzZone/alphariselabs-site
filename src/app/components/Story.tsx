@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
+import storyHeroUrl from "../../assets/Story/story-hero.jpg";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -41,6 +42,37 @@ export function Story() {
             }}>
               Story
             </span>
+          </div>
+        </FadeIn>
+
+        {/* Big hero image */}
+        <FadeIn delay={0.05}>
+          <div
+            className="relative overflow-hidden rounded-2xl mb-12 md:mb-16"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            <img
+              src={storyHeroUrl}
+              alt="Ned Shoaei"
+              className="block w-full h-auto"
+              style={{ objectFit: "cover" }}
+            />
+            {/* Bottom-left photo credit overlay */}
+            <div
+              className="absolute bottom-0 left-0 z-10 rounded-bl-2xl px-3 pt-5 pb-2"
+              style={{ background: "linear-gradient(to top right, rgba(10,6,18,0.85), transparent 78%)" }}
+            >
+              <span style={{
+                fontFamily: SANS,
+                fontWeight: 300,
+                fontSize: "0.72rem",
+                letterSpacing: "0.10em",
+                textTransform: "uppercase",
+                color: "rgba(228,223,242,0.88)",
+              }}>
+                Photo: SCAD
+              </span>
+            </div>
           </div>
         </FadeIn>
 

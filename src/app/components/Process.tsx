@@ -1,10 +1,10 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState } from "react";
-import firstSignalUrl from "../../assets/About/phase-first-signal.jpg";
-import theBuildUrl from "../../assets/About/phase-the-build.jpg";
-import compassionateModeUrl from "../../assets/About/phase-compassionate-mode.jpg";
-import alphariseLabsUrl from "../../assets/About/phase-alpharise-labs.jpg";
+import firstSignalUrl from "../../assets/Process/phase-first-signal.jpg";
+import theBuildUrl from "../../assets/Process/phase-the-build.jpg";
+import compassionateModeUrl from "../../assets/Process/phase-compassionate-mode.jpg";
+import alphariseLabsUrl from "../../assets/Process/phase-alpharise-labs.jpg";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
