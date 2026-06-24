@@ -235,6 +235,45 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
               Cedars-Sinai Virtual Medicine Conference (vMed26).
             </em>
           </p>
+
+          {/* Press coverage of the same research — Healio Neurology feature */}
+          <a
+            href="https://www.healio.com/news/neurology/20260408/neurofeedback-game-helps-patients-with-ms-manage-fatigue"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Featured in Healio Neurology"
+            className="group relative mt-4 inline-flex items-center gap-2 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+            style={{
+              padding: "0.5rem 1rem 0.5rem 0.85rem",
+              background: "rgba(219,179,94,0.10)",
+              border: "1px solid rgba(219,179,94,0.45)",
+              color: "var(--primary)",
+              textDecoration: "none",
+              fontFamily: SANS,
+              fontWeight: 400,
+              fontSize: "0.95rem",
+              letterSpacing: "0.02em",
+            }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.background = "rgba(219,179,94,0.18)";
+              el.style.borderColor = "var(--primary)";
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.background = "rgba(219,179,94,0.10)";
+              el.style.borderColor = "rgba(219,179,94,0.45)";
+            }}
+          >
+            {/* external-link icon */}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M14 4h6v6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M20 4l-9 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Featured in Healio Neurology
+            <HoverTip label="Read the Healio feature" className="bottom-full left-0 mb-2" />
+          </a>
         </div>
       </div>
 
