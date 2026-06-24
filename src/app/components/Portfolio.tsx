@@ -189,7 +189,6 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
           type="button"
           onClick={onOpenPoster}
           aria-label="View the poster"
-          title="Open the research poster"
           className="group relative shrink-0 inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           style={{
             width: "4.25rem",
@@ -488,7 +487,6 @@ export function Portfolio() {
               type="button"
               onClick={() => setPosterOpen(false)}
               aria-label="Close poster"
-              title="Close"
               className="group absolute -top-4 -right-2 md:-right-4 z-10 flex items-center justify-center rounded-full transition-opacity duration-200"
               style={{
                 width: "2.25rem",

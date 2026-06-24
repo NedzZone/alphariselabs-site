@@ -211,7 +211,6 @@ export function Contact() {
                   <a
                     href={`mailto:${EMAIL}`}
                     aria-label="Send email"
-                    title="Email me"
                     className="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                     style={{
                       width: "4.25rem",
@@ -238,7 +237,6 @@ export function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Connect on LinkedIn"
-                    title="Connect on LinkedIn"
                     className="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                     style={{
                       width: "4.25rem",

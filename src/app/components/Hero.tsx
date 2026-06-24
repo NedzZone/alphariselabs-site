@@ -123,7 +123,6 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="See the work"
-              title="Watch the demo"
               className="group absolute top-5 right-5 z-10 inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{
                 width: "4.25rem",
