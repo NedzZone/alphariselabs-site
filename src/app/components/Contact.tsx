@@ -6,7 +6,7 @@ const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
 const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 
-const EMAIL = "nedzzonexr@gmail.com";
+const EMAIL = "nedshoaei@gmail.com";
 
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);

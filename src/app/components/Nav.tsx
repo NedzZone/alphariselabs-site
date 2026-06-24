@@ -7,7 +7,7 @@ const links = [
   { label: "Home",      href: "#home",      color: "#e3deee" }, // lilac-light
   { label: "About",     href: "#about",     color: "#87b8cb" }, // mist blue (matches About headline)
   { label: "The Work", href: "#portfolio", color: "#dbb35e" }, // gold (matches section number)
-  { label: "Studio",    href: "#studio",    color: "#5b82a0" }, // deep blue
+  // { label: "Studio", href: "#studio", color: "#5b82a0" }, // "In My Studio" section hidden for now — restore alongside <Studio /> in App.tsx
   { label: "Contact",   href: "#contact",   color: "#b1a1d1" }, // lilac (matches Contact headline)
 ];
 

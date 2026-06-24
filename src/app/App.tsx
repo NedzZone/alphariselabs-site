@@ -3,7 +3,7 @@ import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
 import { Portfolio } from "./components/Portfolio";
-import { Studio } from "./components/Studio";
+// import { Studio } from "./components/Studio"; // "In My Studio" — hidden for now; keep to restore later
 import { Contact } from "./components/Contact";
 import { ScrollBrainwave } from "./components/ScrollBrainwave";
 
@@ -19,7 +19,9 @@ export default function App() {
         <Hero />
         <About />
         <Portfolio />
-        <Studio />
+        {/* "In My Studio" section hidden for now to keep the page focused on AlphaRise.
+            Component file (./components/Studio) is preserved — re-add <Studio /> here and
+            uncomment its import above to bring it back. */}
         {/* Contact + footer share the final viewport, footer pinned to the bottom */}
         <div className="flex min-h-screen flex-col">
           <Contact />
