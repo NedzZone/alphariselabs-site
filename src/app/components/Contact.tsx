@@ -1,12 +1,14 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
+import { Linkedin } from "lucide-react";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
 const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 
 const EMAIL = "nedshoaei@gmail.com";
+const LINKEDIN = "https://www.linkedin.com/in/nedshoaei/";
 
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -20,6 +22,30 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
     >
       {children}
     </motion.div>
+  );
+}
+
+// Subtle, accessible hover/focus tooltip — dark panel, muted ink, small.
+// Drop inside a `group relative` (or `group` + positioned) clickable element.
+function HoverTip({ label, className = "" }: { label: string; className?: string }) {
+  return (
+    <span
+      role="tooltip"
+      className={`pointer-events-none absolute z-[60] whitespace-nowrap rounded-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100 ${className}`}
+      style={{
+        fontFamily: SANS,
+        fontWeight: 400,
+        fontSize: "0.72rem",
+        letterSpacing: "0.04em",
+        padding: "0.3rem 0.55rem",
+        background: "rgba(10,6,18,0.96)",
+        color: "var(--muted-foreground)",
+        border: "1px solid var(--border)",
+        boxShadow: "0 6px 18px rgba(10,6,18,0.5)",
+      }}
+    >
+      {label}
+    </span>
   );
 }
 
@@ -144,6 +170,48 @@ export function Contact() {
                     Research collaboration · Advising · Speaking
                   </p>
                 </div>
+
+                {/* Connect — social icons */}
+                <div>
+                  <p style={{
+                    fontFamily: SANS, fontWeight: 300, fontSize: "0.9rem",
+                    letterSpacing: "0.10em", textTransform: "uppercase",
+                    color: "var(--blue-deep)",
+                  }}>
+                    Connect
+                  </p>
+                  <div className="mt-3 flex items-center gap-3">
+                    <a
+                      href={LINKEDIN}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Connect on LinkedIn"
+                      title="Connect on LinkedIn"
+                      className="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                      style={{
+                        width: "3rem",
+                        height: "3rem",
+                        background: "rgba(177,161,209,0.06)",
+                        border: "1px solid var(--border)",
+                        color: "var(--secondary)",
+                        textDecoration: "none",
+                      }}
+                      onMouseEnter={(e) => {
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.color = "var(--foreground)";
+                        el.style.borderColor = "var(--secondary)";
+                      }}
+                      onMouseLeave={(e) => {
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.color = "var(--secondary)";
+                        el.style.borderColor = "var(--border)";
+                      }}
+                    >
+                      <Linkedin size={22} strokeWidth={1.8} aria-hidden="true" />
+                      <HoverTip label="Connect on LinkedIn" className="bottom-full left-1/2 -translate-x-1/2 mb-2" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </FadeIn>
@@ -183,7 +251,8 @@ export function Contact() {
                 <a
                   href={`mailto:${EMAIL}`}
                   aria-label="Send email"
-                  className="inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                  title="Email me"
+                  className="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                   style={{
                     width: "4.25rem",
                     height: "4.25rem",
@@ -200,6 +269,7 @@ export function Contact() {
                     <rect x="2.5" y="5" width="19" height="14" rx="2" stroke="currentColor" strokeWidth="1.8"/>
                     <path d="M3 6.5l9 6 9-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
+                  <HoverTip label="Email me" className="bottom-full left-1/2 -translate-x-1/2 mb-2" />
                 </a>
               </div>
             </div>

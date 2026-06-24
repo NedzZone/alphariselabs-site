@@ -23,6 +23,30 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
+// Subtle, accessible hover/focus tooltip — dark panel, muted ink, small.
+// Drop inside a `group relative` (or `group` + positioned) clickable element.
+function HoverTip({ label, className = "" }: { label: string; className?: string }) {
+  return (
+    <span
+      role="tooltip"
+      className={`pointer-events-none absolute z-[60] whitespace-nowrap rounded-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100 ${className}`}
+      style={{
+        fontFamily: SANS,
+        fontWeight: 400,
+        fontSize: "0.72rem",
+        letterSpacing: "0.04em",
+        padding: "0.3rem 0.55rem",
+        background: "rgba(10,6,18,0.96)",
+        color: "var(--muted-foreground)",
+        border: "1px solid var(--border)",
+        boxShadow: "0 6px 18px rgba(10,6,18,0.5)",
+      }}
+    >
+      {label}
+    </span>
+  );
+}
+
 const tabs = ["The Idea", "Design Philosophy", "Recognition"] as const;
 type Tab = (typeof tabs)[number];
 
@@ -165,7 +189,8 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
           type="button"
           onClick={onOpenPoster}
           aria-label="View the poster"
-          className="shrink-0 inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          title="Open the research poster"
+          className="group relative shrink-0 inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           style={{
             width: "4.25rem",
             height: "4.25rem",
@@ -182,6 +207,8 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
             <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
             <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.8"/>
           </svg>
+          {/* Left-aligned so the wide label stays inside the card */}
+          <HoverTip label="Open the research poster" className="bottom-full left-0 mb-2" />
         </button>
 
         {/* Text */}
@@ -461,7 +488,8 @@ export function Portfolio() {
               type="button"
               onClick={() => setPosterOpen(false)}
               aria-label="Close poster"
-              className="absolute -top-4 -right-2 md:-right-4 z-10 flex items-center justify-center rounded-full transition-opacity duration-200"
+              title="Close"
+              className="group absolute -top-4 -right-2 md:-right-4 z-10 flex items-center justify-center rounded-full transition-opacity duration-200"
               style={{
                 width: "2.25rem",
                 height: "2.25rem",
@@ -476,6 +504,7 @@ export function Portfolio() {
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
             >
               ✕
+              <HoverTip label="Close" className="top-full right-0 mt-2" />
             </button>
             <div
               className="max-h-[90vh] overflow-auto rounded-lg"
