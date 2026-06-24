@@ -170,48 +170,6 @@ export function Contact() {
                     Research collaboration · Advising · Speaking
                   </p>
                 </div>
-
-                {/* Connect — social icons */}
-                <div>
-                  <p style={{
-                    fontFamily: SANS, fontWeight: 300, fontSize: "0.9rem",
-                    letterSpacing: "0.10em", textTransform: "uppercase",
-                    color: "var(--blue-deep)",
-                  }}>
-                    Connect
-                  </p>
-                  <div className="mt-3 flex items-center gap-3">
-                    <a
-                      href={LINKEDIN}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Connect on LinkedIn"
-                      title="Connect on LinkedIn"
-                      className="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                      style={{
-                        width: "3rem",
-                        height: "3rem",
-                        background: "rgba(177,161,209,0.06)",
-                        border: "1px solid var(--border)",
-                        color: "var(--secondary)",
-                        textDecoration: "none",
-                      }}
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLElement;
-                        el.style.color = "var(--foreground)";
-                        el.style.borderColor = "var(--secondary)";
-                      }}
-                      onMouseLeave={(e) => {
-                        const el = e.currentTarget as HTMLElement;
-                        el.style.color = "var(--secondary)";
-                        el.style.borderColor = "var(--border)";
-                      }}
-                    >
-                      <Linkedin size={22} strokeWidth={1.8} aria-hidden="true" />
-                      <HoverTip label="Connect on LinkedIn" className="bottom-full left-1/2 -translate-x-1/2 mb-2" />
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
           </FadeIn>
@@ -247,30 +205,56 @@ export function Contact() {
                   game design, and brain-computer interfaces.
                 </p>
 
-                {/* Send email button */}
-                <a
-                  href={`mailto:${EMAIL}`}
-                  aria-label="Send email"
-                  title="Email me"
-                  className="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                  style={{
-                    width: "4.25rem",
-                    height: "4.25rem",
-                    background: "var(--primary)",
-                    color: "var(--primary-foreground)",
-                    textDecoration: "none",
-                    boxShadow: "0 8px 24px rgba(10,6,18,0.55)",
-                  }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.88")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
-                >
-                  {/* envelope icon */}
-                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <rect x="2.5" y="5" width="19" height="14" rx="2" stroke="currentColor" strokeWidth="1.8"/>
-                    <path d="M3 6.5l9 6 9-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                  <HoverTip label="Email me" className="bottom-full left-1/2 -translate-x-1/2 mb-2" />
-                </a>
+                {/* Contact icons — email + LinkedIn, balanced pair */}
+                <div className="flex items-center gap-3">
+                  {/* Send email button */}
+                  <a
+                    href={`mailto:${EMAIL}`}
+                    aria-label="Send email"
+                    title="Email me"
+                    className="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                    style={{
+                      width: "4.25rem",
+                      height: "4.25rem",
+                      background: "var(--primary)",
+                      color: "var(--primary-foreground)",
+                      textDecoration: "none",
+                      boxShadow: "0 8px 24px rgba(10,6,18,0.55)",
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.88")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+                  >
+                    {/* envelope icon */}
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <rect x="2.5" y="5" width="19" height="14" rx="2" stroke="currentColor" strokeWidth="1.8"/>
+                      <path d="M3 6.5l9 6 9-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <HoverTip label="Email me" className="bottom-full left-1/2 -translate-x-1/2 mb-2" />
+                  </a>
+
+                  {/* LinkedIn button — matches the envelope's size and circular style */}
+                  <a
+                    href={LINKEDIN}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Connect on LinkedIn"
+                    title="Connect on LinkedIn"
+                    className="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                    style={{
+                      width: "4.25rem",
+                      height: "4.25rem",
+                      background: "var(--primary)",
+                      color: "var(--primary-foreground)",
+                      textDecoration: "none",
+                      boxShadow: "0 8px 24px rgba(10,6,18,0.55)",
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.88")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+                  >
+                    <Linkedin size={30} strokeWidth={1.8} aria-hidden="true" />
+                    <HoverTip label="Connect on LinkedIn" className="bottom-full left-1/2 -translate-x-1/2 mb-2" />
+                  </a>
+                </div>
               </div>
             </div>
           </FadeIn>
