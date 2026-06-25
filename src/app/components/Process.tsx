@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FadeIn, motion, useReducedMotion, EASE } from "./motion";
+import { FadeIn, motion, useReducedMotion, useIsPhone, EASE } from "./motion";
 import firstSignalUrl from "../../assets/Process/phase-first-signal.jpg";
 import theBuildUrl from "../../assets/Process/phase-the-build.jpg";
 import compassionateModeUrl from "../../assets/Process/phase-compassionate-mode.jpg";
@@ -14,7 +14,10 @@ const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 function PhaseThumb({ src, alt, credit, onZoom }: { src: string; alt: string; credit?: string; onZoom?: (z: boolean) => void }) {
   const [open, setOpen] = useState(false);   // tap toggle (touch)
   const [hover, setHover] = useState(false); // pointer hover (desktop)
+  const isPhone = useIsPhone();
   const big = open || hover;
+  // Enlarge factor: smaller on phone so the left-anchored scale stays on-screen.
+  const bigScale = isPhone ? 1.4 : 1.95;
   // Report zoom state up so the row can lift its stacking order above neighbours.
   useEffect(() => { onZoom?.(big); }, [big, onZoom]);
   return (
@@ -31,7 +34,7 @@ function PhaseThumb({ src, alt, credit, onZoom }: { src: string; alt: string; cr
           padding: 0,
           background: "var(--card)",
           border: "1px solid var(--border)",
-          transform: big ? "scale(1.95)" : "scale(1)",
+          transform: big ? `scale(${bigScale})` : "scale(1)",
           transformOrigin: "left center",
           transition: "transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s",
           zIndex: big ? 30 : 0,
@@ -131,10 +134,9 @@ function TimelinePhase({ item, isLast, itemV, lineV, dotV }: {
           }}>
             {item.title}
           </p>
-          <p className="mt-2" style={{
+          <p className="mt-2 text-[1.05rem] md:text-[1.15rem]" style={{
             fontFamily: SANS,
             fontWeight: 400,
-            fontSize: "1.15rem",
             lineHeight: 1.7,
             color: "var(--muted-foreground)",
             maxWidth: "44rem",
@@ -198,19 +200,23 @@ const timeline = [
 
 export function Process() {
   const reduced = useReducedMotion();
+  const isPhone = useIsPhone();
+  // Phone (and reduced motion): no cascade, no draw, no dot-pop — each phase row
+  // simply fades in. Desktop keeps the full timeline choreography.
+  const simple = reduced || isPhone;
 
   // Timeline orchestration: phases cascade in, each connector "draws" downward.
-  const listV = { hidden: {}, show: { transition: { staggerChildren: reduced ? 0 : 0.16 } } };
-  const itemV = reduced
-    ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.2 } } }
+  const listV = { hidden: {}, show: { transition: { staggerChildren: simple ? 0 : 0.16 } } };
+  const itemV = simple
+    ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: reduced ? 0.2 : 0.4, ease: reduced ? "linear" : "easeIn" } } }
     : {
         hidden: { opacity: 0, y: 26, filter: "blur(6px)" },
         show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.55, ease: EASE } },
       };
-  const dotV = reduced
+  const dotV = simple
     ? { hidden: { opacity: 0 }, show: { opacity: 1 } }
     : { hidden: { scale: 0, opacity: 0 }, show: { scale: 1, opacity: 1, transition: { duration: 0.35, ease: EASE } } };
-  const lineV = reduced
+  const lineV = simple
     ? { hidden: { opacity: 1 }, show: { opacity: 1 } }
     : { hidden: { scaleY: 0 }, show: { scaleY: 1, transition: { duration: 0.5, ease: "easeInOut", delay: 0.1 } } };
 

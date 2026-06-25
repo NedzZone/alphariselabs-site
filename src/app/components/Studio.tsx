@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
+import { useIsPhone } from "./motion";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -9,12 +10,14 @@ const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const isPhone = useIsPhone();
+  // Phone: simple ease-in fade only (no rise); desktop keeps the rise + settle.
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={isPhone ? { opacity: 0 } : { opacity: 0, y: 24 }}
+      animate={inView ? (isPhone ? { opacity: 1 } : { opacity: 1, y: 0 }) : {}}
+      transition={isPhone ? { duration: 0.4, delay, ease: "easeIn" } : { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>

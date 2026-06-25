@@ -1,6 +1,6 @@
 import { AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
-import { FadeIn, motion, useReducedMotion, EASE } from "./motion";
+import { FadeIn, motion, useReducedMotion, useIsPhone, EASE } from "./motion";
 import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.png";
 import figureUrl from "../../assets/AlphaRise/The Idea/figure-About-Panel-Pip.png";
 import brainBgUrl from "../../assets/AlphaRise/The Idea/idea-bg.jpg";
@@ -462,6 +462,10 @@ export function Portfolio() {
   const [posterOpen, setPosterOpen] = useState(false);
   const [figureZoom, setFigureZoom] = useState(false);
   const reduced = useReducedMotion();
+  const isPhone = useIsPhone();
+  // Phone (and reduced motion) collapse all the rich tab/brain/card motion to a
+  // simple fade; desktop keeps the full choreography.
+  const simple = reduced || isPhone;
 
   // Close the poster lightbox on Escape, and lock body scroll while open
   useEffect(() => {
@@ -653,12 +657,12 @@ export function Portfolio() {
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={activeTab}
-                  initial={reduced ? { opacity: 0 } : { opacity: 0, x: 16 }}
-                  animate={reduced ? { opacity: 1 } : { opacity: 1, x: 0 }}
-                  exit={reduced ? { opacity: 0 } : { opacity: 0, x: -16 }}
-                  transition={{ duration: reduced ? 0.15 : 0.32, ease: EASE }}
+                  initial={simple ? { opacity: 0 } : { opacity: 0, x: 16 }}
+                  animate={simple ? { opacity: 1 } : { opacity: 1, x: 0 }}
+                  exit={simple ? { opacity: 0 } : { opacity: 0, x: -16 }}
+                  transition={{ duration: simple ? 0.25 : 0.32, ease: simple ? "easeIn" : EASE }}
                 >
-                  {tabContent(() => setPosterOpen(true), reduced)[activeTab]}
+                  {tabContent(() => setPosterOpen(true), simple)[activeTab]}
                 </motion.div>
               </AnimatePresence>
             </div>

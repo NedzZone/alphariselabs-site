@@ -1,13 +1,48 @@
 import { motion, useReducedMotion } from "motion/react";
+import { useState, useEffect } from "react";
 import type { ReactNode, CSSProperties } from "react";
 
 // Shared, slightly cinematic scroll-motion system.
 // Every helper honours prefers-reduced-motion: when reduce is requested the
 // movement / blur / scale fall back to a quick, simple opacity fade (no motion).
+//
+// Phones (below the md / 768px breakpoint) ALSO fall back to that simple fade:
+// the rich creative motion (blur-to-sharp, directional slides, zoom, cascades,
+// pulses) is desktop-only. On phone every entrance is just a subtle ease-in
+// opacity fade. See useIsPhone + simpleFade below.
 
 export const EASE = [0.22, 1, 0.36, 1] as const;
 // No `once`: re-fire every time an element scrolls back into view.
 const VIEWPORT = { margin: "-80px" } as const;
+
+// True when the viewport is phone-width (< md / 768px). Reactive to resize and
+// orientation changes. Initialised synchronously so phone renders never flash a
+// frame of the desktop animation before the effect runs.
+export function useIsPhone() {
+  const [isPhone, setIsPhone] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const onChange = () => setIsPhone(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return isPhone;
+}
+
+// The one motion phones get: a subtle ease-in opacity fade. Reduced-motion users
+// keep the quicker linear fade they had before (unchanged).
+function simpleFade(reduced: boolean | null, delay = 0) {
+  return {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { duration: reduced ? 0.2 : 0.4, ease: reduced ? "linear" : "easeIn", delay },
+    },
+  };
+}
 
 // Section / element entrance: rise + fade with a blur-to-sharp settle.
 export function FadeIn({
@@ -20,8 +55,9 @@ export function FadeIn({
   className?: string;
 }) {
   const reduced = useReducedMotion();
-  const variants = reduced
-    ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.2, delay } } }
+  const isPhone = useIsPhone();
+  const variants = reduced || isPhone
+    ? simpleFade(reduced, delay)
     : {
         hidden: { opacity: 0, y: 26, filter: "blur(8px)" },
         show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.62, ease: EASE, delay } },
@@ -48,9 +84,10 @@ export function RevealSide({
   className?: string;
 }) {
   const reduced = useReducedMotion();
+  const isPhone = useIsPhone();
   const dx = from === "left" ? -44 : 44;
-  const variants = reduced
-    ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.2, delay } } }
+  const variants = reduced || isPhone
+    ? simpleFade(reduced, delay)
     : {
         hidden: { opacity: 0, x: dx, scale: scale ? 1.06 : 1 },
         show: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.68, ease: EASE, delay } },
@@ -75,8 +112,9 @@ export function RevealZoom({
   scaleFrom?: number;
 }) {
   const reduced = useReducedMotion();
-  const variants = reduced
-    ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.2, delay } } }
+  const isPhone = useIsPhone();
+  const variants = reduced || isPhone
+    ? simpleFade(reduced, delay)
     : {
         hidden: { opacity: 0, scale: scaleFrom },
         show: { opacity: 1, scale: 1, transition: { duration: 0.7, ease: EASE, delay } },
@@ -101,7 +139,9 @@ export function Stagger({
   as?: "div" | "ol";
 }) {
   const reduced = useReducedMotion();
-  const variants = { hidden: {}, show: { transition: { staggerChildren: reduced ? 0 : gap } } };
+  const isPhone = useIsPhone();
+  // No cascade on phone (or reduced motion): children fade in together.
+  const variants = { hidden: {}, show: { transition: { staggerChildren: reduced || isPhone ? 0 : gap } } };
   const Comp = as === "ol" ? motion.ol : motion.div;
   return (
     <Comp className={className} variants={variants} initial="hidden" whileInView="show" viewport={VIEWPORT}>
@@ -122,8 +162,9 @@ export function StaggerItem({
   style?: CSSProperties;
 }) {
   const reduced = useReducedMotion();
-  const variants = reduced
-    ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.2 } } }
+  const isPhone = useIsPhone();
+  const variants = reduced || isPhone
+    ? simpleFade(reduced)
     : {
         hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
         show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.55, ease: EASE } },
