@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { RevealSide, RevealZoom } from "./motion";
 import portraitUrl from "../../assets/Start/ned-portrait-compressed.jpg";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
@@ -48,13 +48,7 @@ export function Hero() {
         }} />
       </div>
 
-      <motion.div
-        className="relative z-10 flex flex-col items-center text-center max-w-3xl"
-        initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ margin: "-80px" }}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <RevealZoom className="relative z-10 flex flex-col items-center text-center max-w-3xl">
         {/* Headline — Upheaval pixel, large, white */}
         <p
           style={{
@@ -84,20 +78,14 @@ export function Hero() {
           Founder, AlphaRise Labs · Game Designer · Healthtech Innovator
         </span>
 
-      </motion.div>
+      </RevealZoom>
 
-      {/* Photo + memo band — wide hero feature: large portrait + roomy memo */}
-      <motion.div
-        className="relative z-10 w-full max-w-[84rem] mt-12 md:mt-16"
-        initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ margin: "-80px" }}
-        transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      >
+      {/* Photo + memo band — portrait slides in from the left, text from the right */}
+      <div className="relative z-10 w-full max-w-[84rem] mt-12 md:mt-16">
         <div className="grid grid-cols-1 md:grid-cols-[1.25fr_1fr] gap-10 md:gap-16 items-center">
 
-          {/* Left — portrait */}
-          <div className="relative">
+          {/* Left — portrait (from the left) */}
+          <RevealSide from="left" delay={0.15} className="relative">
             <div className="relative">
             <div
               aria-hidden="true"
@@ -161,10 +149,10 @@ export function Hero() {
               </span>
             </div>
             </div>
-          </div>
+          </RevealSide>
 
-          {/* Right — name + memo */}
-          <div className="text-left">
+          {/* Right — name + memo (from the right) */}
+          <RevealSide from="right" delay={0.3} className="text-left">
             {/* Name — Upheaval pixel, light purple */}
             <h1 className="md:pl-8 mb-5" style={{
               fontFamily: PIXEL,
@@ -200,9 +188,9 @@ export function Hero() {
               <span style={{ color: "var(--primary)" }}>neuroplasticity and flow.</span>
             </p>
           </blockquote>
-          </div>
+          </RevealSide>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

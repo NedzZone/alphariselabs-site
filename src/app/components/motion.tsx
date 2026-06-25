@@ -62,6 +62,32 @@ export function RevealSide({
   );
 }
 
+// Subtle zoom-in entrance (used for hero titles).
+export function RevealZoom({
+  children,
+  delay = 0,
+  className,
+  scaleFrom = 0.94,
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+  scaleFrom?: number;
+}) {
+  const reduced = useReducedMotion();
+  const variants = reduced
+    ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.2, delay } } }
+    : {
+        hidden: { opacity: 0, scale: scaleFrom },
+        show: { opacity: 1, scale: 1, transition: { duration: 0.7, ease: EASE, delay } },
+      };
+  return (
+    <motion.div className={className} variants={variants} initial="hidden" whileInView="show" viewport={VIEWPORT}>
+      {children}
+    </motion.div>
+  );
+}
+
 // Stagger container — cascades its <StaggerItem> children as it scrolls in.
 export function Stagger({
   children,
