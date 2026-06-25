@@ -5,6 +5,7 @@ import posterUrl from "../../public/AlphaRise Research Poster Design-Website-com
 import figureUrl from "../../assets/AlphaRise/The Idea/figure-About-Panel-Pip.png";
 import brainBgUrl from "../../assets/AlphaRise/The Idea/idea-bg.jpg";
 import brainUrl from "../../assets/AlphaRise/The Idea/idea-brain.png";
+import recognitionBgUrl from "../../assets/AlphaRise/Recognition/recognition-bg.jpg";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -287,7 +288,14 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
   ),
 
   Recognition: (
-    <div className="space-y-8">
+    <div
+      className="relative -mx-8 -my-8 px-8 py-8 space-y-8"
+      style={{
+        backgroundImage: `linear-gradient(rgba(10,6,18,0.55), rgba(10,6,18,0.72)), url(${recognitionBgUrl})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       {/* Lead item — research poster with visual weight */}
       <div
         className="p-6 md:p-7 rounded-xl flex items-center gap-5 md:gap-6"
@@ -415,13 +423,14 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
         ].map((item) => (
           <div key={item.title} className="flex items-start gap-4">
             <div
-              className="mt-1 shrink-0 px-2 py-0.5 rounded-full"
+              className="mt-1 shrink-0 py-0.5 rounded-full text-center"
               style={{
                 fontFamily: SANS,
                 fontWeight: 300,
                 fontSize: "0.85rem",
                 letterSpacing: "0.08em",
                 whiteSpace: "nowrap",
+                width: "9.5rem",
                 background: "transparent",
                 border: `1px solid ${item.color}`,
                 color: item.color,
