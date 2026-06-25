@@ -15,18 +15,17 @@ function PhaseThumb({ src, alt, credit, onZoom }: { src: string; alt: string; cr
   const [open, setOpen] = useState(false);   // tap toggle (touch)
   const [hover, setHover] = useState(false); // pointer hover (desktop)
   const isPhone = useIsPhone();
-  const big = open || hover;
-  // Enlarge factor: smaller on phone so the left-anchored scale stays on-screen.
-  const bigScale = isPhone ? 1.4 : 1.95;
+  // No photo zoom on phone — the thumbnail is static; zoom is a desktop affordance.
+  const big = !isPhone && (open || hover);
   // Report zoom state up so the row can lift its stacking order above neighbours.
   useEffect(() => { onZoom?.(big); }, [big, onZoom]);
   return (
     <div className="relative shrink-0 w-44" style={{ aspectRatio: "4 / 3" }}>
       <button
         type="button"
-        aria-label={big ? "Shrink photo" : "Enlarge photo"}
-        aria-expanded={big}
-        onClick={() => setOpen((o) => !o)}
+        aria-label={isPhone ? alt : big ? "Shrink photo" : "Enlarge photo"}
+        aria-expanded={isPhone ? undefined : big}
+        onClick={() => { if (!isPhone) setOpen((o) => !o); }}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         className="absolute inset-0 overflow-hidden rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
@@ -34,12 +33,12 @@ function PhaseThumb({ src, alt, credit, onZoom }: { src: string; alt: string; cr
           padding: 0,
           background: "var(--card)",
           border: "1px solid var(--border)",
-          transform: big ? `scale(${bigScale})` : "scale(1)",
+          transform: big ? "scale(1.95)" : "scale(1)",
           transformOrigin: "left center",
           transition: "transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s",
           zIndex: big ? 30 : 0,
           boxShadow: big ? "0 24px 60px rgba(10,6,18,0.7)" : "none",
-          cursor: open ? "zoom-out" : "zoom-in",
+          cursor: isPhone ? "default" : open ? "zoom-out" : "zoom-in",
         }}
       >
         <img

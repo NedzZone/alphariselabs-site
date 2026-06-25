@@ -550,7 +550,7 @@ export function Portfolio() {
                 {/* Project figure — hover to magnify (grows inward from top-right, no clip) */}
                 <div
                   className="w-full rounded-xl p-3 md:p-4"
-                  onMouseEnter={() => setFigureZoom(true)}
+                  onMouseEnter={() => { if (!isPhone) setFigureZoom(true); }}
                   onMouseLeave={() => setFigureZoom(false)}
                   style={{
                     position: "relative",
@@ -562,7 +562,7 @@ export function Portfolio() {
                     transform: figureZoom ? "scale(1.45)" : "scale(1)",
                     transformOrigin: "right center",
                     transition: "transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s",
-                    cursor: "zoom-in",
+                    cursor: isPhone ? "default" : "zoom-in",
                   }}
                 >
                   <img
