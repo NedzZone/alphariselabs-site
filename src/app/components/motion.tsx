@@ -6,7 +6,8 @@ import type { ReactNode, CSSProperties } from "react";
 // movement / blur / scale fall back to a quick, simple opacity fade (no motion).
 
 export const EASE = [0.22, 1, 0.36, 1] as const;
-const VIEWPORT = { once: true, margin: "-80px" } as const;
+// No `once`: re-fire every time an element scrolls back into view.
+const VIEWPORT = { margin: "-80px" } as const;
 
 // Section / element entrance: rise + fade with a blur-to-sharp settle.
 export function FadeIn({

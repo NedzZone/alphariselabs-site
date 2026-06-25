@@ -51,7 +51,8 @@ export function Hero() {
       <motion.div
         className="relative z-10 flex flex-col items-center text-center max-w-3xl"
         initial={{ opacity: 0, y: 28 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ margin: "-80px" }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
       >
         {/* Headline — Upheaval pixel, large, white */}
@@ -89,7 +90,8 @@ export function Hero() {
       <motion.div
         className="relative z-10 w-full max-w-[84rem] mt-12 md:mt-16"
         initial={{ opacity: 0, y: 28 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ margin: "-80px" }}
         transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="grid grid-cols-1 md:grid-cols-[1.25fr_1fr] gap-10 md:gap-16 items-center">

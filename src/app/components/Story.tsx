@@ -38,7 +38,7 @@ export function Story() {
               alt="Ned Shoaei delivering the keynote at Hack iX 2025"
               className="block"
               style={{
-                maxHeight: "clamp(190px, 32vh, 320px)",
+                maxHeight: "clamp(220px, 40vh, 380px)",
                 width: "auto",
                 maxWidth: "100%",
                 objectFit: "cover",

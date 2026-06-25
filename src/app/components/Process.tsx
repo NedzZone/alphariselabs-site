@@ -31,7 +31,7 @@ function PhaseThumb({ src, alt, credit, onZoom }: { src: string; alt: string; cr
           padding: 0,
           background: "var(--card)",
           border: "1px solid var(--border)",
-          transform: big ? "scale(1.7)" : "scale(1)",
+          transform: big ? "scale(1.95)" : "scale(1)",
           transformOrigin: "left center",
           transition: "transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s",
           zIndex: big ? 30 : 0,
@@ -108,7 +108,7 @@ function TimelinePhase({ item, isLast, itemV, lineV, dotV }: {
           <PhaseThumb src={item.photo} alt={`${item.title} — process photo`} credit={item.credit} onZoom={setZoomed} />
         )}
 
-        <div className="min-w-0 sm:pt-0.5">
+        <div className={`min-w-0 sm:pt-0.5 transition-transform duration-300 ${zoomed ? "sm:translate-x-[160px]" : ""}`}>
           {item.date && (
             <p style={{
               fontFamily: SANS,
@@ -183,7 +183,7 @@ const timeline = [
   },
   {
     title: "AlphaRise Labs",
-    date:  "Spring 2026",
+    date:  "Winter 2026",
     body:  "Turned a thesis project into a real venture, with my faculty and committee actively encouraging the path from designer to founder.",
     photo:  alphariseLabsUrl,
     credit: "Photo: Mike Schalk",
@@ -215,7 +215,7 @@ export function Process() {
     : { hidden: { scaleY: 0 }, show: { scaleY: 1, transition: { duration: 0.5, ease: "easeInOut", delay: 0.1 } } };
 
   return (
-    <section id="process" className="relative min-h-screen px-6 pt-24 pb-32 md:pb-40" aria-label="Process">
+    <section id="process" className="relative min-h-screen overflow-x-clip px-6 pt-24 pb-32 md:pb-40" aria-label="Process">
       <div className="max-w-5xl mx-auto">
 
         {/* Section header */}
@@ -242,7 +242,7 @@ export function Process() {
           variants={listV}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ margin: "-80px" }}
         >
             {timeline.map((item, i) => (
               <TimelinePhase
