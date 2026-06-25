@@ -69,7 +69,7 @@ function PhaseThumb({ src, alt, credit, onZoom }: { src: string; alt: string; cr
   );
 }
 
-type Phase = { title: string; body: string; photo?: string; credit?: string; collab?: boolean };
+type Phase = { title: string; date?: string; body: string; photo?: string; credit?: string; collab?: boolean };
 
 // One timeline row. Tracks its thumbnail's zoom so it can raise the whole
 // row above its neighbours (each animated <li> is its own stacking context,
@@ -109,6 +109,19 @@ function TimelinePhase({ item, isLast, itemV, lineV, dotV }: {
         )}
 
         <div className="min-w-0 sm:pt-0.5">
+          {item.date && (
+            <p style={{
+              fontFamily: SANS,
+              fontWeight: 400,
+              fontSize: "0.8rem",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: "var(--blue-deep)",
+              marginBottom: "0.2rem",
+            }}>
+              {item.date}
+            </p>
+          )}
           <p style={{
             fontFamily: SERIF,
             fontWeight: 700,
@@ -149,24 +162,28 @@ function TimelinePhase({ item, isLast, itemV, lineV, dotV }: {
 const timeline = [
   {
     title: "First signal",
+    date:  "Spring 2025",
     body:  "I streamed live brain data into a game engine for the first time on a single-channel EEG kit, and watched a digital world respond to a real mind. That moment was worth years of my life.",
     photo:  firstSignalUrl,
     credit: "Photo: Soroush Ahirad",
   },
   {
     title: "The build",
+    date:  "Summer 2025",
     body:  "Chose the hardware, worked through calibration and signal processing, learned the language of neuroscience, interviewed scientists and clinicians. I learned to treat every failure as information — a signal toward the next step.",
     photo:  theBuildUrl,
     credit: "Photo: Soroush Ahirad",
   },
   {
     title: "Compassionate Mode",
+    date:  "Fall 2025",
     body:  "Defined the rule the whole project rests on: never punish the symptom you are trying to heal.",
     photo:  compassionateModeUrl,
     credit: "Photo: SCAD",
   },
   {
     title: "AlphaRise Labs",
+    date:  "Spring 2026",
     body:  "Turned a thesis project into a real venture, with my faculty and committee actively encouraging the path from designer to founder.",
     photo:  alphariseLabsUrl,
     credit: "Photo: Mike Schalk",
@@ -174,9 +191,10 @@ const timeline = [
   },
   {
     title: "What's next",
+    date:  "Summer 2026",
     body:  "Building a custom, home-based brain-sensing device of my own design, so therapeutic tools keep getting more accessible, not less.",
   },
-] as { title: string; body: string; photo?: string; credit?: string; collab?: boolean }[];
+] as { title: string; date?: string; body: string; photo?: string; credit?: string; collab?: boolean }[];
 
 export function Process() {
   const reduced = useReducedMotion();
