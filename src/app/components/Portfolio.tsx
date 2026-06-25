@@ -1,6 +1,6 @@
-import { motion } from "motion/react";
-import { useInView } from "motion/react";
-import { useRef, useState, useEffect } from "react";
+import { AnimatePresence } from "motion/react";
+import { useState, useEffect } from "react";
+import { FadeIn, motion, useReducedMotion, EASE } from "./motion";
 import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.png";
 import figureUrl from "../../assets/AlphaRise/The Idea/figure-About-Panel-Pip.png";
 import brainUrl from "../../assets/AlphaRise/The Idea/Idea-Tab.png";
@@ -8,21 +8,6 @@ import brainUrl from "../../assets/AlphaRise/The Idea/Idea-Tab.png";
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
 const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
-
-function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 // Subtle, accessible hover/focus tooltip — dark panel, muted ink, small.
 // Drop inside a `group relative` (or `group` + positioned) clickable element.
@@ -101,7 +86,17 @@ function IdeaStatement({ item, maxW = "16rem", align = "left" }: { item: (typeof
   );
 }
 
-const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => ({
+const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<Tab, React.ReactNode> => {
+  // Idea-card cascade + brain entrance (reduced-motion aware).
+  const cardsContainerV = { hidden: {}, show: { transition: { staggerChildren: reduced ? 0 : 0.1, delayChildren: reduced ? 0 : 0.2 } } };
+  const cardV = reduced
+    ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.2 } } }
+    : { hidden: { opacity: 0, y: 18, scale: 0.96 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: EASE } } };
+  const brainInitial = reduced ? { opacity: 0 } : { opacity: 0, scale: 1.12 };
+  const brainAnimate = reduced ? { opacity: 1 } : { opacity: 1, scale: 1 };
+  const brainTransition = reduced ? { duration: 0.3 } : { duration: 1.4, ease: EASE };
+
+  return {
   "The Idea": (
     <div>
       {/* Featured pull quote — Georgia italic, gold; centered above the brain */}
@@ -123,29 +118,50 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
         className="hidden md:block relative mx-auto mt-4 overflow-hidden rounded-xl"
         style={{ height: "24rem", maxWidth: "58rem", border: "1px solid var(--border)" }}
       >
-        <img
+        <motion.img
           src={brainUrl}
           alt="A glowing brain rendered in indigo and lilac with gold neural pathways against dark space — the visual motif for AlphaRise's brain-controlled gameplay."
           className="absolute inset-0 h-full w-full"
           style={{ objectFit: "cover", objectPosition: "center" }}
+          initial={brainInitial}
+          whileInView={brainAnimate}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={brainTransition}
         />
+        {/* Perpetual, very subtle glow pulse so the brain feels alive */}
+        {!reduced && (
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background: "radial-gradient(ellipse at center, rgba(219,179,94,0.16) 0%, rgba(177,161,209,0.10) 38%, transparent 66%)",
+              mixBlendMode: "screen",
+            }}
+            animate={{ opacity: [0.3, 0.65, 0.3] }}
+            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+        )}
 
         {/* Four statements over the dark space, laid out as two rows so each pair's
             titles start at the same height. Narrow center column keeps the brain clear.
-            Left statements align left; right statements align right. */}
-        <div
+            Left statements align left; right statements align right. They cascade in. */}
+        <motion.div
           className="absolute inset-0 grid items-start px-10 pt-9"
           style={{ gridTemplateColumns: "1fr 28% 1fr", rowGap: "1rem" }}
+          variants={cardsContainerV}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
         >
           {/* Row 1 */}
-          <div className="flex justify-start pr-3"><IdeaStatement item={ideas[0]} align="left" /></div>
+          <motion.div variants={cardV} className="flex justify-start pr-3"><IdeaStatement item={ideas[0]} align="left" /></motion.div>
           <div aria-hidden="true" />
-          <div className="flex justify-end pl-3"><IdeaStatement item={ideas[2]} align="right" /></div>
+          <motion.div variants={cardV} className="flex justify-end pl-3"><IdeaStatement item={ideas[2]} align="right" /></motion.div>
           {/* Row 2 */}
-          <div className="flex justify-start pr-3"><IdeaStatement item={ideas[1]} align="left" /></div>
+          <motion.div variants={cardV} className="flex justify-start pr-3"><IdeaStatement item={ideas[1]} align="left" /></motion.div>
           <div aria-hidden="true" />
-          <div className="flex justify-end pl-3"><IdeaStatement item={ideas[3]} align="right" /></div>
-        </div>
+          <motion.div variants={cardV} className="flex justify-end pl-3"><IdeaStatement item={ideas[3]} align="right" /></motion.div>
+        </motion.div>
 
         {/* 96% — center bottom, prominent on a clear pill */}
         <p
@@ -169,18 +185,44 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
 
       {/* ===== Mobile (below md): stacked — brain (smaller), statements in one column, then 96% ===== */}
       <div className="md:hidden">
-        <img
-          src={brainUrl}
-          alt="A glowing brain rendered in indigo and lilac with gold neural pathways against dark space."
-          className="mx-auto mt-5 w-full max-w-xs"
-          style={{ objectFit: "contain" }}
-        />
-
-        <div className="mt-6 mx-auto max-w-sm flex flex-col gap-3">
-          {ideas.map((item) => (
-            <IdeaStatement key={item.lead} item={item} maxW="100%" />
-          ))}
+        <div className="relative mx-auto mt-5 w-full max-w-xs">
+          <motion.img
+            src={brainUrl}
+            alt="A glowing brain rendered in indigo and lilac with gold neural pathways against dark space."
+            className="block w-full"
+            style={{ objectFit: "contain" }}
+            initial={brainInitial}
+            whileInView={brainAnimate}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={brainTransition}
+          />
+          {!reduced && (
+            <motion.div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background: "radial-gradient(ellipse at center, rgba(219,179,94,0.16) 0%, rgba(177,161,209,0.10) 38%, transparent 66%)",
+                mixBlendMode: "screen",
+              }}
+              animate={{ opacity: [0.3, 0.65, 0.3] }}
+              transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+            />
+          )}
         </div>
+
+        <motion.div
+          className="mt-6 mx-auto max-w-sm flex flex-col gap-3"
+          variants={cardsContainerV}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+        >
+          {ideas.map((item) => (
+            <motion.div key={item.lead} variants={cardV}>
+              <IdeaStatement item={item} maxW="100%" />
+            </motion.div>
+          ))}
+        </motion.div>
 
         <p className="mt-6 text-center mx-auto w-fit rounded-full px-5 py-2.5" style={{
           fontFamily: SANS, fontWeight: 500, fontSize: "1rem", lineHeight: 1.5,
@@ -379,12 +421,14 @@ const tabContent = (onOpenPoster: () => void): Record<Tab, React.ReactNode> => (
       </div>
     </div>
   ),
-});
+  };
+};
 
 export function Portfolio() {
   const [activeTab, setActiveTab] = useState<Tab>("The Idea");
   const [posterOpen, setPosterOpen] = useState(false);
   const [figureZoom, setFigureZoom] = useState(false);
+  const reduced = useReducedMotion();
 
   // Close the poster lightbox on Escape, and lock body scroll while open
   useEffect(() => {
@@ -574,14 +618,17 @@ export function Portfolio() {
               aria-labelledby={`tab-${activeTab}`}
               className="px-8 py-8"
             >
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-              >
-                {tabContent(() => setPosterOpen(true))[activeTab]}
-              </motion.div>
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={activeTab}
+                  initial={reduced ? { opacity: 0 } : { opacity: 0, x: 16 }}
+                  animate={reduced ? { opacity: 1 } : { opacity: 1, x: 0 }}
+                  exit={reduced ? { opacity: 0 } : { opacity: 0, x: -16 }}
+                  transition={{ duration: reduced ? 0.15 : 0.32, ease: EASE }}
+                >
+                  {tabContent(() => setPosterOpen(true), reduced)[activeTab]}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </FadeIn>

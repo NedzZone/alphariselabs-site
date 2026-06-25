@@ -1,7 +1,5 @@
-import { motion } from "motion/react";
-import { useInView } from "motion/react";
-import { useRef } from "react";
 import { Linkedin } from "lucide-react";
+import { FadeIn } from "./motion";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -9,21 +7,6 @@ const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 
 const EMAIL = "nedshoaei@gmail.com";
 const LINKEDIN = "https://www.linkedin.com/in/nedshoaei/";
-
-function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 // Subtle, accessible hover/focus tooltip — dark panel, muted ink, small.
 // Drop inside a `group relative` (or `group` + positioned) clickable element.

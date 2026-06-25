@@ -1,27 +1,9 @@
-import { motion } from "motion/react";
-import { useInView } from "motion/react";
-import { useRef } from "react";
+import { FadeIn, RevealSide } from "./motion";
 import storyHeroUrl from "../../assets/Story/story-hero.jpg";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
 const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
-
-function FadeIn({ children, delay = 0, className }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 export function Story() {
   return (
@@ -45,8 +27,8 @@ export function Story() {
           </div>
         </FadeIn>
 
-        {/* Hero image — height-capped so the whole section stays within its bounds */}
-        <FadeIn delay={0.05}>
+        {/* Hero image — enters from the left with a subtle scale settle */}
+        <RevealSide from="left" scale delay={0.05} className="w-fit mx-auto">
           <div
             className="relative w-fit mx-auto overflow-hidden rounded-2xl mb-10"
             style={{ border: "1px solid var(--border)" }}
@@ -88,10 +70,10 @@ export function Story() {
               </p>
             </div>
           </div>
-        </FadeIn>
+        </RevealSide>
 
-        {/* Intro band — headline + bio, left-aligned and width-constrained for readability */}
-        <FadeIn delay={0.1}>
+        {/* Intro band — enters from the right, opposite the photo */}
+        <RevealSide from="right" delay={0.1}>
           <div className="max-w-3xl">
             {/* Georgia Bold headline, italic on last phrase */}
             <h2 style={{
@@ -133,7 +115,7 @@ export function Story() {
               steadier day back.
             </p>
           </div>
-        </FadeIn>
+        </RevealSide>
       </div>
     </section>
   );

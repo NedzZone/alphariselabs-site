@@ -1,6 +1,5 @@
-import { motion } from "motion/react";
-import { useInView } from "motion/react";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { FadeIn, motion, useReducedMotion, EASE } from "./motion";
 import firstSignalUrl from "../../assets/Process/phase-first-signal.jpg";
 import theBuildUrl from "../../assets/Process/phase-the-build.jpg";
 import compassionateModeUrl from "../../assets/Process/phase-compassionate-mode.jpg";
@@ -9,22 +8,6 @@ import alphariseLabsUrl from "../../assets/Process/phase-alpharise-labs.jpg";
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
 const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
-
-function FadeIn({ children, delay = 0, className }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 // Small thumbnail that enlarges on hover (desktop) and toggles on tap (touch).
 // It scales in place over a reserved box, so neighbouring rows don't shift.
@@ -117,6 +100,23 @@ const timeline = [
 ] as { title: string; body: string; photo?: string; credit?: string; collab?: boolean }[];
 
 export function Process() {
+  const reduced = useReducedMotion();
+
+  // Timeline orchestration: phases cascade in, each connector "draws" downward.
+  const listV = { hidden: {}, show: { transition: { staggerChildren: reduced ? 0 : 0.16 } } };
+  const itemV = reduced
+    ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.2 } } }
+    : {
+        hidden: { opacity: 0, y: 26, filter: "blur(6px)" },
+        show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.55, ease: EASE } },
+      };
+  const dotV = reduced
+    ? { hidden: { opacity: 0 }, show: { opacity: 1 } }
+    : { hidden: { scale: 0, opacity: 0 }, show: { scale: 1, opacity: 1, transition: { duration: 0.35, ease: EASE } } };
+  const lineV = reduced
+    ? { hidden: { opacity: 1 }, show: { opacity: 1 } }
+    : { hidden: { scaleY: 0 }, show: { scaleY: 1, transition: { duration: 0.5, ease: "easeInOut", delay: 0.1 } } };
+
   return (
     <section id="process" className="relative min-h-screen px-6 pt-24 pb-32 md:pb-40" aria-label="Process">
       <div className="max-w-5xl mx-auto">
@@ -138,20 +138,28 @@ export function Process() {
           </div>
         </FadeIn>
 
-        {/* Timeline — full width, larger process photos */}
-        <FadeIn delay={0.1}>
-          <ol className="relative" aria-label="Journey timeline">
+        {/* Timeline — phases cascade in; connector draws downward */}
+        <motion.ol
+          className="relative"
+          aria-label="Journey timeline"
+          variants={listV}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+        >
             {timeline.map((item, i) => (
-              <li key={item.title} className="relative pl-10 pb-11 last:pb-0">
+              <motion.li key={item.title} variants={itemV} className="relative pl-10 pb-11 last:pb-0">
                 {i < timeline.length - 1 && (
-                  <div
+                  <motion.div
                     aria-hidden="true"
-                    className="absolute left-[5px] top-[22px] w-px"
+                    variants={lineV}
+                    className="absolute left-[5px] top-[22px] w-px origin-top"
                     style={{ height: "calc(100% - 6px)", background: "rgba(177,161,209,0.30)" }}
                   />
                 )}
-                <div
+                <motion.div
                   aria-hidden="true"
+                  variants={dotV}
                   className="absolute left-0 top-[7px] w-[11px] h-[11px] rounded-full"
                   style={{
                     background: "var(--background)",
@@ -199,10 +207,9 @@ export function Process() {
                     )}
                   </div>
                 </div>
-              </li>
+              </motion.li>
             ))}
-          </ol>
-        </FadeIn>
+        </motion.ol>
       </div>
     </section>
   );
