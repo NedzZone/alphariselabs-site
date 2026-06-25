@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { FadeIn, motion, useReducedMotion, EASE } from "./motion";
 import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.png";
 import figureUrl from "../../assets/AlphaRise/The Idea/figure-About-Panel-Pip.png";
+import brainBgUrl from "../../assets/AlphaRise/The Idea/idea-bg.jpg";
 import brainUrl from "../../assets/AlphaRise/The Idea/idea-brain.png";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
@@ -118,6 +119,15 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
         className="hidden md:block relative mx-auto mt-4 overflow-hidden rounded-xl"
         style={{ height: "24rem", maxWidth: "58rem", border: "1px solid var(--border)", background: "var(--background)" }}
       >
+        {/* Static background layer (starfield) */}
+        <img
+          src={brainBgUrl}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full"
+          style={{ objectFit: "cover", objectPosition: "center" }}
+        />
+        {/* Transparent brain layer — zooms in over the static background */}
         <motion.img
           src={brainUrl}
           alt="A glowing brain rendered in indigo and lilac with gold neural pathways against dark space — the visual motif for AlphaRise's brain-controlled gameplay."
@@ -185,12 +195,24 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
 
       {/* ===== Mobile (below md): stacked — brain (smaller), statements in one column, then 96% ===== */}
       <div className="md:hidden">
-        <div className="relative mx-auto mt-5 w-full max-w-xs">
+        <div
+          className="relative mx-auto mt-5 w-full max-w-sm overflow-hidden rounded-lg"
+          style={{ aspectRatio: "1600 / 523", border: "1px solid var(--border)", background: "var(--background)" }}
+        >
+          {/* Static background layer */}
+          <img
+            src={brainBgUrl}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full"
+            style={{ objectFit: "cover" }}
+          />
+          {/* Transparent brain layer — zooms in over the static background */}
           <motion.img
             src={brainUrl}
             alt="A glowing brain rendered in indigo and lilac with gold neural pathways against dark space."
-            className="block w-full"
-            style={{ objectFit: "contain" }}
+            className="absolute inset-0 h-full w-full"
+            style={{ objectFit: "cover" }}
             initial={brainInitial}
             whileInView={brainAnimate}
             viewport={{ once: true, margin: "-60px" }}
