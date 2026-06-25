@@ -18,7 +18,7 @@ function PhaseThumb({ src, alt, credit, onZoom }: { src: string; alt: string; cr
   // Report zoom state up so the row can lift its stacking order above neighbours.
   useEffect(() => { onZoom?.(big); }, [big, onZoom]);
   return (
-    <div className="relative shrink-0 w-32 h-24">
+    <div className="relative shrink-0 w-44" style={{ aspectRatio: "4 / 3" }}>
       <button
         type="button"
         aria-label={big ? "Shrink photo" : "Enlarge photo"}
@@ -31,7 +31,7 @@ function PhaseThumb({ src, alt, credit, onZoom }: { src: string; alt: string; cr
           padding: 0,
           background: "var(--card)",
           border: "1px solid var(--border)",
-          transform: big ? "scale(2.1)" : "scale(1)",
+          transform: big ? "scale(1.7)" : "scale(1)",
           transformOrigin: "left center",
           transition: "transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s",
           zIndex: big ? 30 : 0,
