@@ -197,8 +197,8 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
       {/* ===== Mobile (below md): stacked — brain (smaller), statements in one column, then 96% ===== */}
       <div className="md:hidden">
         <div
-          className="relative mx-auto mt-5 w-full max-w-sm overflow-hidden rounded-lg"
-          style={{ aspectRatio: "1600 / 523", border: "1px solid var(--border)", background: "var(--background)" }}
+          className="relative mx-auto mt-5 w-full max-w-sm overflow-hidden rounded-xl"
+          style={{ aspectRatio: "3 / 2", border: "1px solid var(--border)", background: "var(--background)" }}
         >
           {/* Static background layer */}
           <img
@@ -592,11 +592,10 @@ export function Portfolio() {
                       aria-controls={`tabpanel-${tab}`}
                       id={`tab-${tab}`}
                       onClick={() => setActiveTab(tab)}
-                      className="relative rounded-t-lg px-5 py-2.5 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                      className="relative rounded-t-lg px-2.5 md:px-5 py-2.5 text-[0.74rem] md:text-[0.88rem] transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                       style={{
                         fontFamily: SANS,
                         fontWeight: active ? 600 : 400,
-                        fontSize: "0.88rem",
                         letterSpacing: "0.02em",
                         whiteSpace: "nowrap",
                         cursor: "pointer",
