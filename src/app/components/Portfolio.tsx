@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { FadeIn, motion, useReducedMotion, EASE } from "./motion";
 import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.png";
 import figureUrl from "../../assets/AlphaRise/The Idea/figure-About-Panel-Pip.png";
-import brainUrl from "../../assets/AlphaRise/The Idea/Idea-Tab.png";
+import brainUrl from "../../assets/AlphaRise/The Idea/idea-brain.png";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
@@ -116,7 +116,7 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
       {/* ===== Desktop (md+): compact horizontal band — brain centered, four cards flanking ===== */}
       <div
         className="hidden md:block relative mx-auto mt-4 overflow-hidden rounded-xl"
-        style={{ height: "24rem", maxWidth: "58rem", border: "1px solid var(--border)" }}
+        style={{ height: "24rem", maxWidth: "58rem", border: "1px solid var(--border)", background: "var(--background)" }}
       >
         <motion.img
           src={brainUrl}
