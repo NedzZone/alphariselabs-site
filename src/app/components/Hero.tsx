@@ -51,12 +51,12 @@ export function Hero() {
       <RevealZoom className="relative z-10 flex flex-col items-center text-center max-w-3xl">
         {/* Headline — Upheaval pixel, large, white */}
         <p
+          className="whitespace-normal md:whitespace-nowrap"
           style={{
             fontFamily: PIXEL,
             fontWeight: 400,
-            fontSize: "clamp(1rem, 3.8vw, 3.15rem)",
+            fontSize: "clamp(1.3rem, 3.8vw, 3.15rem)",
             lineHeight: 1.4,
-            whiteSpace: "nowrap",
             color: "#ffffff",
           }}
         >
@@ -65,11 +65,10 @@ export function Hero() {
 
         {/* Eyebrow — Calibri Light, letter-spacing */}
         <span
-          className="mt-6"
+          className="mt-6 text-[1.05rem] md:text-[1.44rem]"
           style={{
             fontFamily: SANS,
             fontWeight: 300,
-            fontSize: "1.44rem",
             letterSpacing: "0.06em",
             textTransform: "uppercase",
             color: "var(--secondary)",
@@ -171,11 +170,10 @@ export function Hero() {
               className="hidden md:block absolute left-0 top-1 bottom-1 w-px"
               style={{ background: "linear-gradient(to bottom, transparent, rgba(177,161,209,0.45), transparent)" }}
             />
-            <p style={{
+            <p className="text-[1.2rem] md:text-[clamp(1.4rem,2.4vw,2rem)]" style={{
               fontFamily: SERIF,
               fontWeight: 400,
               fontStyle: "italic",
-              fontSize: "clamp(1.4rem, 2.4vw, 2rem)",
               lineHeight: 1.5,
               letterSpacing: "-0.01em",
               color: "var(--foreground)",
