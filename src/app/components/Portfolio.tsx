@@ -260,25 +260,32 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
   ),
 
   "Design Philosophy": (
-    <div className="space-y-6">
+    <div
+      className="relative -mx-8 -my-8 px-8 py-8 md:min-h-[32rem] flex flex-col justify-center space-y-7"
+      style={{
+        backgroundImage: `linear-gradient(rgba(10,6,18,0.55), rgba(10,6,18,0.72)), url(${recognitionBgUrl})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <blockquote className="pl-6" style={{ borderLeft: "2px solid var(--primary)" }}>
         <p style={{
           fontFamily: SERIF,
           fontStyle: "italic",
           fontWeight: 700,
-          fontSize: "clamp(1.5rem, 3vw, 2rem)",
+          fontSize: "clamp(1.7rem, 3.2vw, 2.3rem)",
           lineHeight: 1.35,
           color: "var(--primary)",
         }}>
           "You should never punish the symptom you're trying to heal."
         </p>
       </blockquote>
-      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.08rem", lineHeight: 1.8, color: "var(--muted-foreground)", textWrap: "pretty" }}>
+      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.4rem", lineHeight: 1.8, color: "var(--muted-foreground)", textWrap: "pretty" }}>
         While designing and playtesting my BCI game, I kept asking: how do I challenge players and
         still keep them motivated? Most games push you to try harder by penalizing failure. This one
         does the opposite. You're already carrying the weight of a symptom, the game shouldn't add to it.
       </p>
-      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.08rem", lineHeight: 1.8, color: "var(--muted-foreground)", textWrap: "pretty" }}>
+      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.4rem", lineHeight: 1.8, color: "var(--muted-foreground)", textWrap: "pretty" }}>
         <em style={{ fontStyle: "italic", color: "var(--accent)" }}>Compassionate Mode</em> reads your
         brain state and turns it into challenges you can meet at your own pace. You're not competing
         against the game; you're competing against your symptom. The goal is to help you push back
@@ -289,7 +296,7 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
 
   Recognition: (
     <div
-      className="relative -mx-8 -my-8 px-8 py-8 space-y-8"
+      className="relative -mx-8 -my-8 px-8 py-8 md:min-h-[32rem] flex flex-col justify-center space-y-8"
       style={{
         backgroundImage: `linear-gradient(rgba(10,6,18,0.55), rgba(10,6,18,0.72)), url(${recognitionBgUrl})`,
         backgroundSize: "cover",
@@ -647,7 +654,7 @@ export function Portfolio() {
               id={`tabpanel-${activeTab}`}
               role="tabpanel"
               aria-labelledby={`tab-${activeTab}`}
-              className="px-8 py-8"
+              className="px-8 py-8 md:min-h-[32rem]"
             >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
