@@ -25,7 +25,7 @@ function FadeIn({ children, delay = 0, className }: { children: React.ReactNode;
 
 export function Story() {
   return (
-    <section id="story" className="relative min-h-screen px-6 pt-24 pb-32 md:pb-40" aria-label="Story">
+    <section id="story" className="relative min-h-screen px-6 pt-24 pb-20 md:pb-24" aria-label="Story">
       <div className="max-w-5xl mx-auto">
 
         {/* Section header */}
@@ -45,33 +45,47 @@ export function Story() {
           </div>
         </FadeIn>
 
-        {/* Big hero image */}
+        {/* Hero image — height-capped so the whole section stays within its bounds */}
         <FadeIn delay={0.05}>
           <div
-            className="relative overflow-hidden rounded-2xl mb-12 md:mb-16"
+            className="relative w-fit mx-auto overflow-hidden rounded-2xl mb-10"
             style={{ border: "1px solid var(--border)" }}
           >
             <img
               src={storyHeroUrl}
-              alt="Ned Shoaei"
-              className="block w-full h-auto"
-              style={{ objectFit: "cover" }}
+              alt="Ned Shoaei delivering the keynote at Hack iX 2025"
+              className="block"
+              style={{
+                maxHeight: "clamp(190px, 32vh, 320px)",
+                width: "auto",
+                maxWidth: "100%",
+                objectFit: "cover",
+              }}
             />
-            {/* Bottom-left photo credit overlay */}
+            {/* Caption overlay — descriptive line over a dimmer credit */}
             <div
-              className="absolute bottom-0 left-0 z-10 rounded-bl-2xl px-3 pt-5 pb-2"
-              style={{ background: "linear-gradient(to top right, rgba(10,6,18,0.85), transparent 78%)" }}
+              className="absolute inset-x-0 bottom-0 z-10 px-4 pt-12 pb-3"
+              style={{ background: "linear-gradient(to top, rgba(10,6,18,0.92) 12%, rgba(10,6,18,0.55) 48%, transparent)" }}
             >
-              <span style={{
+              <p style={{
+                fontFamily: SANS,
+                fontWeight: 400,
+                fontSize: "0.9rem",
+                lineHeight: 1.35,
+                color: "rgba(228,223,242,0.96)",
+              }}>
+                Keynote speaker at Hack iX 2025, SCAD's inaugural hackathon
+              </p>
+              <p className="mt-0.5" style={{
                 fontFamily: SANS,
                 fontWeight: 300,
-                fontSize: "0.72rem",
-                letterSpacing: "0.10em",
+                fontSize: "0.68rem",
+                letterSpacing: "0.08em",
                 textTransform: "uppercase",
-                color: "rgba(228,223,242,0.88)",
+                color: "rgba(228,223,242,0.55)",
               }}>
                 Photo: SCAD
-              </span>
+              </p>
             </div>
           </div>
         </FadeIn>

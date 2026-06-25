@@ -2,8 +2,8 @@ import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import posterUrl from "../../public/AlphaRise Research Poster Design-Website-compressed.png";
-import figureUrl from "../../assets/The Work/The Idea/figure-About-Panel-Pip.png";
-import brainUrl from "../../assets/The Work/The Idea/Idea-Tab.png";
+import figureUrl from "../../assets/AlphaRise/The Idea/figure-About-Panel-Pip.png";
+import brainUrl from "../../assets/AlphaRise/The Idea/Idea-Tab.png";
 
 const PIXEL = "'Upheaval TT BRK', 'Press Start 2P', monospace";
 const SERIF = "'Georgia', 'Times New Roman', serif";
