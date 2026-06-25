@@ -261,7 +261,7 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
 
   "Design Philosophy": (
     <div
-      className="relative -mx-8 -my-8 px-8 py-8 md:min-h-[32rem] flex flex-col justify-center space-y-7"
+      className="relative -mx-5 -my-7 px-5 py-7 md:-mx-8 md:-my-8 md:px-8 md:py-8 md:min-h-[32rem] flex flex-col justify-center space-y-5 md:space-y-7"
       style={{
         backgroundImage: `linear-gradient(rgba(10,6,18,0.55), rgba(10,6,18,0.72)), url(${recognitionBgUrl})`,
         backgroundSize: "cover",
@@ -280,12 +280,12 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
           "You should never punish the symptom you're trying to heal."
         </p>
       </blockquote>
-      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.4rem", lineHeight: 1.8, color: "var(--muted-foreground)", textWrap: "pretty" }}>
+      <p className="text-[1.05rem] leading-[1.65] md:text-[1.4rem] md:leading-[1.8]" style={{ fontFamily: SANS, fontWeight: 400, color: "var(--muted-foreground)", textWrap: "pretty" }}>
         While designing and playtesting my BCI game, I kept asking: how do I challenge players and
         still keep them motivated? Most games push you to try harder by penalizing failure. This one
         does the opposite. You're already carrying the weight of a symptom, the game shouldn't add to it.
       </p>
-      <p style={{ fontFamily: SANS, fontWeight: 400, fontSize: "1.4rem", lineHeight: 1.8, color: "var(--muted-foreground)", textWrap: "pretty" }}>
+      <p className="text-[1.05rem] leading-[1.65] md:text-[1.4rem] md:leading-[1.8]" style={{ fontFamily: SANS, fontWeight: 400, color: "var(--muted-foreground)", textWrap: "pretty" }}>
         <em style={{ fontStyle: "italic", color: "var(--accent)" }}>Compassionate Mode</em> reads your
         brain state and turns it into challenges you can meet at your own pace. You're not competing
         against the game; you're competing against your symptom. The goal is to help you push back
@@ -296,7 +296,7 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
 
   Recognition: (
     <div
-      className="relative -mx-8 -my-8 px-8 py-8 md:min-h-[32rem] flex flex-col justify-center space-y-8"
+      className="relative -mx-5 -my-7 px-5 py-7 md:-mx-8 md:-my-8 md:px-8 md:py-8 md:min-h-[32rem] flex flex-col justify-center space-y-6 md:space-y-8"
       style={{
         backgroundImage: `linear-gradient(rgba(10,6,18,0.55), rgba(10,6,18,0.72)), url(${recognitionBgUrl})`,
         backgroundSize: "cover",
@@ -305,7 +305,7 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
     >
       {/* Lead item — research poster with visual weight */}
       <div
-        className="p-6 md:p-7 rounded-xl flex items-center gap-5 md:gap-6"
+        className="p-5 md:p-7 rounded-xl flex items-center gap-4 md:gap-6"
         style={{
           background: "rgba(219,179,94,0.06)",
           border: "1px solid rgba(219,179,94,0.22)",
@@ -316,10 +316,8 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
           type="button"
           onClick={onOpenPoster}
           aria-label="View the poster"
-          className="group relative shrink-0 inline-flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          className="group relative shrink-0 inline-flex items-center justify-center rounded-full h-14 w-14 md:h-[4.25rem] md:w-[4.25rem] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           style={{
-            width: "4.25rem",
-            height: "4.25rem",
             background: "var(--primary)",
             color: "var(--primary-foreground)",
             border: "none",
@@ -350,10 +348,9 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
           }}>
             Peer-reviewed · Conference Poster
           </p>
-          <p style={{
+          <p className="text-[1.15rem] md:text-[1.5rem]" style={{
             fontFamily: SERIF,
             fontWeight: 700,
-            fontSize: "1.5rem",
             lineHeight: 1.35,
             color: "var(--foreground)",
           }}>
@@ -428,16 +425,15 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
             color: "var(--blue-deep)",
           },
         ].map((item) => (
-          <div key={item.title} className="flex items-start gap-4">
+          <div key={item.title} className="flex items-start gap-3 md:gap-4">
             <div
-              className="mt-1 shrink-0 py-0.5 rounded-full text-center"
+              className="mt-1 shrink-0 py-0.5 rounded-full text-center w-32 md:w-[9.5rem]"
               style={{
                 fontFamily: SANS,
                 fontWeight: 300,
                 fontSize: "0.85rem",
                 letterSpacing: "0.08em",
                 whiteSpace: "nowrap",
-                width: "9.5rem",
                 background: "transparent",
                 border: `1px solid ${item.color}`,
                 color: item.color,
@@ -445,10 +441,9 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
             >
               {item.label}
             </div>
-            <p style={{
+            <p className="text-[1rem] md:text-[1.25rem]" style={{
               fontFamily: SANS,
               fontWeight: 400,
-              fontSize: "1.25rem",
               lineHeight: 1.5,
               color: "var(--foreground)",
             }}>
@@ -653,7 +648,7 @@ export function Portfolio() {
               id={`tabpanel-${activeTab}`}
               role="tabpanel"
               aria-labelledby={`tab-${activeTab}`}
-              className="px-8 py-8 md:min-h-[32rem]"
+              className="px-5 py-7 md:px-8 md:py-8 md:min-h-[32rem]"
             >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
