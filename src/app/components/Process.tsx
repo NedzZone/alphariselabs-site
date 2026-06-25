@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FadeIn, motion, useReducedMotion, EASE } from "./motion";
 import firstSignalUrl from "../../assets/Process/phase-first-signal.jpg";
 import theBuildUrl from "../../assets/Process/phase-the-build.jpg";
@@ -11,12 +11,14 @@ const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 
 // Small thumbnail that enlarges on hover (desktop) and toggles on tap (touch).
 // It scales in place over a reserved box, so neighbouring rows don't shift.
-function PhaseThumb({ src, alt, credit }: { src: string; alt: string; credit?: string }) {
+function PhaseThumb({ src, alt, credit, onZoom }: { src: string; alt: string; credit?: string; onZoom?: (z: boolean) => void }) {
   const [open, setOpen] = useState(false);   // tap toggle (touch)
   const [hover, setHover] = useState(false); // pointer hover (desktop)
   const big = open || hover;
+  // Report zoom state up so the row can lift its stacking order above neighbours.
+  useEffect(() => { onZoom?.(big); }, [big, onZoom]);
   return (
-    <div className="relative shrink-0 w-32" style={{ aspectRatio: "4 / 3" }}>
+    <div className="relative shrink-0 w-32 h-24">
       <button
         type="button"
         aria-label={big ? "Shrink photo" : "Enlarge photo"}
@@ -43,7 +45,7 @@ function PhaseThumb({ src, alt, credit }: { src: string; alt: string; credit?: s
           loading="lazy"
           draggable={false}
           className="absolute inset-0 h-full w-full select-none"
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
         {credit && (
           <div
@@ -64,6 +66,83 @@ function PhaseThumb({ src, alt, credit }: { src: string; alt: string; credit?: s
         )}
       </button>
     </div>
+  );
+}
+
+type Phase = { title: string; body: string; photo?: string; credit?: string; collab?: boolean };
+
+// One timeline row. Tracks its thumbnail's zoom so it can raise the whole
+// row above its neighbours (each animated <li> is its own stacking context,
+// so a zoomed thumb would otherwise slip under the next row's text).
+function TimelinePhase({ item, isLast, itemV, lineV, dotV }: {
+  item: Phase; isLast: boolean; itemV: any; lineV: any; dotV: any;
+}) {
+  const [zoomed, setZoomed] = useState(false);
+  return (
+    <motion.li
+      variants={itemV}
+      className="relative pl-10 pb-11 last:pb-0"
+      style={{ zIndex: zoomed ? 40 : undefined }}
+    >
+      {!isLast && (
+        <motion.div
+          aria-hidden="true"
+          variants={lineV}
+          className="absolute left-[5px] top-[22px] w-px origin-top"
+          style={{ height: "calc(100% - 6px)", background: "rgba(177,161,209,0.30)" }}
+        />
+      )}
+      <motion.div
+        aria-hidden="true"
+        variants={dotV}
+        className="absolute left-0 top-[7px] w-[11px] h-[11px] rounded-full"
+        style={{
+          background: "var(--background)",
+          border: "1px solid var(--primary)",
+          boxShadow: "0 0 6px rgba(219,179,94,0.30)",
+        }}
+      />
+      {/* Small photo left of the text (stacked above on mobile); enlarges on hover/tap */}
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+        {item.photo && (
+          <PhaseThumb src={item.photo} alt={`${item.title} — process photo`} credit={item.credit} onZoom={setZoomed} />
+        )}
+
+        <div className="min-w-0 sm:pt-0.5">
+          <p style={{
+            fontFamily: SERIF,
+            fontWeight: 700,
+            fontSize: "1.6rem",
+            color: "var(--primary)",
+            letterSpacing: "0.01em",
+          }}>
+            {item.title}
+          </p>
+          <p className="mt-2" style={{
+            fontFamily: SANS,
+            fontWeight: 400,
+            fontSize: "1.15rem",
+            lineHeight: 1.7,
+            color: "var(--muted-foreground)",
+            maxWidth: "44rem",
+          }}>
+            {item.body}
+          </p>
+          {item.collab && (
+            <p className="mt-2" style={{
+              fontFamily: SANS,
+              fontWeight: 400,
+              fontSize: "0.9rem",
+              letterSpacing: "0.02em",
+              color: "var(--text-faint)",
+            }}>
+              Game Art Collaborator:{" "}
+              <span style={{ color: "var(--secondary)" }}>Madeleine Schaefer</span>, BFA Game Development, SCAD
+            </p>
+          )}
+        </div>
+      </div>
+    </motion.li>
   );
 }
 
@@ -148,66 +227,14 @@ export function Process() {
           viewport={{ once: true, margin: "-80px" }}
         >
             {timeline.map((item, i) => (
-              <motion.li key={item.title} variants={itemV} className="relative pl-10 pb-11 last:pb-0">
-                {i < timeline.length - 1 && (
-                  <motion.div
-                    aria-hidden="true"
-                    variants={lineV}
-                    className="absolute left-[5px] top-[22px] w-px origin-top"
-                    style={{ height: "calc(100% - 6px)", background: "rgba(177,161,209,0.30)" }}
-                  />
-                )}
-                <motion.div
-                  aria-hidden="true"
-                  variants={dotV}
-                  className="absolute left-0 top-[7px] w-[11px] h-[11px] rounded-full"
-                  style={{
-                    background: "var(--background)",
-                    border: "1px solid var(--primary)",
-                    boxShadow: "0 0 6px rgba(219,179,94,0.30)",
-                  }}
-                />
-                {/* Small photo left of the text (stacked above on mobile); enlarges on hover/tap */}
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                  {item.photo && (
-                    <PhaseThumb src={item.photo} alt={`${item.title} — process photo`} credit={item.credit} />
-                  )}
-
-                  <div className="min-w-0 sm:pt-0.5">
-                    <p style={{
-                      fontFamily: SERIF,
-                      fontWeight: 700,
-                      fontSize: "1.6rem",
-                      color: "var(--primary)",
-                      letterSpacing: "0.01em",
-                    }}>
-                      {item.title}
-                    </p>
-                    <p className="mt-2" style={{
-                      fontFamily: SANS,
-                      fontWeight: 400,
-                      fontSize: "1.15rem",
-                      lineHeight: 1.7,
-                      color: "var(--muted-foreground)",
-                      maxWidth: "44rem",
-                    }}>
-                      {item.body}
-                    </p>
-                    {item.collab && (
-                      <p className="mt-2" style={{
-                        fontFamily: SANS,
-                        fontWeight: 400,
-                        fontSize: "0.9rem",
-                        letterSpacing: "0.02em",
-                        color: "var(--text-faint)",
-                      }}>
-                        Game Art Collaborator:{" "}
-                        <span style={{ color: "var(--secondary)" }}>Madeleine Schaefer</span>, BFA Game Development, SCAD
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </motion.li>
+              <TimelinePhase
+                key={item.title}
+                item={item}
+                isLast={i === timeline.length - 1}
+                itemV={itemV}
+                lineV={lineV}
+                dotV={dotV}
+              />
             ))}
         </motion.ol>
       </div>

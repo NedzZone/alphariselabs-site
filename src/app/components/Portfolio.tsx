@@ -135,7 +135,7 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
           style={{ objectFit: "cover", objectPosition: "center" }}
           initial={brainInitial}
           whileInView={brainAnimate}
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ margin: "-60px" }}
           transition={brainTransition}
         />
         {/* Perpetual, very subtle glow pulse so the brain feels alive */}
@@ -161,7 +161,7 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
           variants={cardsContainerV}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ margin: "-60px" }}
         >
           {/* Row 1 */}
           <motion.div variants={cardV} className="flex justify-start pr-3"><IdeaStatement item={ideas[0]} align="left" /></motion.div>
@@ -215,7 +215,7 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
             style={{ objectFit: "cover" }}
             initial={brainInitial}
             whileInView={brainAnimate}
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={{ margin: "-60px" }}
             transition={brainTransition}
           />
           {!reduced && (
@@ -237,7 +237,7 @@ const tabContent = (onOpenPoster: () => void, reduced: boolean | null): Record<T
           variants={cardsContainerV}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ margin: "-60px" }}
         >
           {ideas.map((item) => (
             <motion.div key={item.lead} variants={cardV}>
