@@ -220,7 +220,7 @@ export function Process() {
     : { hidden: { scaleY: 0 }, show: { scaleY: 1, transition: { duration: 0.5, ease: "easeInOut", delay: 0.1 } } };
 
   return (
-    <section id="process" className="relative min-h-screen overflow-x-clip px-6 pt-24 pb-24 md:pb-40" aria-label="Process">
+    <section id="process" className="relative min-h-screen overflow-x-clip px-6 pt-12 pb-12 md:pt-24 md:pb-40" aria-label="Process">
       <div className="max-w-5xl mx-auto">
 
         {/* Section header */}

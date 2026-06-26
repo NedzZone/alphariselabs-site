@@ -34,7 +34,7 @@ function HoverTip({ label, className = "" }: { label: string; className?: string
 
 export function Contact() {
   return (
-    <section id="connect" className="relative grow px-6 pt-24 pb-24 md:pb-40" aria-label="Connect">
+    <section id="connect" className="relative grow px-6 pt-12 pb-12 md:pt-24 md:pb-40" aria-label="Connect">
       {/* Bottom ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2"
         style={{

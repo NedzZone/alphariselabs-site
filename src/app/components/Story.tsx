@@ -7,7 +7,7 @@ const SANS  = "'Calibri', 'Lato', 'Gill Sans', sans-serif";
 
 export function Story() {
   return (
-    <section id="story" className="relative min-h-screen px-6 pt-24 pb-24" aria-label="Story">
+    <section id="story" className="relative min-h-screen px-6 pt-12 pb-12 md:pt-24 md:pb-24" aria-label="Story">
       <div className="max-w-5xl mx-auto">
 
         {/* Section header */}
