@@ -55,7 +55,7 @@ export function Hero() {
           style={{
             fontFamily: PIXEL,
             fontWeight: 400,
-            fontSize: "clamp(1.3rem, 3.8vw, 3.15rem)",
+            fontSize: "clamp(1.75rem, 3.8vw, 3.15rem)",
             lineHeight: 1.4,
             color: "#ffffff",
           }}
