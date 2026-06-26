@@ -34,7 +34,7 @@ export function Hero() {
   return (
     <section
       id="start"
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 py-28 md:py-32 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center px-6 py-24 md:py-32 overflow-hidden"
       aria-label="Hero"
     >
       {/* Signature glow orb */}

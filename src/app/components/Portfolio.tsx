@@ -481,7 +481,7 @@ export function Portfolio() {
   }, [posterOpen]);
 
   return (
-    <section id="alpharise" className="relative min-h-screen px-6 pt-24 pb-32 md:pb-40" aria-label="AlphaRise">
+    <section id="alpharise" className="relative min-h-screen px-6 pt-24 pb-24 md:pb-40" aria-label="AlphaRise">
       <div className="max-w-5xl mx-auto">
 
         {/* Section header */}
